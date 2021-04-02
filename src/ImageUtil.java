@@ -162,7 +162,3 @@ class ImageUtil {
         }
     }
 }
-
-
-
-//comentario
