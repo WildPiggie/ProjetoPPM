@@ -1,3 +1,5 @@
+package QTrees
+
 object Main {
   def main(args: Array[String]): Unit = {
     // testar mais coisas
@@ -15,8 +17,16 @@ object Main {
        val qt: QTree[Coords] = QNode(((0,0),(1,1)), l1, l2, l3, l4)
 * */
 
+    // List(List(1ª linha), List(2ª linha), ...)
+    val a = ImageUtil.readColorImage("C:\\Users\\Pombo\\Desktop\\objc2_2.png").toList
+
+
+
+    //print(a)
+
+    println(a(1)(2))
+
 
 
   }
 }
-
