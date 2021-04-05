@@ -1,55 +1,26 @@
-
 package QTrees
-
-
 
 import java.awt.Color
 
-
-sealed trait QTree[+A]
-case class QNode[A](value: A, one: QTree[A], two: QTree[A], three: QTree[A], four: QTree[A]) extends QTree[A]
-case class QLeaf[A, B](value: B) extends QTree[A]
-case object QEmpty extends QTree[Nothing]
-
-case class QuadTree[A] (myField: QTree[A]) {
+class QuadTree{
 
   type BitMap = List[List[Int]]
-
-  def makeQTree[A] (b:BitMap):QTree[A]
-  def makeBitMap[A] (qt: QTree[A]): BitMap
-  def scale[A](scale:Double, qt:QTree[A]):QTree[A]
-  def mirrorV[A] (qt:QTree[A]):QTree[A]
-  def mirrorH[A] (qt:QTree[A]):QTree[A]
-  def rotateD[A] (qt:QTree[A]):QTree[A]
-  def rotateR[A] (qt:QTree[A]):QTree[A]
-  def mapColourEffect[A] (f:Color => Color, qt:QTree[A]):QTree[A]
-}
-
-object QuadTree{
-
   type Point = (Int, Int)
   type Coords = (Point, Point)
   type Section = (Coords, Color)
-  type BitMap = List[List[Int]]
 
-  def makeQTree[A] (b:BitMap):QTree[A] = {???}
+  def makeQTree (b:BitMap):QTree[Color] = {
 
-  def makeBitMap[A] (qt: QTree[A]): BitMap = {???}
-
-  def scale[A](scale:Double, qt:QTree[A]):QTree[A] = {???}
-
-  def mirrorV[A] (qt:QTree[A]):QTree[A] = {???}
-
-  def mirrorH[A] (qt:QTree[A]):QTree[A] = {???}
-
-  def rotateD[A] (qt:QTree[A]):QTree[A] = {???}
-
-  def rotateR[A] (qt:QTree[A]):QTree[A] = {???}
-
-  def mapColourEffect[A] (f:Color => Color, qt:QTree[A]):QTree[A] = {???}
-
+    ???
+  }
+  def makeBitMap (qt: QTree[Color]): BitMap = ???
+  def scale(scale:Double, qt:QTree[Color]):QTree[Color] = ???
+  def mirrorV (qt:QTree[Color]):QTree[Color] = ???
+  def mirrorH (qt:QTree[Color]):QTree[Color] = ???
+  def rotateD (qt:QTree[Color]):QTree[Color] = ???
+  def rotateR (qt:QTree[Color]):QTree[Color] = ???
+  def mapColourEffect (f:Color => Color, qt:QTree[Color]):QTree[Color] = ???
 }
-
 
 
 /**

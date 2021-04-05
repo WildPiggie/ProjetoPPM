@@ -4,7 +4,6 @@ object Main {
   def main(args: Array[String]): Unit = {
     // testar mais coisas
 
-
     /*
     *
     * //Exemplo de QTree[Coords]
@@ -19,8 +18,6 @@ object Main {
 
     // List(List(1ª linha), List(2ª linha), ...)
     val a = ImageUtil.readColorImage("C:\\Users\\Pombo\\Desktop\\objc2_2.png").toList
-
-
 
     //print(a)
 
