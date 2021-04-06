@@ -17,13 +17,15 @@ object Main {
 * */
 
     // List(List(1ª linha), List(2ª linha), ...)
-    val a = ImageUtil.readColorImage("C:\\Users\\Pombo\\Desktop\\objc2_2.png").toList
+    val a = ImageUtil.readColorImage("src//objc2_2.png").toList
 
     //print(a)
 
-    println(a(1)(2))
     val b = a map (x=>x.toList)
 
+    val c = BitMap(b).makeQTree()
+
+    println("QTree: " + c)
 
 
 

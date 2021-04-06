@@ -5,7 +5,7 @@ import QTrees.QuadTree._
 
 case class QuadTree(qt: QTree[Coords]){
 
-  def makeBitMap (quadT: QTree[Coords]): BitMap = QuadTree.makeBitMap(qt) //correto?
+  def makeBitMap (): BitMap = QuadTree.makeBitMap(this.qt)
   def scale (scale:Double, quadT:QTree[Coords]):QTree[Coords] = ???
   def mirrorV (quadT:QTree[Coords]):QTree[Coords] = ???
   def mirrorH (quadT:QTree[Coords]):QTree[Coords] = ???
@@ -22,7 +22,7 @@ object QuadTree{
   type Section = (Coords, Color)
 
   def makeBitMap (qt: QTree[Coords]): BitMap = ???
-  def scale (scale:Double, qt:QTree[Coords]):QTree[Coords] = ???
+  def scale (scale:Double, qt:QTree[Coords]): QTree[Coords] = ??? //verificar se é possível realizar o scaling ou não
   def mirrorV (qt:QTree[Coords]):QTree[Coords] = ???
   def mirrorH (qt:QTree[Coords]):QTree[Coords] = ???
   def rotateD (qt:QTree[Coords]):QTree[Coords] = ???
