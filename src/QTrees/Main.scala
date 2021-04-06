@@ -22,6 +22,8 @@ object Main {
     //print(a)
 
     println(a(1)(2))
+    val b = a map (x=>x.toList)
+
 
 
 

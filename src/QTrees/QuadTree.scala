@@ -1,25 +1,33 @@
 package QTrees
 
 import java.awt.Color
+import QTrees.QuadTree._
 
-class QuadTree{
+case class QuadTree(qt: QTree[Coords]){
 
-  type BitMap = List[List[Int]]
+  def makeBitMap (quadT: QTree[Coords]): BitMap = QuadTree.makeBitMap(qt) //correto?
+  def scale (scale:Double, quadT:QTree[Coords]):QTree[Coords] = ???
+  def mirrorV (quadT:QTree[Coords]):QTree[Coords] = ???
+  def mirrorH (quadT:QTree[Coords]):QTree[Coords] = ???
+  def rotateD (quadT:QTree[Coords]):QTree[Coords] = ???
+  def rotateR (quadT:QTree[Coords]):QTree[Coords] = ???
+  def mapColourEffect (f:Color => Color, quadT:QTree[Coords]):QTree[Coords] = ???
+
+}
+
+object QuadTree{
+
   type Point = (Int, Int)
   type Coords = (Point, Point)
   type Section = (Coords, Color)
 
-  def makeQTree (b:BitMap):QTree[Color] = {
-
-    ???
-  }
-  def makeBitMap (qt: QTree[Color]): BitMap = ???
-  def scale(scale:Double, qt:QTree[Color]):QTree[Color] = ???
-  def mirrorV (qt:QTree[Color]):QTree[Color] = ???
-  def mirrorH (qt:QTree[Color]):QTree[Color] = ???
-  def rotateD (qt:QTree[Color]):QTree[Color] = ???
-  def rotateR (qt:QTree[Color]):QTree[Color] = ???
-  def mapColourEffect (f:Color => Color, qt:QTree[Color]):QTree[Color] = ???
+  def makeBitMap (qt: QTree[Coords]): BitMap = ???
+  def scale (scale:Double, qt:QTree[Coords]):QTree[Coords] = ???
+  def mirrorV (qt:QTree[Coords]):QTree[Coords] = ???
+  def mirrorH (qt:QTree[Coords]):QTree[Coords] = ???
+  def rotateD (qt:QTree[Coords]):QTree[Coords] = ???
+  def rotateR (qt:QTree[Coords]):QTree[Coords] = ???
+  def mapColourEffect (f:Color => Color, qt:QTree[Coords]):QTree[Coords] = ???
 }
 
 
