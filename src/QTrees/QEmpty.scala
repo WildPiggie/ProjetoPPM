@@ -1,5 +1,5 @@
 package QTrees
 
-case object QEmpty extends QTree[Nothing]{ //pode existir um campo vazio sequer?
-
+case object QEmpty extends QTree[Nothing]{
+  //override def changeValue[A](newValue: A): QTree[A] = QEmpty
 }

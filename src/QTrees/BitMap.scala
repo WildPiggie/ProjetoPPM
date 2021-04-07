@@ -26,9 +26,13 @@ object BitMap {
     //temos que considerar que pode não ser quadrada e imagens com lados impares
 
     if( (c._1._1 == c._2._1) && (c._1._2 == c._2._2) ) {
+      if(c._1._1 == -1 ){ //melhorar com enumerados talvez
+        println("EMPTY")
+        return QEmpty
+      }
       val a = ImageUtil.decodeRgb(b.img(c._1._2)(c._1._1)).toList
       val color = new Color(a(0),a(1),a(2))
-      return new QLeaf[Coords, Section]( (c, color):Section ) // RETURN?
+      return new QLeaf[Coords, Section]( (c, color):Section )
     }
 
     val sCords = splitCoords(c)
@@ -45,21 +49,40 @@ object BitMap {
 
     (qtOne, qtTwo, qtThree, qtFour) match {
       case (q1: QLeaf[Coords, Section], q2:QLeaf[Coords, Section], q3:QLeaf[Coords, Section], q4:QLeaf[Coords, Section]) => {
-        if( (q1.value._2 equals  q2.value._2) && (q3.value._2 equals q4.value._2) && (q1.value._2 equals q4.value._2 ) )
-          return new QLeaf[Coords, Section]( (c, q1.value._2):Section )
+        if( (q1.value._2 equals q2.value._2) && (q3.value._2 equals q4.value._2) && (q1.value._2 equals q4.value._2 ) )
+          new QLeaf[Coords, Section]( (c, q1.value._2):Section )
         else
-          new QNode[Coords](c, qtOne, qtTwo, qtThree, qtFour) //(value: A, one: QTree[A], two: QTree[A], three: QTree[A], four: QTree[A])
+          new QNode[Coords](c, qtOne, qtTwo, qtThree, qtFour)
       }
-      case _ => new QNode[Coords](c, qtOne, qtTwo, qtThree, qtFour) //(value: A, one: QTree[A], two: QTree[A], three: QTree[A], four: QTree[A])
+      case _ => new QNode[Coords](c, qtOne, qtTwo, qtThree, qtFour)
     }
   }
 
-  def splitCoords(c:Coords): (Coords, Coords, Coords, Coords) = { //temos que considerar que pode não ser quadrada e imagens com lados impares
-    val side = c._2._1 - c._1._1 + 1
-    val c1 = ( (c._1),(c._2._1-side/2,c._2._2-side/2) )
-    val c2 = ( (c._1._1+side/2,c._1._2),(c._2._1,c._2._2-side/2) )
-    val c3 = ( (c._1._1,c._1._2+side/2),(c._2._1-side/2,c._2._2) )
-    val c4 = ( (c._1._1+side/2, c._1._2+side/2),(c._2) )
+  def splitCoords(c:Coords): (Coords, Coords, Coords, Coords) = { //Está mal aqui probably
+    val width = c._2._1 - c._1._1 + 1
+    val height = c._2._2 - c._1._2 + 1
+    println("Width: " + width + " Height: " + height)
+    if(width == 2 && height == 1){
+      print("IN1")
+      val ac1 = ( (c._1),( c._2._1-width/2,c._2._2 ) )
+      val ac2 = ( ( c._1._1+width/2,c._1._2),(c._2) )
+      val ac3 = ( (-1,-1), (-1,-1) ) //enumerado
+      val ac4 = ( (-1,-1), (-1,-1) )
+      return (ac1,ac2,ac3,ac4)
+    }
+    if(height == 2 && width == 1){
+      print("IN2")
+      val ac1 = ( (c._1),( c._2._1,c._2._2-height/2 ) )
+      val ac2 = ( (-1,-1), (-1,-1) )
+      val ac3 = ( ( c._1._1,c._1._2+height/2),(c._2) )
+      val ac4 = ( (-1,-1), (-1,-1) )
+      return (ac1,ac2,ac3,ac4)
+    }
+
+    val c1 = ( (c._1),( c._2._1-(width/2).ceil.toInt,c._2._2-(height/2).ceil.toInt ) )
+    val c2 = ( ( c._1._1+(width/2).ceil.toInt,c._1._2),(c._2._1,c._2._2-(height/2).floor.toInt ) )
+    val c3 = ( (c._1._1,c._1._2+(height/2).ceil.toInt),(c._2._1-(width/2).floor.toInt,c._2._2) )
+    val c4 = ( (c._1._1+(width/2).ceil.toInt, c._1._2+(height/2).ceil.toInt),(c._2) )
     (c1,c2,c3,c4)
   }
 
