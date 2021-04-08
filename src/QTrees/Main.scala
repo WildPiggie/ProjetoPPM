@@ -22,7 +22,7 @@ object Main {
 
 
     // List(List(1ª linha), List(2ª linha), ...)
-   val a = ImageUtil.readColorImage("src//objc2_2.png").toList
+   val a = ImageUtil.readColorImage("src//black5x5.png").toList
 
     //print(a)
 
@@ -53,7 +53,7 @@ object Main {
 */
 
     //println("MirrorV: " + quad.mirrorV())
-    println("Noise: " + quad.mapColourEffect(QuadTree.noiseEffect))
+    //println("Noise: " + quad.mapColourEffect(QuadTree.noiseEffect))
 
 
   }

@@ -5,6 +5,7 @@ import QTrees.BitMap._
 
 case class BitMap(img: List[List[Int]]) {
   def makeQTree(): QTree[Coords] = BitMap.makeQTree(this)
+
 }
 
 object BitMap {
@@ -13,12 +14,11 @@ object BitMap {
   type Coords = (Point, Point)
   type Section = (Coords, Color)
 
-  def makeQTree (b:BitMap): QTree[Coords] = {
+  def makeQTree(b:BitMap): QTree[Coords] = {
     val x = b.img.length - 1
     val y = b.img(0).length - 1 //img(0) pode ser substituido por algo mais limpo?
     auxMQT( ((0,0):Point, (x,y):Point):Coords, b )
   }
-
 
   def auxMQT (c:Coords, b: BitMap):QTree[Coords] = {
 
@@ -54,12 +54,42 @@ object BitMap {
   }
 
   def splitCoords(c:Coords): (Coords, Coords, Coords, Coords) = { //temos que considerar que pode não ser quadrada e imagens com lados impares
-    val side = c._2._1 - c._1._1 + 1
-    val c1 = ( (c._1),(c._2._1-side/2,c._2._2-side/2) )
-    val c2 = ( (c._1._1+side/2,c._1._2),(c._2._1,c._2._2-side/2) )
-    val c3 = ( (c._1._1,c._1._2+side/2),(c._2._1-side/2,c._2._2) )
-    val c4 = ( (c._1._1+side/2, c._1._2+side/2),(c._2) )
+    val width = c._2._1 - c._1._1 + 1
+    val height = c._2._2 - c._1._2 + 1
+    val c1 = ( c._1,( c._2._1-(width/2).ceil.toInt,c._2._2-(height/2).ceil.toInt ) )
+    val c2 = ( ( c1._2._1+1,c._1._2),(c._2._1,c._2._2-(height/2).floor.toInt ) )
+    val c3 = ( (c._1._1,c._1._2+(height/2).ceil.toInt),(c._2._1-(width/2).floor.toInt,c._2._2) ) //y da primeira coordenada está errado
+    val c4 = ( (c._1._1+(width/2).ceil.toInt, c._1._2+(height/2).ceil.toInt),(c._2) ) //x,y da primeira está errado
     (c1,c2,c3,c4)
   }
+
+  /*
+  def splitCoords(c:Coords): (Coords, Coords, Coords, Coords) = { //Está mal aqui probably
+    val width = c._2._1 - c._1._1 + 1
+    val height = c._2._2 - c._1._2 + 1
+    println("Width: " + width + " Height: " + height)
+    if(width == 2 && height == 1){
+      print("IN1")
+      val ac1 = ( (c._1),( c._2._1-width/2,c._2._2 ) )
+      val ac2 = ( ( c._1._1+width/2,c._1._2),(c._2) )
+      val ac3 = ( (-1,-1), (-1,-1) ) //enumerado
+      val ac4 = ( (-1,-1), (-1,-1) )
+      return (ac1,ac2,ac3,ac4)
+    }
+    if(height == 2 && width == 1){
+      print("IN2")
+      val ac1 = ( (c._1),( c._2._1,c._2._2-height/2 ) )
+      val ac2 = ( (-1,-1), (-1,-1) )
+      val ac3 = ( ( c._1._1,c._1._2+height/2),(c._2) )
+      val ac4 = ( (-1,-1), (-1,-1) )
+      return (ac1,ac2,ac3,ac4)
+    }
+
+    val c1 = ( (c._1),( c._2._1-(width/2).ceil.toInt,c._2._2-(height/2).ceil.toInt ) )
+    val c2 = ( ( c._1._1+(width/2).ceil.toInt,c._1._2),(c._2._1,c._2._2-(height/2).floor.toInt ) )
+    val c3 = ( (c._1._1,c._1._2+(height/2).ceil.toInt),(c._2._1-(width/2).floor.toInt,c._2._2) )
+    val c4 = ( (c._1._1+(width/2).ceil.toInt, c._1._2+(height/2).ceil.toInt),(c._2) )
+    (c1,c2,c3,c4)
+  }*/
 
 }

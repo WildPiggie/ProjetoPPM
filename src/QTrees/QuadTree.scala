@@ -5,7 +5,7 @@ import QTrees.QuadTree._
 
 case class QuadTree(qt: QTree[Coords]){
 
-  def makeBitMap (quadT: QTree[Coords]): BitMap = QuadTree.makeBitMap(qt) //correto?
+  def makeBitMap (quadT: QTree[Coords]): BitMap = QuadTree.makeBitMap(this.qt) //correto?
   def scale (scale:Double, quadT:QTree[Coords]):QTree[Coords] = ???
   def mirrorV ():QTree[Coords] = QuadTree.mirrorV(this.qt)
   def mirrorH ():QTree[Coords] = QuadTree.mirrorH(this.qt)
@@ -56,7 +56,7 @@ object QuadTree{
     }
   }
 
-  def auxMirror(qt:QTree[Coords], f: Coords => Coords, g: ( QTree[Coords], QTree[Coords], QTree[Coords], QTree[Coords]) => (QTree[Coords], QTree[Coords], QTree[Coords], QTree[Coords])): QTree[Coords] = {
+  def auxMirror(qt:QTree[Coords], f: Coords => Coords, g: (QTree[Coords], QTree[Coords], QTree[Coords], QTree[Coords]) => (QTree[Coords], QTree[Coords], QTree[Coords], QTree[Coords])): QTree[Coords] = {
     qt match {
       case (_: QLeaf[Coords, Section]) => qt
       case (qn: QNode[Coords]) => {
@@ -102,7 +102,7 @@ object QuadTree{
 
   def contrastEffect (color: Color): Color ={
     if(ImageUtil.luminance(color.getRed, color.getGreen, color.getBlue) >= 128)
-      color.brighter() //podemos usar?
+      color.brighter()
     else
       color.darker()
   }
