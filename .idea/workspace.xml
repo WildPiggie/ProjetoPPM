@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b8deda37-1e6a-47d0-834a-df247805d7e0" name="Default Changelist" comment="Início da criação da função makeQTree">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_04_2021_14_40__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_04_2021_14_40__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_04_2021_18_12__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_04_2021_18_12__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_04_2021_20_09__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_04_2021_20_09__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_04_2021_19_14__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_04_2021_19_14__Default_Changelist_.xml" afterDir="false" />
+    <list default="true" id="b8deda37-1e6a-47d0-834a-df247805d7e0" name="Default Changelist" comment="Generalização da função mirror vertical e horizontal">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/Main$.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/Main$.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/QuadTree$.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/QuadTree$.class" afterDir="false" />
@@ -132,7 +128,21 @@
       <option name="project" value="LOCAL" />
       <updated>1617728097314</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Generalização da função mirror vertical e horizontal">
+      <created>1617895466482</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1617895466482</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Generalização da função mirror vertical e horizontal">
+      <created>1617896448406</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1617896448406</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -179,6 +189,7 @@
     <MESSAGE value="teste" />
     <MESSAGE value="Criação de uma alternativa de acordo com o e-mail do professor e um pouco de imaginação do Samuel" />
     <MESSAGE value="Início da criação da função makeQTree" />
-    <option name="LAST_COMMIT_MESSAGE" value="Início da criação da função makeQTree" />
+    <MESSAGE value="Generalização da função mirror vertical e horizontal" />
+    <option name="LAST_COMMIT_MESSAGE" value="Generalização da função mirror vertical e horizontal" />
   </component>
 </project>

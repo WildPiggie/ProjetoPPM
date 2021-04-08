@@ -22,7 +22,7 @@ object Main {
 
 
     // List(List(1ª linha), List(2ª linha), ...)
-   val a = ImageUtil.readColorImage("src//black5x5.png").toList
+   val a = ImageUtil.readColorImage("src//objc2_2.png").toList
 
     //print(a)
 
@@ -31,6 +31,7 @@ object Main {
     val c = BitMap(b).makeQTree()
 
     println("QTree: " + c)
+    println("")
 
     val quad = QuadTree(c)
 /*
@@ -51,8 +52,8 @@ object Main {
     val qt: QTree[Coords] = QNode( ((0,0),(3,3)), l1, l2, l3, l4 )
 */
 
-
-    println(quad.mirrorH())
+    println("MirrorV: " + quad.mirrorV())
+    println("Contrast: " + quad.mapColourEffect(QuadTree.contrastEffect))
 
 
   }
