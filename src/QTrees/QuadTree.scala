@@ -92,8 +92,6 @@ object QuadTree{
 
 }
 
-
-
 /**
  * T1. makeQTree(b:BitMap):QTree criação de uma quadtree a partir de um bitmap
  * fornecido e método oposto i.e. para transformar uma quadtree num bitmap;
