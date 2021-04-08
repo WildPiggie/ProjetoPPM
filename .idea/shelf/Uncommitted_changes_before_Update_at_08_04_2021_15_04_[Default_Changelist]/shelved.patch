@@ -1,0 +1,202 @@
+Index: src/QTrees/QuadTree.scala
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package QTrees\r\n\r\nimport java.awt.Color\r\nimport QTrees.QuadTree._\r\n\r\ncase class QuadTree(qt: QTree[Coords]){\r\n\r\n  def makeBitMap (quadT: QTree[Coords]): BitMap = QuadTree.makeBitMap(qt) //correto?\r\n  def scale (scale:Double, quadT:QTree[Coords]):QTree[Coords] = ???\r\n  def mirrorV ():QTree[Coords] = QuadTree.mirrorV(this.qt)\r\n  def mirrorH (quadT:QTree[Coords]):QTree[Coords] = ???\r\n  def rotateD (quadT:QTree[Coords]):QTree[Coords] = ???\r\n  def rotateR (quadT:QTree[Coords]):QTree[Coords] = ???\r\n  def mapColourEffect (f:Color => Color, quadT:QTree[Coords]):QTree[Coords] = ???\r\n\r\n}\r\n\r\nobject QuadTree{\r\n\r\n  type Point = (Int, Int)\r\n  type Coords = (Point, Point)\r\n  type Section = (Coords, Color)\r\n\r\n  def makeBitMap (qt: QTree[Coords]): BitMap = ???\r\n  def scale (scale:Double, qt:QTree[Coords]):QTree[Coords] = ???\r\n\r\n  def mirrorV (qt:QTree[Coords]):QTree[Coords] = {\r\n    qt match {\r\n      case (qn: QNode[Coords]) => {\r\n        val height = qn.value._2._2 - qn.value._1._2\r\n        auxMirrorV(qn, height)\r\n      }\r\n    }\r\n  }\r\n\r\n  def auxMirrorV(qt:QTree[Coords], height: Int): QTree[Coords] = {\r\n    qt match {\r\n      case (ql: QLeaf[Coords, Section]) => qt\r\n      case (qn: QNode[Coords]) => {\r\n        val (t1, t2, t3, t4) = (auxMirrorV(qn.one, height), auxMirrorV(qn.two, height), auxMirrorV(qn.three, height), auxMirrorV(qn.four, height))\r\n        val (one, two, three, four) = (updateCoordsV(t1, height), updateCoordsV(t2, height), updateCoordsV(t3, height), updateCoordsV(t4, height))\r\n        QNode(qn.value, three, four, one, two)\r\n      }\r\n    }\r\n  }\r\n\r\n  def updateCoordsV(qt: QTree[Coords], height: Int): QTree[Coords] = {\r\n    qt match {\r\n      case (qn:QNode[Coords]) =>\r\n        QNode( ((qn.value._1._1, height-qn.value._2._2), (qn.value._2._1, height-qn.value._1._2)), qn.one, qn.two, qn.three, qn.four)\r\n      case (ql:QLeaf[Coords, Section]) => {\r\n        QLeaf( (  ((ql.value._1._1._1, height-ql.value._1._2._2), (ql.value._1._2._1, height-ql.value._1._1._2))  , ql.value._2 ))\r\n      }\r\n    }\r\n  }\r\n\r\n  def samePoints(a: Point, b: Point): Boolean = (a._1==b._1) && (a._2==b._2)\r\n\r\n\r\n  def mirrorH (qt:QTree[Coords]):QTree[Coords] = ???\r\n  def rotateD (qt:QTree[Coords]):QTree[Coords] = ???\r\n  def rotateR (qt:QTree[Coords]):QTree[Coords] = ???\r\n\r\n\r\n  def mapColourEffect (f:Color => Color, qt:QTree[Coords]):QTree[Coords] = {\r\n        qt match {\r\n          case ql: QLeaf[Coords, Section] => QLeaf((ql.value._1, f(ql.value._2)))\r\n          case qn: QNode[Coords] => {\r\n            mapColourEffect(f, qn.one)\r\n            mapColourEffect(f, qn.two)\r\n            mapColourEffect(f, qn.three)\r\n            mapColourEffect(f, qn.four)\r\n          }\r\n        }\r\n  }\r\n\r\n  def noiseEffect (color: Color): Color ={\r\n    ???\r\n  }\r\n\r\n  def contrastEffect (color: Color): Color ={\r\n    ???\r\n  }\r\n\r\n  def sepiaEffect (color: Color): Color ={\r\n    val red= Math.min((.393 * color.getRed) + (.769 * color.getGreen) + (.189 * color.getBlue), 255.0).toInt\r\n    val green= Math.min((.349 * color.getRed) + (.686 * color.getGreen) + (.168 * color.getBlue), 255.0).toInt\r\n    val blue= Math.min((.272 * color.getRed) + (.534 * color.getGreen) + (.131 * color.getBlue), 255.0).toInt\r\n    new Color(red, green, blue)\r\n  }\r\n\r\n\r\n}\r\n\r\n\r\n\r\n/**\r\n * T1. makeQTree(b:BitMap):QTree criação de uma quadtree a partir de um bitmap\r\n * fornecido e método oposto i.e. para transformar uma quadtree num bitmap;\r\n * T2. scale(scale:Double, qt:QTree):QTree operação de ampliação/redução de\r\n * uma imagem, segundo o fator fornecido (por exemplo 1.5 ampliará a imagem\r\n * aumentando ambos os seus lados em 50%);\r\n * T3. mirrorV / mirrorH (qt:QTree):QTree operações de espelhamento vertical e\r\n * horizontal;\r\n * T4. rotateD / rotateR (qt:QTree):QTree operações de rotação de 90 graus nos\r\n * dois sentidos;\r\n * T5. mapColourEffect(f:Colour => Colour, qt:QTree):QTree mapeamento\r\n * uniforme de uma função em toda a imagem. Deverá utilizar este método para ilustrar\r\n * a aplicação dos efeitos Noise, Contrast e Sepia.\r\n */\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/QTrees/QuadTree.scala b/src/QTrees/QuadTree.scala
+--- a/src/QTrees/QuadTree.scala	(revision d7ab5915013f4efd0878a98eb7c1d0e8f49e2975)
++++ b/src/QTrees/QuadTree.scala	(date 1617890437035)
+@@ -5,7 +5,7 @@
+ 
+ case class QuadTree(qt: QTree[Coords]){
+ 
+-  def makeBitMap (quadT: QTree[Coords]): BitMap = QuadTree.makeBitMap(qt) //correto?
++  def makeBitMap (): BitMap = QuadTree.makeBitMap(this.qt)
+   def scale (scale:Double, quadT:QTree[Coords]):QTree[Coords] = ???
+   def mirrorV ():QTree[Coords] = QuadTree.mirrorV(this.qt)
+   def mirrorH (quadT:QTree[Coords]):QTree[Coords] = ???
+@@ -22,74 +22,41 @@
+   type Section = (Coords, Color)
+ 
+   def makeBitMap (qt: QTree[Coords]): BitMap = ???
+-  def scale (scale:Double, qt:QTree[Coords]):QTree[Coords] = ???
+-
++  def scale (scale:Double, qt:QTree[Coords]): QTree[Coords] = ??? //verificar se é possível realizar o scaling ou não
+   def mirrorV (qt:QTree[Coords]):QTree[Coords] = {
+-    qt match {
+-      case (qn: QNode[Coords]) => {
+-        val height = qn.value._2._2 - qn.value._1._2
+-        auxMirrorV(qn, height)
+-      }
+-    }
+-  }
+ 
+-  def auxMirrorV(qt:QTree[Coords], height: Int): QTree[Coords] = {
+     qt match {
+-      case (ql: QLeaf[Coords, Section]) => qt
++      case (ql: QLeaf[Coords, Section]) => return qt
+       case (qn: QNode[Coords]) => {
+-        val (t1, t2, t3, t4) = (auxMirrorV(qn.one, height), auxMirrorV(qn.two, height), auxMirrorV(qn.three, height), auxMirrorV(qn.four, height))
+-        val (one, two, three, four) = (updateCoordsV(t1, height), updateCoordsV(t2, height), updateCoordsV(t3, height), updateCoordsV(t4, height))
+-        QNode(qn.value, three, four, one, two)
++        val t1 = mirrorV(qn.one)
++        val t2 = mirrorV(qn.two)
++        val t3 = mirrorV(qn.three)
++        val t4 = mirrorV(qn.four)
++        val (one, three) = switchQTrees(t1,t3)
++        val (two, four) = switchQTrees(t2,t4)
++        QNode( qn.value, three, four, one, two)
+       }
+     }
+   }
+-
+-  def updateCoordsV(qt: QTree[Coords], height: Int): QTree[Coords] = {
+-    qt match {
+-      case (qn:QNode[Coords]) =>
+-        QNode( ((qn.value._1._1, height-qn.value._2._2), (qn.value._2._1, height-qn.value._1._2)), qn.one, qn.two, qn.three, qn.four)
+-      case (ql:QLeaf[Coords, Section]) => {
+-        QLeaf( (  ((ql.value._1._1._1, height-ql.value._1._2._2), (ql.value._1._2._1, height-ql.value._1._1._2))  , ql.value._2 ))
+-      }
+-    }
+-  }
+-
+-  def samePoints(a: Point, b: Point): Boolean = (a._1==b._1) && (a._2==b._2)
+-
+-
+   def mirrorH (qt:QTree[Coords]):QTree[Coords] = ???
+   def rotateD (qt:QTree[Coords]):QTree[Coords] = ???
+   def rotateR (qt:QTree[Coords]):QTree[Coords] = ???
+-
+-
+-  def mapColourEffect (f:Color => Color, qt:QTree[Coords]):QTree[Coords] = {
+-        qt match {
+-          case ql: QLeaf[Coords, Section] => QLeaf((ql.value._1, f(ql.value._2)))
+-          case qn: QNode[Coords] => {
+-            mapColourEffect(f, qn.one)
+-            mapColourEffect(f, qn.two)
+-            mapColourEffect(f, qn.three)
+-            mapColourEffect(f, qn.four)
+-          }
+-        }
+-  }
++  def mapColourEffect (f:Color => Color, qt:QTree[Coords]):QTree[Coords] = ???
+ 
+-  def noiseEffect (color: Color): Color ={
+-    ???
+-  }
+-
+-  def contrastEffect (color: Color): Color ={
+-    ???
++  def switchQTrees(qt1: QTree[Coords], qt2: QTree[Coords]): (QTree[Coords], QTree[Coords]) = {
++    (qt1,qt2) match {
++      case (qn1:QNode[Coords], qn2:QNode[Coords]) =>
++        ( QNode(qn2.value, qn1.one, qn1.two, qn1.three, qn1.four), QNode(qn1.value, qn2.one, qn2.two, qn2.three, qn2.four) )
++      case (qn:QNode[Coords], ql:QLeaf[Coords, Section]) =>
++        ( QNode(ql.value._1, qn.one, qn.two, qn.three, qn.four), QLeaf( (qn.value,ql.value._2) ))
++      case (ql:QLeaf[Coords, Section], qn:QNode[Coords]) =>
++        ( QLeaf( (qn.value,ql.value._2) ), QNode(ql.value._1, qn.one, qn.two, qn.three, qn.four) )
++      case (ql1:QLeaf[Coords, Section], ql2:QLeaf[Coords, Section]) =>
++        ( QLeaf( (ql2.value._1, ql1.value._2) ) , QLeaf( (ql1.value._1, ql2.value._2) ) )
++      //case (q1, QEmpty) => (QEmpty, q1)   adicionar casos :)
++      case _ => (QEmpty, QEmpty)
++    }
+   }
+-
+-  def sepiaEffect (color: Color): Color ={
+-    val red= Math.min((.393 * color.getRed) + (.769 * color.getGreen) + (.189 * color.getBlue), 255.0).toInt
+-    val green= Math.min((.349 * color.getRed) + (.686 * color.getGreen) + (.168 * color.getBlue), 255.0).toInt
+-    val blue= Math.min((.272 * color.getRed) + (.534 * color.getGreen) + (.131 * color.getBlue), 255.0).toInt
+-    new Color(red, green, blue)
+-  }
+-
+-
+ }
+ 
+ 
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"b8deda37-1e6a-47d0-834a-df247805d7e0\" name=\"Default Changelist\" comment=\"Início da criação da função makeQTree\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/QTrees/BitMap.scala\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/QTrees/BitMap.scala\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/QTrees/Main.scala\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/QTrees/Main.scala\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/QTrees/QuadTree.scala\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/QTrees/QuadTree.scala\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"CodeStyleSettingsInfer\">\r\n    <option name=\"done\" value=\"true\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n        <option value=\"Scala Trait\" />\r\n        <option value=\"Scala Object\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitSEFilterConfiguration\">\r\n    <file-type-list>\r\n      <filtered-out-file-type name=\"LOCAL_BRANCH\" />\r\n      <filtered-out-file-type name=\"REMOTE_BRANCH\" />\r\n      <filtered-out-file-type name=\"TAG\" />\r\n      <filtered-out-file-type name=\"COMMIT_BY_MESSAGE\" />\r\n    </file-type-list>\r\n  </component>\r\n  <component name=\"ProjectCodeStyleSettingsMigration\">\r\n    <option name=\"version\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1qbsJD8EdaDvUMUjZ5ikbwktWje\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"ASKED_ADD_EXTERNAL_FILES\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$\" />\r\n    <property name=\"project.structure.last.edited\" value=\"Project\" />\r\n    <property name=\"project.structure.proportion\" value=\"0.15\" />\r\n    <property name=\"project.structure.side.proportion\" value=\"0.2\" />\r\n    <property name=\"settings.editor.selected.configurable\" value=\"org.jetbrains.plugins.github.ui.GithubSettingsConfigurable\" />\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"Main\" type=\"Application\" factoryName=\"Application\" temporary=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"QTrees.Main\" />\r\n      <module name=\"ProjetoPPM\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"QTrees.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.Main\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"b8deda37-1e6a-47d0-834a-df247805d7e0\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1617359641107</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1617359641107</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Initial commit\">\r\n      <created>1617362089390</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1617362089390</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Todos os ficheiros do projeto\">\r\n      <created>1617371701820</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1617371701820</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"teste\">\r\n      <created>1617377893382</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1617377893382</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Criação de uma alternativa de acordo com o e-mail do professor e um pouco de imaginação do Samuel\">\r\n      <created>1617636536117</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1617636536117</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Início da criação da função makeQTree\">\r\n      <created>1617728097314</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1617728097314</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"6\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"1\">\r\n          <value>\r\n            <State>\r\n              <option name=\"SHOW_ONLY_AFFECTED_CHANGES\" value=\"true\" />\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"HEAD\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                  <entry key=\"roots\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"$PROJECT_DIR$\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"ADD_EXTERNAL_FILES_SILENTLY\" value=\"true\" />\r\n    <MESSAGE value=\"Initial commit\" />\r\n    <MESSAGE value=\"Todos os ficheiros do projeto\" />\r\n    <MESSAGE value=\"teste\" />\r\n    <MESSAGE value=\"Criação de uma alternativa de acordo com o e-mail do professor e um pouco de imaginação do Samuel\" />\r\n    <MESSAGE value=\"Início da criação da função makeQTree\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Início da criação da função makeQTree\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision d7ab5915013f4efd0878a98eb7c1d0e8f49e2975)
++++ b/.idea/workspace.xml	(date 1617890572011)
+@@ -1,10 +1,8 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="b8deda37-1e6a-47d0-834a-df247805d7e0" name="Default Changelist" comment="Início da criação da função makeQTree">
++    <list default="true" id="b8deda37-1e6a-47d0-834a-df247805d7e0" name="Default Changelist" comment="Criação da função makeQTree (sem considerar imagens com lados impares nem retangulares.">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/QTrees/BitMap.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/BitMap.scala" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/QTrees/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/Main.scala" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/QTrees/QuadTree.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/QuadTree.scala" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -27,18 +25,10 @@
+   <component name="Git.Settings">
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+       <map>
+-        <entry key="$PROJECT_DIR$" value="master" />
++        <entry key="$PROJECT_DIR$" value="SamTestes" />
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+-  </component>
+-  <component name="GitSEFilterConfiguration">
+-    <file-type-list>
+-      <filtered-out-file-type name="LOCAL_BRANCH" />
+-      <filtered-out-file-type name="REMOTE_BRANCH" />
+-      <filtered-out-file-type name="TAG" />
+-      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+-    </file-type-list>
+   </component>
+   <component name="ProjectCodeStyleSettingsMigration">
+     <option name="version" value="1" />
+@@ -56,7 +46,7 @@
+     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
++    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ficha5" />
+     <property name="project.structure.last.edited" value="Project" />
+     <property name="project.structure.proportion" value="0.15" />
+     <property name="project.structure.side.proportion" value="0.2" />
+@@ -78,6 +68,7 @@
+     </configuration>
+     <recent_temporary>
+       <list>
++        <item itemvalue="Application.Main" />
+         <item itemvalue="Application.Main" />
+       </list>
+     </recent_temporary>
+@@ -126,7 +117,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1617728097314</updated>
+     </task>
+-    <option name="localTasksCounter" value="6" />
++    <task id="LOCAL-00006" summary="Criação da função makeQTree (sem considerar imagens com lados impares nem retangulares.">
++      <created>1617736100247</created>
++      <option name="number" value="00006" />
++      <option name="presentableId" value="LOCAL-00006" />
++      <option name="project" value="LOCAL" />
++      <updated>1617736100247</updated>
++    </task>
++    <option name="localTasksCounter" value="7" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -173,6 +171,7 @@
+     <MESSAGE value="teste" />
+     <MESSAGE value="Criação de uma alternativa de acordo com o e-mail do professor e um pouco de imaginação do Samuel" />
+     <MESSAGE value="Início da criação da função makeQTree" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Início da criação da função makeQTree" />
++    <MESSAGE value="Criação da função makeQTree (sem considerar imagens com lados impares nem retangulares." />
++    <option name="LAST_COMMIT_MESSAGE" value="Criação da função makeQTree (sem considerar imagens com lados impares nem retangulares." />
+   </component>
+ </project>
+\ No newline at end of file
