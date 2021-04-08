@@ -94,7 +94,10 @@ object QuadTree{
   }
 
   def noiseEffect (color: Color): Color ={
-    ???
+    if(Math.random()>=0.5) {
+      Color.gray
+    } else
+      color
   }
 
   def contrastEffect (color: Color): Color ={

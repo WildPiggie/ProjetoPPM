@@ -3,7 +3,6 @@ package QTrees
 import java.awt.Color
 import QTrees.BitMap._
 
-import scala.annotation.tailrec
 case class BitMap(img: List[List[Int]]) {
   def makeQTree(): QTree[Coords] = BitMap.makeQTree(this)
 }
@@ -46,7 +45,7 @@ object BitMap {
     (qtOne, qtTwo, qtThree, qtFour) match {
       case (q1: QLeaf[Coords, Section], q2:QLeaf[Coords, Section], q3:QLeaf[Coords, Section], q4:QLeaf[Coords, Section]) => {
         if( (q1.value._2 equals  q2.value._2) && (q3.value._2 equals q4.value._2) && (q1.value._2 equals q4.value._2 ) )
-          return new QLeaf[Coords, Section]( (c, q1.value._2):Section )
+          new QLeaf[Coords, Section]( (c, q1.value._2):Section )
         else
           new QNode[Coords](c, qtOne, qtTwo, qtThree, qtFour) //(value: A, one: QTree[A], two: QTree[A], three: QTree[A], four: QTree[A])
       }

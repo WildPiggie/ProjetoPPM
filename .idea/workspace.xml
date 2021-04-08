@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b8deda37-1e6a-47d0-834a-df247805d7e0" name="Default Changelist" comment="Generalização da função mirror vertical e horizontal">
+    <list default="true" id="b8deda37-1e6a-47d0-834a-df247805d7e0" name="Default Changelist" comment="Fixed map colour effect">
+      <change afterPath="$PROJECT_DIR$/src/QTrees/MyRandom.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/QTrees/RandomWithState.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/Main$.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/Main$.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/QuadTree$.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/QuadTree$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/QuadTree.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/QuadTree.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/QTrees/BitMap.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/BitMap.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/QTrees/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/Main.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/QTrees/QuadTree.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/QuadTree.scala" afterDir="false" />
     </list>
@@ -58,7 +60,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Sem6" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -142,7 +144,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617896448406</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Fixed map colour effect">
+      <created>1617899105002</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1617899105002</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -190,6 +199,7 @@
     <MESSAGE value="Criação de uma alternativa de acordo com o e-mail do professor e um pouco de imaginação do Samuel" />
     <MESSAGE value="Início da criação da função makeQTree" />
     <MESSAGE value="Generalização da função mirror vertical e horizontal" />
-    <option name="LAST_COMMIT_MESSAGE" value="Generalização da função mirror vertical e horizontal" />
+    <MESSAGE value="Fixed map colour effect" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed map colour effect" />
   </component>
 </project>

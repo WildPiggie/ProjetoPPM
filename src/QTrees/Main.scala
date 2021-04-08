@@ -52,8 +52,8 @@ object Main {
     val qt: QTree[Coords] = QNode( ((0,0),(3,3)), l1, l2, l3, l4 )
 */
 
-    println("MirrorV: " + quad.mirrorV())
-    println("Contrast: " + quad.mapColourEffect(QuadTree.contrastEffect))
+    //println("MirrorV: " + quad.mirrorV())
+    println("Noise: " + quad.mapColourEffect(QuadTree.noiseEffect))
 
 
   }
