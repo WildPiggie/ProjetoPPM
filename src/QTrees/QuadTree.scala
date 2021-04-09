@@ -26,44 +26,45 @@ object QuadTree{
 
   def mirrorV (qt:QTree[Coords]):QTree[Coords] = {
     qt match {
-      case (_: QLeaf[Coords, Section]) => qt
       case (qn: QNode[Coords]) => {
         val height = qn.value._2._2 - qn.value._1._2
         def newCoords(coords: Coords): Coords = { //Podemos colocar como função lambda dentro da chamada
           ( (coords._1._1, height-coords._2._2), (coords._2._1, height-coords._1._2) )
         }
-        def switchQTreeOrder(one: QTree[Coords], two: QTree[Coords], three: QTree[Coords], four: QTree[Coords]): (QTree[Coords], QTree[Coords], QTree[Coords], QTree[Coords]) = {
-          (three, four, one, two)
+        def switchQTreeOrder(qn: QNode[Coords]): QNode[Coords] = {
+          QNode(qn.value, qn.three, qn.four, qn.one, qn.two)
         }
         auxMirror(qn, newCoords, switchQTreeOrder)
       }
+      case _ => qt
     }
   }
 
   def mirrorH (qt:QTree[Coords]):QTree[Coords] = {
     qt match {
-      case (_: QLeaf[Coords, Section]) => qt
       case (qn: QNode[Coords]) => {
         val width = qn.value._2._1 - qn.value._1._1
         def newCoords(coords: Coords): Coords = { //Podemos colocar como função lambda dentro da chamada
           ( (width-coords._2._1, coords._1._2), (width-coords._1._1, coords._2._2) )
         }
-        def switchQTreeOrder(one: QTree[Coords], two: QTree[Coords], three: QTree[Coords], four: QTree[Coords]): (QTree[Coords], QTree[Coords], QTree[Coords], QTree[Coords]) = {
-          (two, one, four, three)
+        def switchQTreeOrder(qn: QNode[Coords]): QNode[Coords] = {
+          QNode(qn.value, qn.two, qn.one, qn.four, qn.three)
         }
         auxMirror(qn, newCoords, switchQTreeOrder)
       }
+      case _ => qt
     }
   }
 
-  def auxMirror(qt:QTree[Coords], f: Coords => Coords, g: (QTree[Coords], QTree[Coords], QTree[Coords], QTree[Coords]) => (QTree[Coords], QTree[Coords], QTree[Coords], QTree[Coords])): QTree[Coords] = {
+  def auxMirror(qt:QTree[Coords], f: Coords => Coords, switchQTreeOrder:QNode[Coords] => QNode[Coords]): QTree[Coords] = {
     qt match {
-      case (_: QLeaf[Coords, Section]) => qt
+
       case (qn: QNode[Coords]) => {
-        val (t1, t2, t3, t4) = (auxMirror(qn.one, f, g), auxMirror(qn.two, f, g), auxMirror(qn.three, f, g), auxMirror(qn.four, f, g))
-        val (one, two, three, four) = g( updateCoords(t1, f), updateCoords(t2, f), updateCoords(t3, f), updateCoords(t4, f) )
-        QNode(qn.value, one, two, three, four)
+        val (m1, m2, m3, m4) = (auxMirror(qn.one, f, switchQTreeOrder), auxMirror(qn.two, f, switchQTreeOrder), auxMirror(qn.three, f, switchQTreeOrder), auxMirror(qn.four, f, switchQTreeOrder))
+        val (upd1, upd2, upd3, upd4) = ( updateCoords(m1, f), updateCoords(m2, f), updateCoords(m3, f), updateCoords(m4, f) )
+        switchQTreeOrder( QNode(qn.value, upd1, upd2, upd3, upd4) )
       }
+      case _ => qt
     }
   }
 
@@ -71,9 +72,9 @@ object QuadTree{
     qt match {
       case (qn:QNode[Coords]) =>
         QNode( f(qn.value) , qn.one, qn.two, qn.three, qn.four)
-      case (ql:QLeaf[Coords, Section]) => {
+      case (ql:QLeaf[Coords, Section]) =>
         QLeaf( f(ql.value._1), ql.value._2 )
-      }
+      case _ => qt
     }
   }
 
@@ -90,6 +91,7 @@ object QuadTree{
         val (t1,t2,t3,t4) = (mapColourEffect(f, qn.one), mapColourEffect(f, qn.two), mapColourEffect(f, qn.three), mapColourEffect(f, qn.four))
         QNode(qn.value, t1, t2, t3, t4)
       }
+      case _ => qt
     }
   }
 

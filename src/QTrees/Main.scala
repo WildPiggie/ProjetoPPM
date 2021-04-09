@@ -22,7 +22,7 @@ object Main {
 
 
     // List(List(1ª linha), List(2ª linha), ...)
-   val a = ImageUtil.readColorImage("src//black5x5.png").toList
+   val a = ImageUtil.readColorImage("src//pink256x256.png").toList
 
     //print(a)
 

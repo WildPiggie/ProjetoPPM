@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b8deda37-1e6a-47d0-834a-df247805d7e0" name="Default Changelist" comment="Fixed map colour effect">
+    <list default="true" id="b8deda37-1e6a-47d0-834a-df247805d7e0" name="Default Changelist" comment="Alterações pequenas: Falta arranjar o split coords do makeQTree">
+      <change afterPath="$PROJECT_DIR$/src/black6x3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/blue3x3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pink256x256.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/BitMap$.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/BitMap$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/BitMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/BitMap.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/Main$.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/Main$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/QuadTree$.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/QuadTree$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/QuadTree.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/QuadTree.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/QTrees/BitMap.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/BitMap.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/QTrees/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/Main.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/QTrees/QuadTree.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/QuadTree.scala" afterDir="false" />
@@ -59,7 +63,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ficha5" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -157,8 +161,25 @@
       <option name="project" value="LOCAL" />
       <updated>1617903105115</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Alterações pequenas: Falta arranjar o split coords do makeQTree">
+      <created>1617915607354</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1617915607354</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -206,17 +227,7 @@
     <MESSAGE value="Início da criação da função makeQTree" />
     <MESSAGE value="Generalização da função mirror vertical e horizontal" />
     <MESSAGE value="Fixed map colour effect" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed map colour effect" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/QTrees/BitMap.scala</url>
-          <line>26</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Alterações pequenas: Falta arranjar o split coords do makeQTree" />
+    <option name="LAST_COMMIT_MESSAGE" value="Alterações pequenas: Falta arranjar o split coords do makeQTree" />
   </component>
 </project>
