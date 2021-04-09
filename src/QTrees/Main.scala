@@ -22,7 +22,7 @@ object Main {
 
 
     // List(List(1ª linha), List(2ª linha), ...)
-   val a = ImageUtil.readColorImage("src//pink256x256.png").toList
+   val a = ImageUtil.readColorImage("src//black6x3.png").toList
 
     //print(a)
 
@@ -33,10 +33,13 @@ object Main {
     println("QTree: " + c)
     println("")
 
+
     val quad = QuadTree(c)
-/*
 
     println("MirrorV: " + quad.mirrorV())
+/*
+
+
 
     val n1 = QLeaf((((0,0):Point,(0,0):Point):Coords, Color.red):Section)
     val n2 = QLeaf((((1,0):Point,(1,0):Point):Coords, Color.blue):Section)

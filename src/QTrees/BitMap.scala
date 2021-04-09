@@ -15,7 +15,7 @@ object BitMap {
   type Section = (Coords, Color)
 
   def makeQTree(b:BitMap): QTree[Coords] = {
-    val x = b.img(0).length - 1
+    val x = b.img.head.length - 1
     val y = b.img.length - 1
     auxMQT( ((0,0):Point, (x,y):Point):Coords, b )
   }
@@ -35,9 +35,8 @@ object BitMap {
     }
 
     if( (c._1._1 == c._2._1) && (c._1._2 == c._2._2) ) {
-      val a = ImageUtil.decodeRgb(b.img(c._1._2)(c._1._1)).toList
-      val color = new Color(a(0),a(1),a(2)) //new Color(b.img(c._1._2)(c._1._1))
-      return new QLeaf[Coords, Section]( (c, color):Section ) // RETURN?
+      val color = new Color(b.img(c._1._2)(c._1._1))
+      return new QLeaf[Coords, Section]( (c, color):Section )
     }
 
     val sCords = splitCoords(c)
@@ -54,12 +53,11 @@ object BitMap {
     val qtFour = if(coordsInbounds(c, sCords._4)) auxMQT(sCords._4, b) else QEmpty
 
     (qtOne, qtTwo, qtThree, qtFour) match {
-      case (q1: QLeaf[Coords, Section], q2:QLeaf[Coords, Section], q3:QLeaf[Coords, Section], q4:QLeaf[Coords, Section]) => {
+      case (q1: QLeaf[Coords, Section], q2:QLeaf[Coords, Section], q3:QLeaf[Coords, Section], q4:QLeaf[Coords, Section]) =>
         if( (q1.value._2 equals  q2.value._2) && (q3.value._2 equals q4.value._2) && (q1.value._2 equals q4.value._2 ) )
           new QLeaf[Coords, Section]( (c, q1.value._2):Section )
         else
           new QNode[Coords](c, qtOne, qtTwo, qtThree, qtFour) //(value: A, one: QTree[A], two: QTree[A], three: QTree[A], four: QTree[A])
-      }
       case _ => new QNode[Coords](c, qtOne, qtTwo, qtThree, qtFour) //(value: A, one: QTree[A], two: QTree[A], three: QTree[A], four: QTree[A])
     }
   }
