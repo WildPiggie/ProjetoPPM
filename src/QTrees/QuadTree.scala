@@ -5,7 +5,7 @@ import QTrees.QuadTree._
 
 case class QuadTree(qt: QTree[Coords]){
 
-  def makeBitMap (quadT: QTree[Coords]): BitMap = QuadTree.makeBitMap(this.qt) //correto?
+  def makeBitMap (): BitMap = QuadTree.makeBitMap(this.qt)
   def scale (scale:Double, quadT:QTree[Coords]):QTree[Coords] = ???
   def mirrorV ():QTree[Coords] = QuadTree.mirrorV(this.qt)
   def mirrorH ():QTree[Coords] = QuadTree.mirrorH(this.qt)
@@ -21,7 +21,11 @@ object QuadTree{
   type Coords = (Point, Point)
   type Section = (Coords, Color)
 
-  def makeBitMap (qt: QTree[Coords]): BitMap = ???
+  def makeBitMap (qt: QTree[Coords]): BitMap = {
+    ???
+    // lst(ql.value._1._2)++List(ql.value._2)
+    //pensar em como percorrer as coordenadas de uma leaf
+  }
   def scale (scale:Double, qt:QTree[Coords]):QTree[Coords] = ???
 
   def mirrorV (qt:QTree[Coords]):QTree[Coords] = {
@@ -116,29 +120,6 @@ object QuadTree{
     new Color(red, green, blue)
   }
 }
-
-/*
-  def auxMirrorV(qt:QTree[Coords], height: Int): QTree[Coords] = {
-    qt match {
-      case (ql: QLeaf[Coords, Section]) => qt
-      case (qn: QNode[Coords]) => {
-        val (t1, t2, t3, t4) = (auxMirrorV(qn.one, height), auxMirrorV(qn.two, height), auxMirrorV(qn.three, height), auxMirrorV(qn.four, height))
-        val (one, two, three, four) = (updateCoordsV(t1, height), updateCoordsV(t2, height), updateCoordsV(t3, height), updateCoordsV(t4, height))
-        QNode(qn.value, three, four, one, two)
-      }
-    }
-  }
-*/
-
-/* def updateCoordsV(qt: QTree[Coords], height: Int): QTree[Coords] = {
-   qt match {
-     case (qn:QNode[Coords]) =>
-       QNode( ((qn.value._1._1, height-qn.value._2._2), (qn.value._2._1, height-qn.value._1._2)), qn.one, qn.two, qn.three, qn.four)
-     case (ql:QLeaf[Coords, Section]) => {
-       QLeaf( (  ((ql.value._1._1._1, height-ql.value._1._2._2), (ql.value._1._2._1, height-ql.value._1._1._2))  , ql.value._2 ))
-     }
-   }
- }*/
 
 /**
  * T1. makeQTree(b:BitMap):QTree criação de uma quadtree a partir de um bitmap

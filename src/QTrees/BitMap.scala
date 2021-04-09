@@ -18,7 +18,6 @@ object BitMap {
     val x = b.img(0).length - 1
     val y = b.img.length - 1
     auxMQT( ((0,0):Point, (x,y):Point):Coords, b )
-
   }
 
   def auxMQT(c:Coords, b: BitMap): QTree[Coords] = {
@@ -75,40 +74,7 @@ object BitMap {
     val c3 = ( (c._1._1, c._1._2+(height/2.0).ceil.toInt),(c._2._1-(width/2.0).floor.toInt, c._2._2) )
     val c4 = ( (c._1._1+(width/2.0).ceil.toInt, c._1._2+(height/2.0).ceil.toInt), c._2 )
     (c1,c2,c3,c4)
-    //val c1 = ( c._1,( c._2._1-(width/2.0).floor.toInt,c._2._2-(height/2.0).floor.toInt ) )
-    //val c2 = ( ( c._1._1+(width/2.0).ceil.toInt,c._1._2),(c._2._1,c._2._2-(height/2.0).floor.toInt ) ) //x da primeira esta errado
-    //val c3 = ( (c._1._1,c._1._2+(height/2.0).ceil.toInt),(c._2._1-(width/2.0).floor.toInt,c._2._2) ) //y da primeira coordenada está errado
-    //val c4 = ( (c._1._1+(width/2.0).ceil.toInt, c._1._2+(height/2.0).ceil.toInt),(c._2) ) //x,y da primeira está errado
 
   }
-
-  /*
-  def splitCoords(c:Coords): (Coords, Coords, Coords, Coords) = { //Está mal aqui probably
-    val width = c._2._1 - c._1._1 + 1
-    val height = c._2._2 - c._1._2 + 1
-    println("Width: " + width + " Height: " + height)
-    if(width == 2 && height == 1){
-      print("IN1")
-      val ac1 = ( (c._1),( c._2._1-width/2,c._2._2 ) )
-      val ac2 = ( ( c._1._1+width/2,c._1._2),(c._2) )
-      val ac3 = ( (-1,-1), (-1,-1) ) //enumerado
-      val ac4 = ( (-1,-1), (-1,-1) )
-      return (ac1,ac2,ac3,ac4)
-    }
-    if(height == 2 && width == 1){
-      print("IN2")
-      val ac1 = ( (c._1),( c._2._1,c._2._2-height/2 ) )
-      val ac2 = ( (-1,-1), (-1,-1) )
-      val ac3 = ( ( c._1._1,c._1._2+height/2),(c._2) )
-      val ac4 = ( (-1,-1), (-1,-1) )
-      return (ac1,ac2,ac3,ac4)
-    }
-
-    val c1 = ( (c._1),( c._2._1-(width/2).ceil.toInt,c._2._2-(height/2).ceil.toInt ) )
-    val c2 = ( ( c._1._1+(width/2).ceil.toInt,c._1._2),(c._2._1,c._2._2-(height/2).floor.toInt ) )
-    val c3 = ( (c._1._1,c._1._2+(height/2).ceil.toInt),(c._2._1-(width/2).floor.toInt,c._2._2) )
-    val c4 = ( (c._1._1+(width/2).ceil.toInt, c._1._2+(height/2).ceil.toInt),(c._2) )
-    (c1,c2,c3,c4)
-  }*/
 
 }
