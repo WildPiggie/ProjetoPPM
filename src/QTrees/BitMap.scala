@@ -5,7 +5,6 @@ import QTrees.BitMap._
 
 case class BitMap(img: List[List[Int]]) {
   def makeQTree(): QTree[Coords] = BitMap.makeQTree(this)
-
 }
 
 object BitMap {
@@ -14,14 +13,18 @@ object BitMap {
   type Coords = (Point, Point)
   type Section = (Coords, Color)
 
+  //Função para a criação de uma QTree a partir de um BitMap
   def makeQTree(b:BitMap): QTree[Coords] = {
     val x = b.img.head.length - 1
     val y = b.img.length - 1
+    //Calcula a largura e Altura de imagem para obter as coordenadas da QTree que servirá como raiz da imagem
     auxMQT( ((0,0):Point, (x,y):Point):Coords, b )
   }
 
   def auxMQT(c:Coords, b: BitMap): QTree[Coords] = {
 
+    //Função aninhada para indicar se umas coordenadas estão contidas noutras
+    // (útil para descobrir coordenadas inválidas, usado para descobrir que QTrees devem ser QEmptys)
     def coordsInbounds(bound:Coords, coords:Coords): Boolean = {
       val (boundTopX,boundTopY) = bound._1
       val (boundBotX,boundBotY) = bound._2
@@ -34,35 +37,45 @@ object BitMap {
       (boundBotY>=coordsTopY) && (boundBotY>=coordsBotY)
     }
 
+    //Verifica se a QTree corresponde apenas a um pixel da imagem original
+    // e caso o seja devolve uma QLeaf com a cor correspondente
     if( (c._1._1 == c._2._1) && (c._1._2 == c._2._2) ) {
       val color = new Color(b.img(c._1._2)(c._1._1))
       return new QLeaf[Coords, Section]( (c, color):Section )
     }
 
+    //Divisão das coordenadas em 4 quadrantes
     val sCords = splitCoords(c)
 
-
+/*
     println("sCords._1: " + sCords._1)
     println("sCords._2: " + sCords._2)
     println("sCords._3: " + sCords._3)
     println("sCords._4: " + sCords._4)
+*/
 
+    //Verifica se as coordenadas devolvidas são válidas.
+    // Caso sejam é realizado o mesmo processo para o quadrante devolvido, ou então é indicado como sendo QEmpty
     val qtOne = if(coordsInbounds(c, sCords._1)) auxMQT(sCords._1, b) else QEmpty
     val qtTwo = if(coordsInbounds(c, sCords._2)) auxMQT(sCords._2, b) else QEmpty
     val qtThree = if(coordsInbounds(c, sCords._3)) auxMQT(sCords._3, b) else QEmpty
     val qtFour = if(coordsInbounds(c, sCords._4)) auxMQT(sCords._4, b) else QEmpty
 
+    //Verifica se todos os quadrantes correspondem a QLeafs com a mesma cor, se sim é devolvida a QLeaf correspondente ao caso.
+    // Caso contrário é devolvido uma QNode contendo as quatro QTrees
     (qtOne, qtTwo, qtThree, qtFour) match {
       case (q1: QLeaf[Coords, Section], q2:QLeaf[Coords, Section], q3:QLeaf[Coords, Section], q4:QLeaf[Coords, Section]) =>
         if( (q1.value._2 equals  q2.value._2) && (q3.value._2 equals q4.value._2) && (q1.value._2 equals q4.value._2 ) )
           new QLeaf[Coords, Section]( (c, q1.value._2):Section )
         else
-          new QNode[Coords](c, qtOne, qtTwo, qtThree, qtFour) //(value: A, one: QTree[A], two: QTree[A], three: QTree[A], four: QTree[A])
-      case _ => new QNode[Coords](c, qtOne, qtTwo, qtThree, qtFour) //(value: A, one: QTree[A], two: QTree[A], three: QTree[A], four: QTree[A])
+          new QNode[Coords](c, qtOne, qtTwo, qtThree, qtFour)
+      case _ => new QNode[Coords](c, qtOne, qtTwo, qtThree, qtFour)
     }
   }
 
-  def splitCoords(c:Coords): (Coords, Coords, Coords, Coords) = { //temos que considerar que pode não ser quadrada e imagens com lados impares
+  //Função para repartir as coordenadas dadas em quatro coordenadas
+  // correspondendo a quatro quadrantes da imagem
+  def splitCoords(c:Coords): (Coords, Coords, Coords, Coords) = {
 
     val width = c._2._1 - c._1._1 + 1
     val height = c._2._2 - c._1._2 + 1
@@ -72,7 +85,6 @@ object BitMap {
     val c3 = ( (c._1._1, c._1._2+(height/2.0).ceil.toInt),(c._2._1-(width/2.0).floor.toInt, c._2._2) )
     val c4 = ( (c._1._1+(width/2.0).ceil.toInt, c._1._2+(height/2.0).ceil.toInt), c._2 )
     (c1,c2,c3,c4)
-
   }
 
 }
