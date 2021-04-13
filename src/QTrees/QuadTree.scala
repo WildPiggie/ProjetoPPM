@@ -21,9 +21,26 @@ object QuadTree{
   type Section = (Coords, Color)
 
   def makeBitMap (qt: QTree[Coords]): BitMap = {
-    ???
+    val a = new BitMap(Nil)
+    val b = new BitMap(Nil)
+    val c = new BitMap(a.img++b.img)
     // lst(ql.value._1._2)++List(ql.value._2)
     //pensar em como percorrer as coordenadas de uma leaf
+
+    qt match {
+      case (qn:QNode[Coords]) =>
+        BitMap.combine(makeBitMap(qn.one), makeBitMap(qn.two), makeBitMap(qn.three), makeBitMap(qn.four))
+      case (ql:QLeaf[Coords, Section]) => {
+        val width = ql.value._1._2._1 - ql.value._1._1._1 + 1
+        val height = ql.value._1._2._2 - ql.value._1._1._2 + 1
+
+        val lst = List.fill(width)(ql.value._2.getRGB)
+        val sectionLst = List.fill(height)(lst)
+        new BitMap(sectionLst)
+      }
+      case _ =>
+        new BitMap(Nil)
+    }
   }
 
   def scale (scale:Double, qt:QTree[Coords]):QTree[Coords] = ???
@@ -117,7 +134,7 @@ object QuadTree{
   // caso contrário a cor passada como parametro é devolvida
   def noiseEffect (color: Color): Color ={
     if(Math.random()>=0.5) {
-      Color.gray
+      Color.darkGray
     } else
       color
   }

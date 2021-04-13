@@ -5,13 +5,24 @@ import QTrees.BitMap._
 
 case class BitMap(img: List[List[Int]]) {
   def makeQTree(): QTree[Coords] = BitMap.makeQTree(this)
+  def toImage(path: String, format: String): Unit = BitMap.toImage(this.img, path, format)
 }
 
 object BitMap {
 
+  def toImage(img: List[List[Int]], path: String, format: String): Unit = {
+    val matrix = (img map (x=>x.toArray)).toArray
+    ImageUtil.writeImage(matrix, path, format)
+  }
+
   type Point = (Int, Int)
   type Coords = (Point, Point)
   type Section = (Coords, Color)
+
+  def makeQTree(filename: String): QTree[Coords] = {
+    val lst = ImageUtil.readColorImage(filename).toList map (x=>x.toList)
+    BitMap(lst).makeQTree()   //diferença entre isto e makeQTree(BitMap(lst)) ?
+  }
 
   //Função para a criação de uma QTree a partir de um BitMap
   def makeQTree(b:BitMap): QTree[Coords] = {
@@ -64,9 +75,21 @@ object BitMap {
     //Verifica se todos os quadrantes correspondem a QLeafs com a mesma cor, se sim é devolvida a QLeaf correspondente ao caso.
     // Caso contrário é devolvido uma QNode contendo as quatro QTrees
     (qtOne, qtTwo, qtThree, qtFour) match {
+      case (q1: QLeaf[Coords, Section], q2:QLeaf[Coords, Section], QEmpty, QEmpty) => {
+        if(q1.value._2 equals q2.value._2)
+          new QLeaf[Coords, Section]( ((q1.value._1._1, q2.value._1._2), q1.value._2) )
+        else
+          new QNode[Coords](c, qtOne, qtTwo, qtThree, qtFour)
+      }
+      case (q1: QLeaf[Coords, Section], QEmpty, q3:QLeaf[Coords, Section], QEmpty) => {
+        if(q1.value._2 equals q3.value._2)
+          new QLeaf[Coords, Section]( ((q1.value._1._1, q3.value._1._2), q1.value._2) )
+        else
+          new QNode[Coords](c, qtOne, qtTwo, qtThree, qtFour)
+      }
       case (q1: QLeaf[Coords, Section], q2:QLeaf[Coords, Section], q3:QLeaf[Coords, Section], q4:QLeaf[Coords, Section]) =>
-        if( (q1.value._2 equals  q2.value._2) && (q3.value._2 equals q4.value._2) && (q1.value._2 equals q4.value._2 ) )
-          new QLeaf[Coords, Section]( (c, q1.value._2):Section )
+        if( (q1.value._2 equals q2.value._2) && (q3.value._2 equals q4.value._2) && (q1.value._2 equals q4.value._2 ) )
+          new QLeaf[Coords, Section]( (c, q1.value._2) )
         else
           new QNode[Coords](c, qtOne, qtTwo, qtThree, qtFour)
       case _ => new QNode[Coords](c, qtOne, qtTwo, qtThree, qtFour)
@@ -85,6 +108,29 @@ object BitMap {
     val c3 = ( (c._1._1, c._1._2+(height/2.0).ceil.toInt),(c._2._1-(width/2.0).floor.toInt, c._2._2) )
     val c4 = ( (c._1._1+(width/2.0).ceil.toInt, c._1._2+(height/2.0).ceil.toInt), c._2 )
     (c1,c2,c3,c4)
+  }
+
+  def combine(b1:BitMap, b2:BitMap, b3:BitMap, b4:BitMap): BitMap = {
+
+    def auxCombine(lst1: List[List[Int]], lst2: List[List[Int]]): List[List[Int]] = {
+      (lst1,lst2) match {
+        case (Nil, Nil) => Nil
+        case (l, Nil) => l
+        case (Nil, l) => l
+        case (h1::t1, h2::t2) => {
+          (h1:::h2)::auxCombine(t1,t2)
+        }
+        case _ => {
+          //Se entrar aqui é erro! Nunca devia acontecer! (a altura dos bitMaps deve ser igual)
+          println("AAA")
+          Nil
+        }
+      }
+    }
+
+    val b12 = auxCombine(b1.img, b2.img)
+    val b34 = auxCombine(b3.img, b4.img)
+    new BitMap(b12:::b34)
   }
 
 }

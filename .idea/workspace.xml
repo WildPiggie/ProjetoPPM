@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b8deda37-1e6a-47d0-834a-df247805d7e0" name="Default Changelist" comment="Cleanup">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02_04_2021_15_24_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02_04_2021_15_24__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_04_2021_15_25_[Default_Changelist]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_04_2021_15_25__Default_Changelist_1.xml" beforeDir="false" />
+    <list default="true" id="b8deda37-1e6a-47d0-834a-df247805d7e0" name="Default Changelist" comment="Cleanup &amp; Comentários para 1ª Entrega">
+      <change afterPath="$PROJECT_DIR$/src/a.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/evolution.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/picrew.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/portugal.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_04_2021_14_40_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_04_2021_14_40__Default_Changelist_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/BitMap$.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/BitMap$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/BitMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/BitMap.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/Main$.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/Main$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/QuadTree$.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/QuadTree$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/QuadTree.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/QuadTree.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/black100x100.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/black6x3.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/QTrees/BitMap.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/BitMap.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/QTrees/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/Main.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QTrees/QEmpty.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/QEmpty.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QTrees/QNode.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/QNode.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QTrees/QTree.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/QTree.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/QTrees/QuadTree.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/QuadTree.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/black100x100.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/black6x3.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,11 +71,16 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../.." />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Samuel\Desktop\PPM\Projeto\src" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
@@ -189,7 +202,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617987395500</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Cleanup &amp; Comentários para 1ª Entrega">
+      <created>1618258957149</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1618258957149</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -251,6 +271,7 @@
     <MESSAGE value="Alterações pequenas: Falta arranjar o split coords do makeQTree" />
     <MESSAGE value="MakeQTree funcional!" />
     <MESSAGE value="Cleanup" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleanup" />
+    <MESSAGE value="Cleanup &amp; Comentários para 1ª Entrega" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleanup &amp; Comentários para 1ª Entrega" />
   </component>
 </project>
