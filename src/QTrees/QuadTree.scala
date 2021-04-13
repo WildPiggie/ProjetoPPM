@@ -6,7 +6,7 @@ import QTrees.QuadTree._
 case class QuadTree(qt: QTree[Coords]){
 
   def makeBitMap (): BitMap = QuadTree.makeBitMap(this.qt)
-  def scale (scale:Double, quadT:QTree[Coords]):QTree[Coords] = ???
+  def scale (scale:Double):QTree[Coords] = QuadTree.scale(scale, this.qt)
   def mirrorV ():QTree[Coords] = QuadTree.mirrorV(this.qt)
   def mirrorH ():QTree[Coords] = QuadTree.mirrorH(this.qt)
   def rotateD (quadT:QTree[Coords]):QTree[Coords] = ???
@@ -21,11 +21,6 @@ object QuadTree{
   type Section = (Coords, Color)
 
   def makeBitMap (qt: QTree[Coords]): BitMap = {
-    val a = new BitMap(Nil)
-    val b = new BitMap(Nil)
-    val c = new BitMap(a.img++b.img)
-    // lst(ql.value._1._2)++List(ql.value._2)
-    //pensar em como percorrer as coordenadas de uma leaf
 
     qt match {
       case (qn:QNode[Coords]) =>
@@ -43,7 +38,23 @@ object QuadTree{
     }
   }
 
-  def scale (scale:Double, qt:QTree[Coords]):QTree[Coords] = ???
+  def scale (scale:Double, qt:QTree[Coords]):QTree[Coords] = {
+    ???
+    /*qt match {
+      case (qn: QNode[Coords]) =>{
+        val width = qn.value._2._1 - qn.value._1._1 + 1
+        val height = qn.value._2._2 - qn.value._1._2 + 1
+        val newWidth = width * scale
+        val newHeight = height * scale
+        ???
+      }
+      case (ql:QLeaf[Coords, Section]) => {
+        ???
+      }
+      case _ =>
+        ???
+    }*/
+  }
 
   //Realiza o espelhamento vertical da imagem (sob o eixo horizontal)
   def mirrorV (qt:QTree[Coords]):QTree[Coords] = {

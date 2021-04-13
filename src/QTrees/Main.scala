@@ -36,7 +36,7 @@ object Main {
     val quadTree = QuadTree(qt)
     */
 
-    val c = BitMap.makeQTree("src//portugal.png")
+    val c = BitMap.makeQTree("src//picrew.png")
 
     println("QTree: " + c)
     println("")
