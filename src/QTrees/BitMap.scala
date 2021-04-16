@@ -95,7 +95,7 @@ object BitMap {
     }
   }
 
-  //Função para repartir as coordenadas dadas em quatro coordenadas
+  // Função para repartir as coordenadas dadas em quatro coordenadas
   // correspondendo a quatro quadrantes da imagem
   def splitCoords(c:Coords): (Coords, Coords, Coords, Coords) = {
 
