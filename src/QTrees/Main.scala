@@ -19,7 +19,7 @@ object Main {
     */
 
 
-    /*
+
     //Exemplo 2 de QTree[Coords] (4 quadrantes com um repartido em 4 pixeis)
     val n1 = QLeaf((((0,0):Point,(0,0):Point):Coords, Color.red):Section)
     val n2 = QLeaf((((1,0):Point,(1,0):Point):Coords, Color.blue):Section)
@@ -34,14 +34,15 @@ object Main {
     val qt: QTree[Coords] = QNode( ((0,0),(3,3)), l1, l2, l3, l4 )
 
     val quadTree = QuadTree(qt)
-    */
 
-    val c = BitMap.makeQTree("src//picrew.png")
+   /* val c = BitMap.makeQTree("src//picrew.png")
 
     println("QTree: " + c)
     println("")
 
     val quadTree = QuadTree(c)
+
+    */
 
     //println("MirrorV: " + quadTree.mirrorV())
     //println("MirrorH: " + quad.mirrorH())
@@ -49,7 +50,9 @@ object Main {
     //println("Noise: " + quad.mapColourEffect(QuadTree.noiseEffect))
     //println("Contrast: " + quad.mapColourEffect(QuadTree.contrastEffect))
 
-    val m = QuadTree(quadTree.mapColourEffect(QuadTree.noiseEffect))
+    //val m = QuadTree(quadTree.mapColourEffect(QuadTree.noiseEffect))
+    //val m = QuadTree(QuadTree.mapColourEffectWithState(QuadTree.noiseEffect, quadTree.qt))
+    val m = QuadTree(quadTree.rotateR())
     val image = m.makeBitMap()
 
     image.toImage("src//a.png", "png")

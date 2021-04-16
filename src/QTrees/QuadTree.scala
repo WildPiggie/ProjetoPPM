@@ -9,9 +9,10 @@ case class QuadTree(qt: QTree[Coords]){
   def scale (scale:Double):QTree[Coords] = QuadTree.scale(scale, this.qt)
   def mirrorV ():QTree[Coords] = QuadTree.mirrorV(this.qt)
   def mirrorH ():QTree[Coords] = QuadTree.mirrorH(this.qt)
-  def rotateD (quadT:QTree[Coords]):QTree[Coords] = ???
-  def rotateR (quadT:QTree[Coords]):QTree[Coords] = ???
+  def rotateR ():QTree[Coords] = QuadTree.rotateR(this.qt)
+  def rotateL (quadT:QTree[Coords]):QTree[Coords] = ???
   def mapColourEffect (f:Color => Color):QTree[Coords] = QuadTree.mapColourEffect(f, this.qt)
+  def mapColourEffectWithState(f:(Color,RandomWithState) => (Color,RandomWithState)):QTree[Coords] = QuadTree.mapColourEffectWithState(f,this.qt)
 }
 
 object QuadTree{
@@ -57,25 +58,7 @@ object QuadTree{
   }
 
   //Realiza o espelhamento vertical da imagem (sob o eixo horizontal)
-  def mirrorV (qt:QTree[Coords]):QTree[Coords] = {
 
-    qt match {
-      case (qn: QNode[Coords]) => {
-        val height = qn.value._2._2 - qn.value._1._2
-        //Função para atualização das coordenadas
-        def newCoords(coords: Coords): Coords = {
-          ( (coords._1._1, height-coords._2._2), (coords._2._1, height-coords._1._2) )
-        }
-        //Função que troca a ordem das QTrees numa QNode
-        def switchQTreeOrder(qn: QNode[Coords]): QNode[Coords] = {
-          QNode(qn.value, qn.three, qn.four, qn.one, qn.two)
-        }
-        //Chamada da função auxiliar (recursiva) que realiza o espelhamento
-        auxMirror(qn, newCoords, switchQTreeOrder)
-      }
-      case _ => qt
-    }
-  }
 
   //Realiza o espelhamento horizontal da imagem (sob o eixo vertical)
   def mirrorH (qt:QTree[Coords]):QTree[Coords] = {
@@ -125,8 +108,71 @@ object QuadTree{
     }
   }
 
-  def rotateD (qt:QTree[Coords]):QTree[Coords] = ???
-  def rotateR (qt:QTree[Coords]):QTree[Coords] = ???
+  def mirrorV (qt:QTree[Coords]):QTree[Coords] = {
+
+    qt match {
+      case (qn: QNode[Coords]) => {
+        val height = qn.value._2._2 - qn.value._1._2
+        //Função para atualização das coordenadas
+        def newCoords(coords: Coords): Coords = {
+          ( (coords._1._1, height-coords._2._2), (coords._2._1, height-coords._1._2) )
+        }
+        //Função que troca a ordem das QTrees numa QNode
+        def switchQTreeOrder(qn: QNode[Coords]): QNode[Coords] = {
+          QNode(qn.value, qn.three, qn.four, qn.one, qn.two)
+        }
+        //Chamada da função auxiliar (recursiva) que realiza o espelhamento
+        auxMirror(qn, newCoords, switchQTreeOrder)
+      }
+      case _ => qt
+    }
+  }
+
+  def rotateR (qt:QTree[Coords]):QTree[Coords] = {
+    qt match {
+      case (qn: QNode[Coords]) => {
+        val (one,two,three,four) = (auxRotate(qn.one, qn.value), auxRotate(qn.two,qn.value), auxRotate(qn.three, qn.value), auxRotate(qn.four,qn.value))
+        QNode(qn.value,three,one,four,two)
+      }
+      case _ => qt
+    }
+  }
+
+  def auxRotate(qt: QTree[Coords], c: Coords):QTree[Coords] = {
+    val width = c._2._1 - c._1._1
+    val height = c._2._2 - c._1._2
+
+    qt match {
+      case ql: QLeaf[Coords, Section] => {
+        //centrar
+        val xsupC = ql.value._1._1._1 - width/2
+        val ysupC = ql.value._1._1._2 - height/2
+        val xinfC = ql.value._1._2._1 - width/2
+        val yinfC = ql.value._1._2._2 - height/2
+
+        //rodar + descentrar
+        val xsup = ysupC + width/2
+        val ysup = (- xsupC) + height/2
+        val xinf = yinfC + width/2
+        val yinf = (- xinfC) + height/2
+
+        println("xsup: " + xsup + " ysup: " + ysup + " xinf: " + xinf + " yinf: "+ yinf)
+
+        QLeaf((((xsup,ysup),(xinf,yinf)) , ql.value._2))
+
+      }
+      case qn: QNode[Coords] => {
+        val(one,two,three,four) = (auxRotate(qn.one,c) ,auxRotate(qn.two,c) ,auxRotate(qn.three,c) ,auxRotate(qn.four,c))
+        QNode(qn.value,three,one,four,two)
+      }
+      case _ => qt
+    }
+
+  }
+
+
+
+  def rotateL (qt:QTree[Coords]):QTree[Coords] = ???
 
   //Função recursiva que realiza o efeito da função f sobre todas as cores
   // (em todas as leafs) da QTree
@@ -141,7 +187,42 @@ object QuadTree{
     }
   }
 
-  //def mapColourEffectWithState
+
+
+  def mapColourEffectWithState(f:(Color,RandomWithState) => (Color,RandomWithState), qt:QTree[Coords]): QTree[Coords] = {
+
+    val random = MyRandom(1)
+
+    def aux(f:(Color,RandomWithState) => (Color,RandomWithState), qt:QTree[Coords], r: RandomWithState): (QTree[Coords],RandomWithState) = {
+      qt match {
+        case ql: QLeaf[Coords,Section] => {
+          val ax = f(ql.value._2,r)
+         (QLeaf(ql.value._1,ax._1),ax._2)
+        }
+        case qn: QNode[Coords] => {
+          //val(t1,t2,t3,t4) = (aux(f, qt, f),aux(f, qt, r),aux(f, qt, r),aux(f, qt, r))
+          val t1 = aux(f,qn.one,r)
+          val t2 = aux(f,qn.two,t1._2)
+          val t3 = aux(f,qn.three,t2._2)
+          val t4 = aux(f,qn.four,t3._2)
+
+
+          (QNode(qn.value,t1._1,t2._1,t3._1,t4._1),t4._2)
+        }
+        case _ => (qt,r)
+      }
+    }
+
+    aux(f,qt,random)._1
+  }
+
+  def noiseEffect (color: Color, r:RandomWithState): (Color,RandomWithState) ={
+    val i = r.nextInt(2)
+    if(i._1 == 1) {
+      (Color.darkGray,i._2)
+    } else
+      (color,i._2)
+  }
 
   //Efeito de ruído, devolve com 50% de probabilidade a cor cinzenta,
   // caso contrário a cor passada como parametro é devolvida
