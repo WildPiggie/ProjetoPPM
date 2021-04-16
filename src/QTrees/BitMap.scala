@@ -1,7 +1,9 @@
 package QTrees
 
+import QuadTree.Point
+import QuadTree.Coords
+import QuadTree.Section
 import java.awt.Color
-import QTrees.BitMap._
 
 case class BitMap(img: List[List[Int]]) {
   def makeQTree(): QTree[Coords] = BitMap.makeQTree(this)
@@ -15,9 +17,9 @@ object BitMap {
     ImageUtil.writeImage(matrix, path, format)
   }
 
-  type Point = (Int, Int)
-  type Coords = (Point, Point)
-  type Section = (Coords, Color)
+  //type Point = (Int, Int)
+  //type Coords = (Point, Point)
+  //type Section = (Coords, Color)
 
   def makeQTree(filename: String): QTree[Coords] = {
     val lst = ImageUtil.readColorImage(filename).toList map (x=>x.toList)
@@ -123,6 +125,7 @@ object BitMap {
         case _ => {
           //Se entrar aqui é erro! Nunca devia acontecer! (a altura dos bitMaps deve ser igual)
           println("AAA")
+          //exception
           Nil
         }
       }

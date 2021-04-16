@@ -141,6 +141,8 @@ object QuadTree{
     }
   }
 
+  //def mapColourEffectWithState
+
   //Efeito de ruído, devolve com 50% de probabilidade a cor cinzenta,
   // caso contrário a cor passada como parametro é devolvida
   def noiseEffect (color: Color): Color ={
