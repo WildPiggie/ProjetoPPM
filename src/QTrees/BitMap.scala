@@ -121,6 +121,7 @@ object BitMap {
         }
         case _ => {
           //Se entrar aqui é erro! Nunca devia acontecer! (a altura dos bitMaps deve ser igual)
+          println("ERRO. aux combine")
           Nil
           //throw new IllegalArgumentException
         }

@@ -37,7 +37,7 @@ object Main {
     */
 
 
-    val c = BitMap.makeQTree("src//portugal.png")
+    val c = BitMap.makeQTree("src//evolution.png")
 
     println("QTree: " + c)
     println("")
@@ -50,8 +50,12 @@ object Main {
     //println("Noise: " + quad.mapColourEffect(QuadTree.noiseEffect))
     //println("Contrast: " + quad.mapColourEffect(QuadTree.contrastEffect))
 
-    val m = QuadTree(quadTree.rotateL())
+
+    val n = QuadTree(quadTree.rotateR())
+    val m = QuadTree(n.scale(0.1))
+    //val o = QuadTree(n.scale(4))
     val image = m.makeBitMap()
+
 
     image.toImage("src//a.png", "png")
 
