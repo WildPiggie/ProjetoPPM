@@ -1,0 +1,19 @@
+<changelist name="Uncommitted_changes_before_Update_at_20_04_2021_01_44_[Default_Changelist]" date="1618879480054" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_04_2021_01_44_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 20/04/2021 01:44 [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/ProjetoPPM/QTrees/BitMap$.class" />
+    <option name="AFTER_PATH" value="out/production/ProjetoPPM/QTrees/BitMap$.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_04_2021_01_44_[Default_Changelist]/BitMap$.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/ProjetoPPM/QTrees/BitMap.class" />
+    <option name="AFTER_PATH" value="out/production/ProjetoPPM/QTrees/BitMap.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_04_2021_01_44_[Default_Changelist]/BitMap.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/ProjetoPPM/QTrees/Main$.class" />
+    <option name="AFTER_PATH" value="out/production/ProjetoPPM/QTrees/Main$.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_04_2021_01_44_[Default_Changelist]/Main$.class" />
+  </binary>
+</changelist>
