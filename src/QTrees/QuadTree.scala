@@ -185,8 +185,6 @@ object QuadTree{
         val width = qn.value._2._1 - qn.value._1._1
         val height = qn.value._2._2 - qn.value._1._2
 
-        //val newC = (qn.value._1,(qn.value._2._2, qn.value._2._1))
-
         def newCoords(coords: Coords): Coords = {
           //centrar nos eixos x e y
           val xsupC = coords._1._1 - width/2.0
@@ -195,10 +193,10 @@ object QuadTree{
           val yinfC = coords._2._2 - height/2.0
 
           //rodar + descentrar dos eixos
-          val x1 = (ysupC + width/2.0).toInt
-          val y1 = ((- xsupC) + height/2.0).toInt
-          val x2 = (yinfC + width/2.0).toInt
-          val y2 = ((- xinfC) + height/2.0).toInt
+          val x1 = (ysupC + height/2.0).toInt
+          val y1 = ((- xsupC) + width/2.0).toInt
+          val x2 = (yinfC + height/2.0).toInt
+          val y2 = ((- xinfC) + width/2.0).toInt
 
           ((x1 min x2,y1 min y2),(x1 max x2,y1 max y2))
         }
@@ -207,7 +205,10 @@ object QuadTree{
           QNode(qn.value, qn.three, qn.one, qn.four, qn.two)
         }
 
-        recursiveSwapper(qn, newCoords, switchQTreeOrder)
+        val newC = (qn.value._1,(qn.value._2._2, qn.value._2._1))
+        val newQN = QNode(newC, qn.one, qn.two, qn.three, qn.four)
+
+        recursiveSwapper(newQN, newCoords, switchQTreeOrder)
 
       }
       case _ => qt
@@ -293,16 +294,21 @@ object QuadTree{
     //Função aninhada que transforma as coordenadas de uma QTree de acordo com uma função indicada
     def updateCoords(qt: QTree[Coords], f: Coords => Coords): QTree[Coords] = {
       qt match {
-        case (qn:QNode[Coords]) =>
+        case (qn:QNode[Coords]) => {
+          println(f(qn.value))
           QNode( f(qn.value) , qn.one, qn.two, qn.three, qn.four)
-        case (ql:QLeaf[Coords, Section]) =>
+        }
+        case (ql:QLeaf[Coords, Section]) => {
+          println(f(ql.value._1))
           QLeaf( f(ql.value._1), ql.value._2 )
+        }
         case _ => qt
       }
     }
 
     qt match {
       case (qn: QNode[Coords]) => {
+
         val (m1, m2, m3, m4) = (recursiveSwapper(qn.one, f, switchQTreeOrder), recursiveSwapper(qn.two, f, switchQTreeOrder), recursiveSwapper(qn.three, f, switchQTreeOrder), recursiveSwapper(qn.four, f, switchQTreeOrder))
         //Realiza a atualização das coordenadas de todas as QTrees da QNode
         val (upd1, upd2, upd3, upd4) = ( updateCoords(m1, f), updateCoords(m2, f), updateCoords(m3, f), updateCoords(m4, f) )
@@ -319,10 +325,8 @@ object QuadTree{
   def mapColourEffect (f:Color => Color, qt:QTree[Coords]):QTree[Coords] = {
     qt match {
       case ql: QLeaf[Coords, Section] => QLeaf((ql.value._1, f(ql.value._2)))
-      case qn: QNode[Coords] => {
-        val (t1,t2,t3,t4) = (mapColourEffect(f, qn.one), mapColourEffect(f, qn.two), mapColourEffect(f, qn.three), mapColourEffect(f, qn.four))
-        QNode(qn.value, t1, t2, t3, t4)
-      }
+      case qn: QNode[Coords] =>
+        QNode(qn.value, mapColourEffect(f, qn.one), mapColourEffect(f, qn.two), mapColourEffect(f, qn.three), mapColourEffect(f, qn.four))
       case _ => qt
     }
   }

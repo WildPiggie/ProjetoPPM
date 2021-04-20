@@ -51,9 +51,13 @@ object Main {
     //println("Contrast: " + quad.mapColourEffect(QuadTree.contrastEffect))
 
 
-    val n = QuadTree(quadTree.rotateR())
-    val m = QuadTree(n.scale(0.1))
-    //val o = QuadTree(n.scale(4))
+    val n = QuadTree(quadTree.scale(.25))
+    val m = QuadTree(n.rotateR())
+    //val o = QuadTree(m.scale(4))
+
+    println()
+    println(m.qt)
+
     val image = m.makeBitMap()
 
 
