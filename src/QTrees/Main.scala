@@ -2,9 +2,34 @@ package QTrees
 
 import QTrees.QuadTree._
 import java.awt.Color
+import scala.annotation.tailrec
+import scala.collection.SortedMap
 
-object Main {
-  def main(args: Array[String]): Unit = {
+object Main extends App {
+
+  val cont = Container("Name",Map())
+
+  val options = SortedMap[Int, CommandLineOption](
+    0 -> new CommandLineOption("Exit", _ => sys.exit),
+    1 -> new CommandLineOption("Add Image", Container.addEntry(IO_Utils.prompt("Key"), IO_Utils.prompt("Value"))),
+    2 -> new CommandLineOption("Remove Image", Container.remEntry(IO_Utils.prompt("Key"))),
+    3 -> new CommandLineOption("Percorate Image", Container.showAll), //como percoratetar?
+    4 -> new CommandLineOption("Search Image", Container.search),
+    5 -> new CommandLineOption("Reorder Images", Container.reorder), //reordenar, como assim?
+    6 -> new CommandLineOption("Edit Image Information", Container.editInfo) //qual info?
+  )
+
+  mainLoop(cont)
+
+  @tailrec
+  def mainLoop(cont: Container) {
+    IO_Utils.optionPrompt(options) match {
+      case Some(opt) => val newCont = opt.exec(cont); mainLoop(newCont)
+      case _ => println("Invalid option"); mainLoop(cont)
+    }
+  }
+
+  /*def main(args: Array[String]): Unit = {
 
     /*
     //Exemplo 1 de QTree[Coords] (4 pixeis)
@@ -39,8 +64,8 @@ object Main {
 
     val c = BitMap.makeQTree("src//evolution.png")
 
-    println("QTree: " + c)
-    println("")
+    //println("QTree: " + c)
+    //println("")
 
     val quadTree = QuadTree(c)
 
@@ -51,17 +76,19 @@ object Main {
     //println("Contrast: " + quad.mapColourEffect(QuadTree.contrastEffect))
 
 
-    val n = QuadTree(quadTree.scale(.25))
-    val m = QuadTree(n.rotateR())
-    //val o = QuadTree(m.scale(4))
+    val n = QuadTree(quadTree.scale(0.75))
+    //val b = n.makeBitMap()
+    //val w = QuadTree(QuadTree(b.makeQTree()).rotateR())
+    //val m = QuadTree(w.scale(4))
+    //val o = QuadTree(n.rotateR())
 
     println()
-    println(m.qt)
+    println(n.qt)
 
-    val image = m.makeBitMap()
+    val image = n.makeBitMap()
 
 
     image.toImage("src//a.png", "png")
 
-  }
+  }*/
 }

@@ -17,7 +17,6 @@ object BitMap {
     ImageUtil.writeImage(matrix, path, format)
   }
 
-
   def makeQTree(filename: String): QTree[Coords] = {
     val lst = ImageUtil.readColorImage(filename).toList map (x=>x.toList)
     BitMap(lst).makeQTree()   //diferença entre isto e makeQTree(BitMap(lst)) ?
@@ -32,20 +31,6 @@ object BitMap {
   }
 
   def auxMQT(c:Coords, b: BitMap): QTree[Coords] = {
-
-    //Função aninhada para indicar se umas coordenadas estão contidas noutras
-    // (útil para descobrir coordenadas inválidas, usado para descobrir que QTrees devem ser QEmptys)
-    def coordsInbounds(bound:Coords, coords:Coords): Boolean = {
-      val (boundTopX,boundTopY) = bound._1
-      val (boundBotX,boundBotY) = bound._2
-      val (coordsTopX,coordsTopY) = coords._1
-      val (coordsBotX,coordsBotY) = coords._2
-
-      (boundTopX<=coordsTopX) && (boundTopX<=coordsBotX) &&
-      (boundBotX>=coordsTopX) && (boundBotX>=coordsBotX) &&
-      (boundTopY<=coordsTopY) && (boundTopY<=coordsBotY) &&
-      (boundBotY>=coordsTopY) && (boundBotY>=coordsBotY)
-    }
 
     //Verifica se a QTree corresponde apenas a um pixel da imagem original
     // e caso o seja devolve uma QLeaf com a cor correspondente
@@ -131,6 +116,20 @@ object BitMap {
     val b12 = auxCombine(b1.img, b2.img)
     val b34 = auxCombine(b3.img, b4.img)
     new BitMap(b12:::b34)
+  }
+
+  //Função aninhada para indicar se umas coordenadas estão contidas noutras
+  // (útil para descobrir coordenadas inválidas, usado para descobrir que QTrees devem ser QEmptys)
+  def coordsInbounds(bound:Coords, coords:Coords): Boolean = {
+    val (boundTopX,boundTopY) = bound._1
+    val (boundBotX,boundBotY) = bound._2
+    val (coordsTopX,coordsTopY) = coords._1
+    val (coordsBotX,coordsBotY) = coords._2
+
+    (boundTopX<=coordsTopX) && (boundTopX<=coordsBotX) &&
+      (boundBotX>=coordsTopX) && (boundBotX>=coordsBotX) &&
+      (boundTopY<=coordsTopY) && (boundTopY<=coordsBotY) &&
+      (boundBotY>=coordsTopY) && (boundBotY>=coordsBotY)
   }
 
 }
