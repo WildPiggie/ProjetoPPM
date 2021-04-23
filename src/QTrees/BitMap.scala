@@ -19,44 +19,33 @@ object BitMap {
 
   def makeQTree(filename: String): QTree[Coords] = {
     val lst = ImageUtil.readColorImage(filename).toList map (x=>x.toList)
-    BitMap(lst).makeQTree()   //diferença entre isto e makeQTree(BitMap(lst)) ?
+    BitMap(lst).makeQTree()
   }
 
-  //Função para a criação de uma QTree a partir de um BitMap
-  def makeQTree(b:BitMap): QTree[Coords] = {
-    val x = b.img.head.length - 1
-    val y = b.img.length - 1
-    //Calcula a largura e Altura de imagem para obter as coordenadas da QTree que servirá como raiz da imagem
-    auxMQT( ((0,0):Point, (x,y):Point):Coords, b )
-  }
+  // Função para a criação de uma QTree a partir de um BitMap
+  def makeQTree(b:BitMap): QTree[Coords] = auxMQT( ((0,0), (b.img.head.length - 1,b.img.length - 1)), b )
 
+  // Calcula a largura e altura de imagem para obter as coordenadas da QTree que servirá como raiz da imagem
   def auxMQT(c:Coords, b: BitMap): QTree[Coords] = {
 
-    //Verifica se a QTree corresponde apenas a um pixel da imagem original
+    // Verifica se a QTree corresponde apenas a um pixel da imagem original
     // e caso o seja devolve uma QLeaf com a cor correspondente
     if( (c._1._1 == c._2._1) && (c._1._2 == c._2._2) ) {
       val color = new Color(b.img(c._1._2)(c._1._1))
-      return new QLeaf[Coords, Section]( (c, color):Section )
+      return QLeaf[Coords, Section]( (c, color):Section )
     }
 
-    //Divisão das coordenadas em 4 quadrantes
+    // Divisão das coordenadas em 4 quadrantes
     val sCords = splitCoords(c)
 
-/*
-    println("sCords._1: " + sCords._1)
-    println("sCords._2: " + sCords._2)
-    println("sCords._3: " + sCords._3)
-    println("sCords._4: " + sCords._4)
-*/
-
-    //Verifica se as coordenadas devolvidas são válidas.
+    // Verifica se as coordenadas devolvidas são válidas.
     // Caso sejam é realizado o mesmo processo para o quadrante devolvido, ou então é indicado como sendo QEmpty
-    val qtOne = if(coordsInbounds(c, sCords._1)) auxMQT(sCords._1, b) else QEmpty
-    val qtTwo = if(coordsInbounds(c, sCords._2)) auxMQT(sCords._2, b) else QEmpty
+    val qtOne   = if(coordsInbounds(c, sCords._1)) auxMQT(sCords._1, b) else QEmpty
+    val qtTwo   = if(coordsInbounds(c, sCords._2)) auxMQT(sCords._2, b) else QEmpty
     val qtThree = if(coordsInbounds(c, sCords._3)) auxMQT(sCords._3, b) else QEmpty
-    val qtFour = if(coordsInbounds(c, sCords._4)) auxMQT(sCords._4, b) else QEmpty
+    val qtFour  = if(coordsInbounds(c, sCords._4)) auxMQT(sCords._4, b) else QEmpty
 
-    //Verifica se todos os quadrantes correspondem a QLeafs com a mesma cor, se sim é devolvida a QLeaf correspondente ao caso.
+    // Verifica se todos os quadrantes correspondem a QLeafs com a mesma cor, se sim é devolvida a QLeaf correspondente ao caso.
     // Caso contrário é devolvido uma QNode contendo as quatro QTrees
     (qtOne, qtTwo, qtThree, qtFour) match {
       case (q1: QLeaf[Coords, Section], q2:QLeaf[Coords, Section], QEmpty, QEmpty) => {
@@ -106,16 +95,12 @@ object BitMap {
         }
         case _ => {
           //Se entrar aqui é erro! Nunca devia acontecer! (a altura dos bitMaps deve ser igual)
-          println("ERRO. aux combine")
-          Nil
-          //throw new IllegalArgumentException
+          throw new IllegalArgumentException("ERRO: BitMap com dimensões inválidas")
         }
       }
     }
 
-    val b12 = auxCombine(b1.img, b2.img)
-    val b34 = auxCombine(b3.img, b4.img)
-    new BitMap(b12:::b34)
+    BitMap(auxCombine(b1.img, b2.img):::auxCombine(b3.img, b4.img))
   }
 
   //Função aninhada para indicar se umas coordenadas estão contidas noutras
@@ -126,10 +111,7 @@ object BitMap {
     val (coordsTopX,coordsTopY) = coords._1
     val (coordsBotX,coordsBotY) = coords._2
 
-    (boundTopX<=coordsTopX) && (boundTopX<=coordsBotX) &&
-      (boundBotX>=coordsTopX) && (boundBotX>=coordsBotX) &&
-      (boundTopY<=coordsTopY) && (boundTopY<=coordsBotY) &&
-      (boundBotY>=coordsTopY) && (boundBotY>=coordsBotY)
+    (boundTopX<=coordsTopX) && (boundTopX<=coordsBotX) && (boundBotX>=coordsTopX) && (boundBotX>=coordsBotX) &&
+    (boundTopY<=coordsTopY) && (boundTopY<=coordsBotY) && (boundBotY>=coordsTopY) && (boundBotY>=coordsBotY)
   }
-
 }

@@ -11,9 +11,18 @@ object IO_Utils {
     Try(readLine.trim.toUpperCase.toInt)
   }
 
+  def getUserInputDouble(msg : String): Try[Double] = {
+    print(msg + ": ")
+    Try(readLine.trim.toUpperCase.toDouble)
+  }
+
   def prompt(msg : String):String = {
     print(msg + ": ")
     scala.io.StdIn.readLine()
+  }
+
+  def printMessage(msg : String): Unit = {
+    println(msg)
   }
 
   def optionPrompt(options : SortedMap[Int, CommandLineOption]): Option[CommandLineOption] =

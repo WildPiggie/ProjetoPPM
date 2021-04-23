@@ -1,3 +1,6 @@
 package QTrees
 
-case class CommandLineOption(name : String, exec : Container => Container)
+import QuadTree.Coords
+
+case class CommandLineOption(name : String, exec : QTree[Coords] => QTree[Coords])
+
