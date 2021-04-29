@@ -11,10 +11,10 @@ object Container {
 
   def add(path: String, info: String)(container: Container): Container = {
     if(path.contains(":") || info.contains(":"))
-      throw new IllegalArgumentException("Utilizaçao de caracteres invalidos: ':'")
+      throw new IllegalArgumentException("Invalid character: ':'")
     val index = container.data.indexWhere(x => x._1 == path)
     if(index != -1)
-      throw new IllegalArgumentException("Ja existe imagem com esse path.")
+      throw new IllegalArgumentException("There already exists an image with this path associated.")
     new Container(container.name, container.data :+ (path, info))
 
   }
@@ -22,7 +22,7 @@ object Container {
   def remove(path: String)(container: Container): Container = {
     val index = container.data.indexWhere(x => x._1 == path)
     if(index == -1)
-      throw new IllegalArgumentException("Nao existe imagem com esse path.")
+      throw new IllegalArgumentException("There doesn't exist an image with this path associated.")
     val lst = container.data.filter(x => x._1 != path)
     new Container(container.name, lst)
 
@@ -31,14 +31,14 @@ object Container {
   def next(path: String)(container: Container): (Container, (String, String)) = {
     val index = container.data.indexWhere(x => x._1 == path) // problema se houver paths repetidos
     if(index == container.data.size-1)
-      throw new IllegalArgumentException("Nao existe proxima imagem.")
+      throw new IllegalArgumentException("Next image doesn't exist.")
     (container, container.data(index+1))
   }
 
   def previous(path: String)(container: Container): (Container, (String,String)) = {
     val index = container.data.indexWhere(x => x._1 == path)
     if(index == 0)
-      throw new IllegalArgumentException("Nao existe imagem anterior.")
+      throw new IllegalArgumentException("Previous image doesn't exist.")
     (container, container.data(index-1))
   }
 
@@ -51,7 +51,7 @@ object Container {
   def editInfo(path: String, newInfo: String)(container: Container): Container = {
     val index = container.data.indexWhere(x => x._1 == path)
     if(index == -1)
-      throw new IllegalArgumentException("Nao existe imagem com esse path.")
+      throw new IllegalArgumentException("There doesn't exist an image with this path associated.")
     new Container(container.name, container.data.updated(index,(path, newInfo)))
   }
 

@@ -4,6 +4,7 @@ import scala.collection.SortedMap
 import scala.io.Source
 import scala.io.StdIn.readLine
 import scala.util.{Failure, Success, Try}
+import java.io._
 
 object IO_Utils {
 
@@ -53,4 +54,11 @@ object IO_Utils {
     bufferedSource.close
     container
   }
+
+  def writeToFile(file: String, container: Container) = {
+    val pw = new PrintWriter(new File(file))
+    container.data map (tokens => pw.write(tokens._1 + ":" + tokens._2))
+    pw.close
+  }
+
 }

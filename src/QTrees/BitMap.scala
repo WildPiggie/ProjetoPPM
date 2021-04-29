@@ -95,7 +95,7 @@ object BitMap {
         }
         case _ => {
           //Se entrar aqui é erro! Nunca devia acontecer! (a altura dos bitMaps deve ser igual)
-          throw new IllegalArgumentException("ERRO: BitMap com dimensões inválidas")
+          throw new IllegalArgumentException("ERROR: BitMap has invalid dimensions.")
         }
       }
     }

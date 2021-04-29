@@ -7,7 +7,7 @@ import scala.collection.SortedMap
 
 object TextualUserInterface extends App {
 
-  val path = IO_Utils.prompt("Insira o caminho para a imagem")
+  val path = IO_Utils.prompt("Insert image path: ")
   //verificar se o path existe
   val qt = BitMap.makeQTree(path)
   val options = SortedMap[Int, CommandLineOption](
