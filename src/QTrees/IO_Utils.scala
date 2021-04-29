@@ -1,6 +1,7 @@
 package QTrees
 
 import scala.collection.SortedMap
+import scala.io.Source
 import scala.io.StdIn.readLine
 import scala.util.{Failure, Success, Try}
 
@@ -39,6 +40,17 @@ object IO_Utils {
 
   def printContainer(container: Container) = {
     println("Name:"+container.name)
-    container.data.toList map (x => println("Key:"+x._1) + " " + println("Value:"+x._2))
+    container.data.toList map (x => println("Name:"+x._1) + " " + println("Data:"+x._2))
+  }
+
+  def readFromFile(file: String): Container = {
+    var container = new Container(file, List()) // fzr split no nome do file
+    val bufferedSource = Source.fromFile(file)
+    for (line <- bufferedSource.getLines) {
+      val tokens = line.split(":")
+      container = Container.add(tokens(0), tokens(1))(container)
+    }
+    bufferedSource.close
+    container
   }
 }

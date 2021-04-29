@@ -30,7 +30,7 @@ object AMain {
     val qt: QTree[Coords] = QNode( ((0,0),(3,3)), l1, l2, l3, l4 )
 
     val quadTree = QuadTree(qt)
-    */
+
 
     val c = BitMap.makeQTree("src//evolution.png")
 
@@ -58,6 +58,11 @@ object AMain {
     val image = o.makeBitMap()
 
     image.toImage("src//a.png", "png")
+
+
+     */
+
+    IO_Utils.readFromFile("Album.soa")
 
   }
 }

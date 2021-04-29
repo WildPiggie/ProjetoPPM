@@ -5,7 +5,7 @@ import java.awt.Color
 import scala.annotation.tailrec
 import scala.collection.SortedMap
 
-object Main extends App {
+object TextualUserInterface extends App {
 
   val path = IO_Utils.prompt("Insira o caminho para a imagem")
   //verificar se o path existe
