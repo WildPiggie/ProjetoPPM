@@ -62,6 +62,7 @@ object QuadTree{
   }
 
   def scale (scale: => Double)(qt:QTree[Coords]):QTree[Coords] = {
+
     def aux(width: Int, height: Int, upperLeft: Point, qtAux:QTree[Coords]): QTree[Coords] = {
       qtAux match {
         case qn: QNode[Coords] => {
@@ -116,6 +117,8 @@ object QuadTree{
     }
 
     val scaleCall = scale //Para lidar com a lazy evaluation (para o menu textual)
+    if(scaleCall <= 0)
+      throw new IllegalArgumentException("Invalid scale value.")
 
     if(scaleCall == 1.0)
       qt
@@ -127,10 +130,10 @@ object QuadTree{
           val newWidth = (width * scaleCall).toInt
           val newHeight = (height * scaleCall).toInt
           if (newWidth == width || newHeight == height) {
-            IO_Utils.printMessage("ERRO: Scale demasiado pequeno")
+            IO_Utils.printMessage("ERROR: Scale value too small.")
             qn
           } else if(newWidth == 0 || newHeight == 0){
-            IO_Utils.printMessage("ERRO. Scale diminui imagem demasiado")
+            IO_Utils.printMessage("ERROR. Scale reduces too much.")
             qn
           }
           else
@@ -142,10 +145,10 @@ object QuadTree{
           val newWidth = (width * scaleCall).toInt
           val newHeight = (height * scaleCall).toInt
           if (newWidth == width || newHeight == height) {
-            println("ERRO. Scale demasiado pequeno")
+            println("ERROR. Scale value too small.")
             return ql
           } else if(newWidth == 0 || newHeight == 0){
-            println("ERRO. Scale diminui imagem demasiado")
+            println("ERROR. Scale reduces too much.")
             return ql
           }
           aux(newWidth,newHeight,ql.value._1._1,ql)
