@@ -7,11 +7,11 @@ import javafx.stage.Stage
 import scala.io.Source
 
 
-class GraphicalUserInterface extends Application{
+class GraphicalUserInterface extends Application {
   override def start(primaryStage: Stage): Unit = {
     primaryStage.setTitle("Album") //meter aqui o nome do album ?
     val fxmlLoader =
-      new FXMLLoader(getClass.getResource("Controller.fxml"))
+      new FXMLLoader(getClass.getResource("ControllerGrid.fxml"))
     val mainViewRoot: Parent = fxmlLoader.load()
     val scene = new Scene(mainViewRoot)
     primaryStage.setScene(scene)
@@ -20,11 +20,22 @@ class GraphicalUserInterface extends Application{
   }
 }
 
-object FxApp {
-  //val fileName = "Album.soa"
-  //var container = IO_Utils.readFromFile(fileName)
-  def main(args: Array[String]): Unit = {
-    Application.launch(classOf[GraphicalUserInterface], args: _*)
+  /*
+  override def init(): Unit = {
+    //Controller.
   }
-  //IO_Utils.writeToFile(fileName, container)
+
+  override def stop(): Unit = super.stop()
+
+
+
+   */
+  object FxApp {
+    //val fileName = "Album.soa"
+    //var container = IO_Utils.readFromFile(fileName)
+    def main(args: Array[String]): Unit = {
+      Application.launch(classOf[GraphicalUserInterface], args: _*)
+    }
+    //IO_Utils.writeToFile(fileName, container)
+
 }

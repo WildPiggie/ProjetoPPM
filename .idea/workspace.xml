@@ -1,26 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b8deda37-1e6a-47d0-834a-df247805d7e0" name="Default Changelist" comment="criacao da GUI, TUI e do album">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_04_2021_23_49_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_04_2021_23_49__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_04_2021_09_09_[Default_Changelist]/Main$.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_04_2021_09_09_[Default_Changelist]/QuadTree$.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_04_2021_09_09_[Default_Changelist]/QuadTree.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_04_2021_09_09_[Default_Changelist]/a.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_04_2021_09_09_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_04_2021_09_09__Default_Changelist_.xml" beforeDir="false" />
+    <list default="true" id="b8deda37-1e6a-47d0-834a-df247805d7e0" name="Default Changelist" comment="inicio criaçao aplicaçao">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib12.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/QTrees/ControllerGrid.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/QTrees/ControllerImageView.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Album.soa" beforeDir="false" afterPath="$PROJECT_DIR$/Album.soa" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/BitMap$.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/BitMap$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QTrees/BitMap.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/BitMap.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/AMain$.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/AMain$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/Container$.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/Container$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/IO_Utils$.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/IO_Utils$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/IO_Utils.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/IO_Utils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/QuadTree$.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/QuadTree$.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/QTrees/Container.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/Container.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QTrees/Controller.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/Controller.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/QTrees/Controller.fxml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/QTrees/Controller.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/Controller.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/QTrees/GraphicalUserInterface.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/GraphicalUserInterface.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QTrees/IO_Utils.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/IO_Utils.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QTrees/QuadTree.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/QuadTree.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QTrees/TextualUserInterface.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/TextualUserInterface.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +70,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop/javafx-sdk-11.0.2/lib" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -231,7 +228,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619711880556</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="inicio criaçao aplicaçao">
+      <created>1619719750995</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1619719750995</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -294,6 +298,7 @@
     <MESSAGE value="MakeQTree funcional!" />
     <MESSAGE value="Cleanup" />
     <MESSAGE value="criacao da GUI, TUI e do album" />
-    <option name="LAST_COMMIT_MESSAGE" value="criacao da GUI, TUI e do album" />
+    <MESSAGE value="inicio criaçao aplicaçao" />
+    <option name="LAST_COMMIT_MESSAGE" value="inicio criaçao aplicaçao" />
   </component>
 </project>
