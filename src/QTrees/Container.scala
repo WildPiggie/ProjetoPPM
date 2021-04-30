@@ -10,8 +10,11 @@ case class Container(name:String, data : List[(String, String)]){
 object Container {
 
   def add(path: String, info: String)(container: Container): Container = {
-    if(path.contains(":") || info.contains(":"))
+    if(path.contains(":") || info.contains(":")) {
       throw new IllegalArgumentException("Invalid character: ':'")
+    }
+    if(info.size > 64)
+      throw  new IllegalArgumentException("Character limit exceeded.")
     val index = container.data.indexWhere(x => x._1 == path)
     if(index != -1)
       throw new IllegalArgumentException("There already exists an image with this path associated.")
@@ -29,16 +32,20 @@ object Container {
   }
 
   def next(path: String)(container: Container): (Container, (String, String)) = {
+    if(container.data == Nil)
+      throw new IllegalArgumentException("Album is empty.")
     val index = container.data.indexWhere(x => x._1 == path) // problema se houver paths repetidos
     if(index == container.data.size-1)
-      throw new IllegalArgumentException("Next image doesn't exist.")
+      (container, container.data(0))
     (container, container.data(index+1))
   }
 
   def previous(path: String)(container: Container): (Container, (String,String)) = {
+    if(container.data == Nil)
+      throw new IllegalArgumentException("Album is empty.")
     val index = container.data.indexWhere(x => x._1 == path)
     if(index == 0)
-      throw new IllegalArgumentException("Previous image doesn't exist.")
+      (container, container.data(container.data.size-1))
     (container, container.data(index-1))
   }
 
@@ -49,6 +56,8 @@ object Container {
   }
 
   def editInfo(path: String, newInfo: String)(container: Container): Container = {
+    if(newInfo.size > 64)
+      throw  new IllegalArgumentException("Character limit exceeded.")
     val index = container.data.indexWhere(x => x._1 == path)
     if(index == -1)
       throw new IllegalArgumentException("There doesn't exist an image with this path associated.")
