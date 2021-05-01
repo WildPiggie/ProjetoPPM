@@ -1,31 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="592.0" prefWidth="673.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="QTrees.Controller">
    <children>
-      <GridPane fx:id="gridPane" layoutX="112.0" layoutY="112.0" prefHeight="414.0" prefWidth="498.0">
-        <columnConstraints>
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <ImageView fx:id="imageView1" fitHeight="132.0" fitWidth="224.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="imageView2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
-            <ImageView fx:id="imageView3" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" />
-            <ImageView fx:id="imageView4" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <ImageView fx:id="imageView5" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2" />
-            <ImageView fx:id="imageView6" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-         </children>
-      </GridPane>
-      <TabPane prefHeight="80.0" prefWidth="673.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TabPane prefHeight="92.0" prefWidth="673.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
           <Tab text="Album">
             <content>
@@ -45,7 +25,7 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Button mnemonicParsing="false" text="Add Image" />
+                              <Button fx:id="buttonAddImage" mnemonicParsing="false" onAction="#onButtonAddImageClicked" text="Add Image" />
                               <Button disable="true" mnemonicParsing="false" text="Remove Image" GridPane.columnIndex="1" />
                               <Button mnemonicParsing="false" text="Switch Order" GridPane.columnIndex="2" />
                            </children>
@@ -104,7 +84,7 @@
                           </rowConstraints>
                            <children>
                               <Button disable="true" mnemonicParsing="false" prefHeight="25.0" prefWidth="62.0" text="Grid" />
-                              <Button fx:id="buttonImageView" mnemonicParsing="false" onAction="#onImageViewClicked" prefHeight="25.0" prefWidth="85.0" text="ImageView" GridPane.columnIndex="1" />
+                              <Button fx:id="buttonImageView" mnemonicParsing="false" onAction="#onButtonImageViewClicked" prefHeight="25.0" prefWidth="85.0" text="ImageView" GridPane.columnIndex="1" />
                            </children>
                         </GridPane>
                      </children></AnchorPane>
@@ -112,5 +92,14 @@
             </Tab>
         </tabs>
       </TabPane>
+      <ScrollPane layoutX="112.0" layoutY="92.0" prefHeight="450.0" prefWidth="450.0">
+         <content>
+            <GridPane fx:id="gridPane" prefHeight="450.0" prefWidth="430.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>
