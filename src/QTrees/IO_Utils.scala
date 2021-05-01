@@ -49,7 +49,10 @@ object IO_Utils {
     val bufferedSource = Source.fromFile(file)
     for (line <- bufferedSource.getLines) {
       val tokens = line.split(":")
-      container = Container.add(tokens(0), tokens(1))(container)
+      if(tokens.size == 1)
+        container = Container.add(tokens(0),"")(container)
+      else
+        container = Container.add(tokens(0), tokens(1))(container)
     }
     bufferedSource.close
     container
@@ -57,7 +60,7 @@ object IO_Utils {
 
   def writeToFile(file: String, container: Container) = {
     val pw = new PrintWriter(new File(file))
-    container.data map (tokens => pw.write(tokens._1 + ":" + tokens._2))
+    container.data map (tokens => pw.write(tokens._1 + ":" + tokens._2 + "\n"))
     pw.close
   }
 
