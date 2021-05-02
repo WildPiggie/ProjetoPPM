@@ -122,13 +122,15 @@ class Controller { // extends Initializable
     val imageViewRoot: Parent = fxmlLoader.load()
     imageViewGrid.getScene.setRoot(imageViewRoot)
 
-    // meter algo
+    val itemController = fxmlLoader.getController[Controller]
+    itemController.imageView.setImage(new Image(urlToRelativePath(imageViewGrid.getImage.getUrl),true))
   }
 
   def onButtonAddClicked() = {
     // dar update no Container e na Grid
     buttonAdd.getScene.getWindow.hide()
   }
+
 
   def insertImageOnImageView(path: String): Unit = {
     imageView.setImage(new Image(path, true))
@@ -147,16 +149,12 @@ class Controller { // extends Initializable
         column = 0
         row += 1
       }
-      //val b:Node = scene.lookup("#gridPane")
-      //val gridPane:GridPane =  b.asInstanceOf[GridPane]
-
       this.gridPane.add(anchorPane,column, row)
       column += 1
       GridPane.setMargin(anchorPane, new Insets(10))
     }
 
   }
-
 
   /**
    * Turns the URL into the relative path used on Container
