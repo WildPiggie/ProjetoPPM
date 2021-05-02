@@ -1,5 +1,6 @@
 package QTrees
 
+import QTrees.QuadTree.{Coords, contrastEffect, noiseEffectWithState, sepiaEffect}
 import javafx.application.Application
 import javafx.fxml.{FXML, FXMLLoader}
 import javafx.geometry.Insets
@@ -17,7 +18,7 @@ import scala.reflect.io.Path
 //import scala.reflect.io.File
 
 
-class Controller { // extends Initializable
+class Controller {
 
   @FXML
   private var gridPane: GridPane =_
@@ -31,18 +32,16 @@ class Controller { // extends Initializable
   private var buttonAdd: Button=_
   @FXML
   private var buttonAddImage: Button=_
-
   @FXML
   private var imageView: ImageView=_
-
-
-
-
-  /*def onButtonClicked() = {
-    val image:Image = new Image(new FileInputStream("img//a.png"))
-    imageView2.setImage(image)
-   }*/
-
+  @FXML
+  private var textFieldPathPopUp: TextField=_
+  @FXML
+  private var textFieldInfoPopUp: TextField=_
+  @FXML
+  private var textFieldInfo: TextField=_
+  @FXML
+  private var textFieldScaleValue: TextField=_
 
 
   def onButtonAddImageClicked() = {
@@ -58,29 +57,72 @@ class Controller { // extends Initializable
 
     secondStage.setScene(scene)
     secondStage.show()
+
   }
 
-  def onButtonRemoveClicked() = ???
+  def onButtonRemoveClicked() = {
+    if(imageView.getImage != null) {
+      val path = urlToRelativePath(imageView.getImage.getUrl)
+      try{
+        val (nextPath,nextInfo) = FxApp.container.next(path)
+        FxApp.container = FxApp.container.remove(path)
+        imageView.setImage(new Image(urlToRelativePath(nextPath),true))
+        textFieldInfo.setText(nextInfo)
+      }
+      catch {
+        case e: IllegalArgumentException => imageView.setImage(null)
+      }
+    }
+  }
 
   def onButtonSwitchClicked() = ???
 
-  def onInfoTyped() = ???
+  def onInfoTyped() = {
+    if(imageView.getImage != null) {
+      val path = urlToRelativePath(imageView.getImage.getUrl)
+      val newInfo = textFieldInfo.getText
+      FxApp.container = FxApp.container.editInfo(path,newInfo)
+    }
+  }
 
-  def onButtonScaleClicked() = ???
+  def onButtonScaleClicked() = {
+    if(imageView.getImage != null && !textFieldScaleValue.getText.isEmpty) {
+      val path = urlToRelativePath(imageView.getImage.getUrl)
+      val srcPath = srcRelativePath(path)
+      val scaleValue = textFieldScaleValue.getText.toFloat
+      if(scaleValue > 0) {
+        val image = QuadTree(QuadTree(BitMap.makeQTree(srcPath)).scale(scaleValue)).makeBitMap()
+        image.toImage(srcPath,srcPath.split('.')(1))
+        imageView.setImage(new Image(path,true))
 
-  def onButtonMirrorHClicked() = ???
+      }
+    }
+  }
 
-  def onButtonMirrorVClicked() = ???
+  def applyEffects(f:QTree[Coords] => QTree[Coords]) = {
+    if(imageView.getImage != null) {
+      val path = urlToRelativePath(imageView.getImage.getUrl)
+      val srcPath = srcRelativePath(path)
+      val image = QuadTree(f(BitMap.makeQTree(srcPath))).makeBitMap()
+      image.toImage(srcPath,srcPath.split('.')(1))
+      imageView.setImage(null)
+      imageView.setImage(new Image(path,true))
+    }
+  }
 
-  def onButtonRotateRClicked() = ???
+  def onButtonMirrorHClicked() = applyEffects(QuadTree.mirrorH)
 
-  def onButtonRotateLClicked() = ???
+  def onButtonMirrorVClicked() = applyEffects(QuadTree.mirrorV)
 
-  def onButtonSepiaClicked() = ???
+  def onButtonRotateRClicked() = applyEffects(QuadTree.rotateR)
 
-  def onButtonContrastClicked() = ???
+  def onButtonRotateLClicked() = applyEffects(QuadTree.rotateL)
 
-  def onButtonNoiseClicked() = ???
+  def onButtonSepiaClicked() = applyEffects(QuadTree.mapColourEffect(sepiaEffect))
+
+  def onButtonContrastClicked() = applyEffects(QuadTree.mapColourEffect(contrastEffect))
+
+  def onButtonNoiseClicked() = applyEffects(QuadTree.mapColourEffectWithState(noiseEffectWithState))
 
   def onButtonImageViewClicked() = {
     val secondStage: Stage = new Stage()
@@ -107,9 +149,33 @@ class Controller { // extends Initializable
     itemController.updateGrid()
   }
 
-  def onButtonNextClicked() = ???
+  def onButtonNextClicked() = {
+    if(imageView.getImage != null) {
+      val path = urlToRelativePath(imageView.getImage.getUrl)
+      try{
+        val (nextPath,nextInfo) = FxApp.container.next(path)
+        imageView.setImage(new Image(urlToRelativePath(nextPath),true))
+        textFieldInfo.setText(nextInfo)
+      }
+      catch {
+        case e: IllegalArgumentException => imageView.setImage(null)
+      }
+    }
+  }
 
-  def onButtonPreviousClicked() = ???
+  def onButtonPreviousClicked() = {
+    if(imageView.getImage != null){
+      val path = urlToRelativePath(imageView.getImage.getUrl)
+      try{
+        val (nextPath,nextInfo) = FxApp.container.previous(path)
+        imageView.setImage(new Image(urlToRelativePath(nextPath),true))
+        textFieldInfo.setText(nextInfo)
+      }
+      catch {
+        case e: IllegalArgumentException => imageView.setImage(null)
+      }
+    }
+  }
 
 
 
@@ -123,12 +189,24 @@ class Controller { // extends Initializable
     imageViewGrid.getScene.setRoot(imageViewRoot)
 
     val itemController = fxmlLoader.getController[Controller]
-    itemController.imageView.setImage(new Image(urlToRelativePath(imageViewGrid.getImage.getUrl),true))
+    val path = urlToRelativePath(imageViewGrid.getImage.getUrl)
+    itemController.imageView.setImage(new Image(path,true))
+    itemController.textFieldInfo.setText(FxApp.container.getInfo(path))
   }
 
-  def onButtonAddClicked() = {
-    // dar update no Container e na Grid
+  def onButtonAddPopUpClicked() = { //falta dar update na grid
+    val path = textFieldPathPopUp.getText
+    val info = textFieldInfoPopUp.getText
+    FxApp.container =  FxApp.container.add(path, info)
     buttonAdd.getScene.getWindow.hide()
+
+    val fxmlLoader =
+      new FXMLLoader(getClass.getResource("ControllerImageView.fxml"))
+    fxmlLoader.load()
+    val itemController = fxmlLoader.getController[Controller]
+    itemController.updateGrid()
+
+
   }
 
 
@@ -164,6 +242,10 @@ class Controller { // extends Initializable
   def urlToRelativePath(url: String) : String = {
     val tokens = url.split("img")
     ("img"+ tokens(1))
+  }
+
+  def srcRelativePath(path: String): String = {
+    ("out//production/ProjetoPPM//" + path)
   }
 
 }

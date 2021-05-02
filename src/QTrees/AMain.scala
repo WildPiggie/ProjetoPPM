@@ -61,8 +61,15 @@ object AMain {
 
 
      */
+    val c = BitMap.makeQTree("src//img//evolution.png")
 
-    IO_Utils.readFromFile("Album.soa")
+    println("QTree: " + c)
+
+    val quadTree = QuadTree(c)
+    val n = QuadTree(quadTree.scale(.25))
+    val image = n.makeBitMap()
+    image.toImage("src//img//a.png", "png")
+
 
   }
 }

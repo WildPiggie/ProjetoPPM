@@ -27,7 +27,7 @@
                                     </rowConstraints>
                                     <children>
                                         <Button mnemonicParsing="false" text="Add Image" />
-                                        <Button mnemonicParsing="false" text="Remove Image" GridPane.columnIndex="1" />
+                                        <Button mnemonicParsing="false" onAction="#onButtonRemoveClicked" text="Remove Image" GridPane.columnIndex="1" />
                                         <Button mnemonicParsing="false" text="Switch Order" GridPane.columnIndex="2" />
                                     </children>
                                 </GridPane>
@@ -53,15 +53,15 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     </rowConstraints>
                                     <children>
-                                        <Button mnemonicParsing="false" text="Scale" />
-                                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="Mirror Horizontal" GridPane.columnIndex="1" />
-                                        <Button mnemonicParsing="false" prefHeight="22.0" prefWidth="92.0" text="Mirror Vertical" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                        <Button mnemonicParsing="false" text="Sepia" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                                        <Button mnemonicParsing="false" text="Contrast" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                                        <Button mnemonicParsing="false" text="Noise" GridPane.columnIndex="6" GridPane.rowIndex="1" />
-                                        <Button mnemonicParsing="false" text="Rotate Right" GridPane.columnIndex="2" />
-                                        <Button mnemonicParsing="false" prefHeight="11.0" prefWidth="74.0" text="Rotate Left" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                              <TextField alignment="CENTER" prefHeight="25.0" prefWidth="34.0" promptText="Value" GridPane.rowIndex="1" />
+                                        <Button mnemonicParsing="false" onAction="#onButtonScaleClicked" text="Scale" />
+                                        <Button mnemonicParsing="false" onAction="#onButtonMirrorHClicked" prefHeight="25.0" prefWidth="115.0" text="Mirror Horizontal" GridPane.columnIndex="1" />
+                                        <Button mnemonicParsing="false" onAction="#onButtonMirrorVClicked" prefHeight="22.0" prefWidth="92.0" text="Mirror Vertical" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                        <Button mnemonicParsing="false" onAction="#onButtonSepiaClicked" text="Sepia" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                        <Button mnemonicParsing="false" onAction="#onButtonContrastClicked" text="Contrast" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                                        <Button mnemonicParsing="false" onAction="#onButtonNoiseClicked" text="Noise" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                                        <Button mnemonicParsing="false" onAction="#onButtonRotateRClicked" text="Rotate Right" GridPane.columnIndex="2" />
+                                        <Button mnemonicParsing="false" onAction="#onButtonRotateLClicked" prefHeight="11.0" prefWidth="74.0" text="Rotate Left" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <TextField fx:id="textFieldScaleValue" alignment="CENTER" prefHeight="25.0" prefWidth="34.0" promptText="Value (&gt;0)" GridPane.rowIndex="1" />
                                     </children>
                                 </GridPane>
                             </children></AnchorPane>
@@ -94,8 +94,9 @@
             </tabs>
         </TabPane>
       <ImageView fx:id="imageView" fitHeight="378.0" fitWidth="480.0" layoutX="97.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true" />
-      <Button layoutX="49.0" layoutY="302.0" mnemonicParsing="false" text="&lt;" />
-      <Button layoutX="600.0" layoutY="302.0" mnemonicParsing="false" text="&gt;" />
+      <Button layoutX="49.0" layoutY="302.0" mnemonicParsing="false" onAction="#onButtonPreviousClicked" text="&lt;" />
+      <Button layoutX="600.0" layoutY="302.0" mnemonicParsing="false" onAction="#onButtonNextClicked" text="&gt;" />
       <TextField fx:id="textFieldInfo" alignment="CENTER" layoutX="252.0" layoutY="518.0" onAction="#onInfoTyped" promptText="No description" />
+      <Label layoutX="277.0" layoutY="550.0" text="Press Enter to Save" />
     </children>
 </AnchorPane>
