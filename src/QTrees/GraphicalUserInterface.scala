@@ -26,16 +26,17 @@ class GraphicalUserInterface extends Application {
     primaryStage.setScene(scene2)
     primaryStage.show()
 
+    val itemController2 = fxmlLoader.getController[Controller]
+    itemController2.updateGrid()
+
+    /*
     var column = 0
     var row = 0
 
     try{
-      //var element = 0
       for(element <- FxApp.container.data){
-        //val fxmlloader = new FXMLLoader()
-        //fxmlloader.setLocation(getClass.getResource("ControllerElementImage.fxml"))
         val fxmlLoader =
-        new FXMLLoader(getClass.getResource("ControllerElementImage.fxml"))
+          new FXMLLoader(getClass.getResource("ControllerElementImage.fxml"))
         val anchorPane = fxmlLoader.load[AnchorPane]()
         val itemController = fxmlLoader.getController[Controller]
         itemController.setData(element._1)
@@ -43,7 +44,6 @@ class GraphicalUserInterface extends Application {
         if(column == 2){
           column = 0
           row += 1
-          println(row)
         }
         val b:Node = scene2.lookup("#gridPane")
         val gridPane:GridPane =  b.asInstanceOf[GridPane]
@@ -51,24 +51,11 @@ class GraphicalUserInterface extends Application {
         gridPane.add(anchorPane,column, row)
         column += 1
 
-
-       /* gridPane.setMinWidth(Region.USE_COMPUTED_SIZE)
-        gridPane.setPrefWidth(Region.USE_COMPUTED_SIZE)
-        gridPane.setMaxWidth(Region.USE_COMPUTED_SIZE)
-        gridPane.setMinHeight(Region.USE_COMPUTED_SIZE)
-        gridPane.setPrefHeight(Region.USE_COMPUTED_SIZE)
-        gridPane.setMaxHeight(Region.USE_COMPUTED_SIZE)
-
-        */
-
         GridPane.setMargin(anchorPane, new Insets(10))
-
-
-
       }
     } catch {
       case e: IOException => e.printStackTrace
-    }
+    }*/
 
     /*
     val b:Node = scene.lookup("#gridPane")
@@ -131,7 +118,6 @@ class GraphicalUserInterface extends Application {
 
   override def stop(): Unit = {
     IO_Utils.writeToFile(FxApp.fileName, FxApp.container)
-
   }
 
 }
