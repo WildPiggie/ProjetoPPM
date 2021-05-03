@@ -5,6 +5,7 @@ import scala.io.Source
 import scala.io.StdIn.readLine
 import scala.util.{Failure, Success, Try}
 import java.io._
+import scala.annotation.tailrec
 
 object IO_Utils {
 
@@ -23,15 +24,13 @@ object IO_Utils {
     scala.io.StdIn.readLine()
   }
 
-  def printMessage(msg : String): Unit = {
-    println(msg)
-  }
+  def printMessage(msg : String): Unit = println(msg)
 
-  def optionPrompt(options : SortedMap[Int, CommandLineOption]): Option[CommandLineOption] =
-  {
+
+  @tailrec
+  def optionPrompt(options : SortedMap[Int, CommandLineOption]): Option[CommandLineOption] = {
     println("-- Options --")
-    options.toList map
-      ((option:(Int, CommandLineOption)) => println(option._1 + ") " + option._2.name))
+    options.toList map ((option:(Int, CommandLineOption)) => println(option._1 + ") " + option._2.name))
 
     getUserInputInt("Select an option") match {
       case Success(i) => options.get(i)
@@ -39,16 +38,12 @@ object IO_Utils {
     }
   }
 
-  def printContainer(container: Container) = {
-    println("Name:"+container.name)
-    container.data.toList map (x => println("Name:"+x._1) + " " + println("Data:"+x._2))
-  }
-
   def readFromFile(file: String): Container = {
-    var container = new Container(file, List()) // fzr split no nome do file
+    var container: Container = new Container(file, List())
     val bufferedSource = Source.fromFile(file)
     for (line <- bufferedSource.getLines) {
-      val tokens = line.split(":")
+      val tokens = line.split(">")
+      println(tokens(0))
       if(tokens.size == 1)
         container = Container.add(tokens(0),"")(container)
       else
@@ -58,10 +53,10 @@ object IO_Utils {
     container
   }
 
-  def writeToFile(file: String, container: Container) = {
+  def writeToFile(file: String, container: Container): Unit = {
     val pw = new PrintWriter(new File(file))
-    container.data map (tokens => pw.write(tokens._1 + ":" + tokens._2 + "\n"))
-    pw.close
+    container.data map (tokens => pw.write(tokens._1 + ">" + tokens._2 + "\n"))
+    pw.close()
   }
 
 }

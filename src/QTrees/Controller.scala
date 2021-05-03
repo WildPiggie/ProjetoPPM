@@ -1,22 +1,15 @@
 package QTrees
 
 import QTrees.QuadTree.{Coords, contrastEffect, noiseEffectWithState, sepiaEffect}
-import javafx.application.Application
 import javafx.fxml.{FXML, FXMLLoader}
 import javafx.geometry.Insets
-import javafx.scene.{Node, Parent, Scene}
-import javafx.scene.control.{Button, Menu, MenuBar, TextField}
+import javafx.scene.{Node, Parent}
+import javafx.scene.control.{Button,TextField}
 import javafx.scene.image.{Image, ImageView}
 import javafx.scene.layout.{AnchorPane, GridPane}
 import javafx.stage.{Modality, Stage}
-import jdk.internal.org.jline.reader.Widget
-
-import java.io.{FileInputStream, IOException}
-import scala.reflect.io.Path
-
-
-
-//import scala.reflect.io.File
+import java.io.FileInputStream
+import javafx.stage.FileChooser
 
 
 class Controller {
@@ -30,50 +23,59 @@ class Controller {
   @FXML
   private var imageViewGrid: ImageView=_
   @FXML
-  private var buttonAdd: Button=_
+  private var buttonAddImageGV: Button=_
   @FXML
-  private var buttonAddImage: Button=_
+  private var buttonAddImageIV: Button=_
   @FXML
   private var imageView: ImageView=_
-  @FXML
-  private var textFieldPathPopUp: TextField=_
-  @FXML
-  private var textFieldInfoPopUp: TextField=_
   @FXML
   private var textFieldInfo: TextField=_
   @FXML
   private var textFieldScaleValue: TextField=_
-
   @FXML
   private var anchorPaneImageView: AnchorPane=_
 
 
+  def onButtonAddImageClickedGV(): Unit = addImage(buttonAddImageGV, updateGrid())
 
-  def onButtonAddImageClicked() = {
-    val secondStage: Stage = new Stage()
-    secondStage.setTitle("Add Image")
-    val fxmlLoader = new FXMLLoader(getClass.getResource("ControllerAddNewImage.fxml"))
+  def onButtonAddImageClickedIV(): Unit = addImage(buttonAddImageIV, updateImageView())
 
-    val secondViewRoot: Parent = fxmlLoader.load()
-    val scene = new Scene(secondViewRoot)
+  def addImage( widget: Node, f: => Unit): Unit = {
+    val stage: Stage = new Stage()
+    stage.initModality(Modality.APPLICATION_MODAL) // ver isto
+    stage.initOwner(widget.getScene.getWindow)
+    val fileChooser = new FileChooser
+    fileChooser.setTitle("Open Resource File")
+    val file = fileChooser.showOpenDialog(stage)
 
-    secondStage.initModality(Modality.APPLICATION_MODAL)
-    secondStage.initOwner(buttonAddImage.getScene.getWindow)
-
-    secondStage.setScene(scene)
-    secondStage.show()
-
+    if(file != null) {
+      val path = file.toString
+      FxApp.container = FxApp.container.add(path, "")
+      FxApp.currentImagePath = path
+      f
+    }
   }
 
-  def onButtonRemoveClicked() = {
+  def updateImageView (): Unit = {
+    imageView.setImage(new Image(new FileInputStream(FxApp.currentImagePath)))
+    textFieldInfo.setText(FxApp.container.getInfo(FxApp.currentImagePath))
+  }
+
+  def onButtonRemoveClicked(): Unit = {
     val path = FxApp.currentImagePath
-    imageTransition(FxApp.container.next)
+    if(FxApp.container.data.size > 1)
+      imageTransition(FxApp.container.next)
+    else {
+      FxApp.currentImagePath = ""
+      imageView.setImage(null)
+      textFieldInfo.setText("")
+    }
     FxApp.container = FxApp.container.remove(path)
   }
 
-  def onButtonSwitchClicked() = ???
+  def onButtonSwitchClicked(): Unit = ???
 
-  def onInfoTyped() = {
+  def onInfoTyped(): Unit = {
     if(imageView.getImage != null) {
       val path = FxApp.currentImagePath
       val newInfo = textFieldInfo.getText
@@ -81,45 +83,45 @@ class Controller {
     }
   }
 
-  def onButtonScaleClicked() = {
-    if(imageView.getImage != null && !textFieldScaleValue.getText.isEmpty) {
+  def onButtonScaleClicked(): Unit = {
+    if(imageView.getImage != null && textFieldScaleValue.getText.nonEmpty) {
       val path = FxApp.currentImagePath
       val scaleValue = textFieldScaleValue.getText.toFloat
       if(scaleValue > 0) {
-        val image = QuadTree(QuadTree(BitMap.makeQTree(path)).scale(scaleValue)).makeBitMap()
-        image.toImage(path,path.split('.')(1))
+        val bitmap = QuadTree(QuadTree(BitMap.makeQTree(path)).scale(scaleValue)).makeBitMap()
+        bitmap.bitmapWriteImage(path)
         imageView.setImage(new Image(new FileInputStream(path)))
       }
     }
   }
 
-  def applyEffects(f:QTree[Coords] => QTree[Coords]) = {
+  def onButtonMirrorHClicked(): Unit = applyEffects(QuadTree.mirrorH)
+
+  def onButtonMirrorVClicked(): Unit = applyEffects(QuadTree.mirrorV)
+
+  def onButtonRotateRClicked(): Unit = applyEffects(QuadTree.rotateR)
+
+  def onButtonRotateLClicked(): Unit = applyEffects(QuadTree.rotateL)
+
+  def onButtonSepiaClicked(): Unit = applyEffects(QuadTree.mapColourEffect(sepiaEffect))
+
+  def onButtonContrastClicked(): Unit = applyEffects(QuadTree.mapColourEffect(contrastEffect))
+
+  def onButtonNoiseClicked(): Unit = applyEffects(QuadTree.mapColourEffectWithState(noiseEffectWithState))
+
+  def applyEffects(f:QTree[Coords] => QTree[Coords]): Unit = {
     if(imageView.getImage != null) {
       val path = FxApp.currentImagePath
       println(path)
-      val image = QuadTree(f(BitMap.makeQTree(path))).makeBitMap()
-      image.toImage(path,path.split('.')(1))
+      val bitmap = QuadTree(f(BitMap.makeQTree(path))).makeBitMap()
+      bitmap.bitmapWriteImage(path)
       imageView.setImage(new Image(new FileInputStream(path)))
     }
   }
 
-  def onButtonMirrorHClicked() = applyEffects(QuadTree.mirrorH)
+  def onButtonImageViewClicked(): Unit = showImageView(0, buttonImageView)
 
-  def onButtonMirrorVClicked() = applyEffects(QuadTree.mirrorV)
-
-  def onButtonRotateRClicked() = applyEffects(QuadTree.rotateR)
-
-  def onButtonRotateLClicked() = applyEffects(QuadTree.rotateL)
-
-  def onButtonSepiaClicked() = applyEffects(QuadTree.mapColourEffect(sepiaEffect))
-
-  def onButtonContrastClicked() = applyEffects(QuadTree.mapColourEffect(contrastEffect))
-
-  def onButtonNoiseClicked() = applyEffects(QuadTree.mapColourEffectWithState(noiseEffectWithState))
-
-  def onButtonImageViewClicked() = showImageView(0, buttonImageView)
-
-  def showImageView(index: Int, widget: Node) ={
+  def showImageView(index: Int, widget: Node): Unit ={
     val secondStage: Stage = new Stage()
     secondStage.setTitle("Image View")
     val fxmlLoader = new FXMLLoader(getClass.getResource("ControllerImageView.fxml"))
@@ -133,7 +135,7 @@ class Controller {
     FxApp.currentImagePath = path
   }
 
-  def onButtonGridClicked() = {
+  def onButtonGridClicked(): Unit = {
     val secondStage: Stage = new Stage()
     secondStage.setTitle("Grid")
     val fxmlLoader= new FXMLLoader(getClass.getResource("ControllerGrid.fxml"))
@@ -145,40 +147,24 @@ class Controller {
     itemController.updateGrid()
   }
 
-  def onButtonNextClicked() = imageTransition(FxApp.container.next)
+  def onButtonNextClicked(): Unit = imageTransition(FxApp.container.next)
 
-  def onButtonPreviousClicked() = imageTransition(FxApp.container.previous)
+  def onButtonPreviousClicked(): Unit = imageTransition(FxApp.container.previous)
 
-  def imageTransition(f: String => (String, String)) = {
+  def imageTransition(f: String => (String, String)): Unit = {
     if(imageView.getImage != null){
-      val path = FxApp.currentImagePath
       try{
-        val (newPath,newInfo) = f(path)
-        imageView.setImage(new Image(new FileInputStream(newPath)))
-        textFieldInfo.setText(newInfo)
+        val newPath = f(FxApp.currentImagePath)._1
         FxApp.currentImagePath = newPath
-      }
-      catch {
+        updateImageView()
+      } catch {
         case e: IllegalArgumentException => imageView.setImage(null)
       }
     }
   }
 
-  def onImageClicked() =
+  def onImageClicked(): Unit =
     showImageView(2*GridPane.getRowIndex(anchorPaneImageView) + GridPane.getColumnIndex(anchorPaneImageView), imageViewGrid)// número de colunas hardcoded
-
-  def onButtonAddPopUpClicked() = { //falta dar update na grid
-    val path = textFieldPathPopUp.getText
-    val info = textFieldInfoPopUp.getText
-    FxApp.container =  FxApp.container.add(path, info)
-    buttonAdd.getScene.getWindow.hide()
-
-    val fxmlLoader =
-      new FXMLLoader(getClass.getResource("ControllerImageView.fxml"))
-    fxmlLoader.load()
-    val itemController = fxmlLoader.getController[Controller]
-    itemController.updateGrid()
-  }
 
   def updateGrid() : Unit = {
     var (column, row) = (0,0)

@@ -17,7 +17,7 @@ case class QuadTree(qt: QTree[Coords]){
   def contrastColourEffect(): QTree[Coords] = QuadTree.mapColourEffect(contrastEffect)(this.qt)
   def noiseImpureColourEffect(): QTree[Coords] = QuadTree.mapColourEffect(noiseEffect)(this.qt)
   def noisePureColourEffect(): QTree[Coords] = QuadTree.mapColourEffectWithState(noiseEffectWithState)(this.qt)
-  def toImage(filename: String, format: String): QTree[Coords] = QuadTree.toImage(filename, format)(this.qt)
+  def qTreeToImage(filename: String): QTree[Coords] = QuadTree.qTreeToImage(filename)(this.qt)
 }
 
 object QuadTree{
@@ -28,21 +28,19 @@ object QuadTree{
 
   def makeBitMap (qt: QTree[Coords]): BitMap = {
     qt match {
-      case (qn:QNode[Coords]) => BitMap.combine(makeBitMap(qn.one), makeBitMap(qn.two), makeBitMap(qn.three), makeBitMap(qn.four))
-      case (ql:QLeaf[Coords, Section]) => {
+      case qn:QNode[Coords] => BitMap.combine(makeBitMap(qn.one), makeBitMap(qn.two), makeBitMap(qn.three), makeBitMap(qn.four))
+      case ql:QLeaf[Coords, Section] =>
         val lst = List.fill(ql.value._1._2._1 - ql.value._1._1._1 + 1)(ql.value._2.getRGB)
         val sectionLst = List.fill(ql.value._1._2._2 - ql.value._1._1._2 + 1)(lst)
         new BitMap(sectionLst)
-      }
       case _ => new BitMap(Nil)
     }
   }
 
-  //Guarda a QTree como imagem no endereço indicado e devolve a QTree (usado no menu textual)
-  def toImage(path: => String, format: => String)(qt: QTree[Coords]): QTree[Coords] = {
+  //Guarda a QTree como imagem no endereço indicado e devolve a QTree (apenas usado no menu textual)
+  def qTreeToImage(path: => String)(qt: QTree[Coords]): QTree[Coords] = {
     val image = makeBitMap(qt)
-    //verificar se format valido
-    image.toImage(path, format)
+    image.bitmapWriteImage(path)
     qt
   }
 
@@ -65,7 +63,7 @@ object QuadTree{
 
     def aux(width: Int, height: Int, upperLeft: Point, qtAux:QTree[Coords]): QTree[Coords] = {
       qtAux match {
-        case qn: QNode[Coords] => {
+        case qn: QNode[Coords] =>
           val (widthQ1, heightQ1) = ((width/2.0).ceil.toInt, (height/2.0).ceil.toInt)
           val (widthQ2, heightQ2) = ((width/2.0).floor.toInt, heightQ1)
           val (widthQ3, heightQ3) = (widthQ1, (height/2.0).floor.toInt)
@@ -75,8 +73,6 @@ object QuadTree{
 
           if( (newCoords._1._1==newCoords._2._1) && (newCoords._1._2==newCoords._2._2) || (width == 1 || height == 1)  )
             return QLeaf(newCoords, averageColour(qn).get)
-
-          //println(newCoords)
 
           if(qn.one == QEmpty && qn.two == QEmpty){
             val q3 = aux(widthQ3,heightQ3+heightQ1,upperLeft,qn.three)
@@ -105,13 +101,11 @@ object QuadTree{
             val q4 = aux(widthQ4,heightQ4,(upperLeft._1+widthQ1,upperLeft._2+heightQ1),qn.four)
             QNode(newCoords,q1,q2,q3,q4)
           }
-        }
-        case (ql: QLeaf[Coords, Section]) => {
+
+        case ql: QLeaf[Coords, Section] =>
           val newCoords = (upperLeft, (upperLeft._1 + width - 1 , upperLeft._2 + height - 1))
-          //println("Leaf: " + newCoords)
-          //BitMap.coordsInbounds(ql.value._1, newCoords)
           QLeaf(newCoords,ql.value._2)
-        }
+
         case _ => qt
       }
     }
@@ -124,7 +118,7 @@ object QuadTree{
       qt
     else {
       qt match {
-        case qn: QNode[Coords] => {
+        case qn: QNode[Coords] =>
           val width = qn.value._2._1 - qn.value._1._1 + 1
           val height = qn.value._2._2 - qn.value._1._2 + 1
           val newWidth = (width * scaleCall).toInt
@@ -138,21 +132,21 @@ object QuadTree{
           }
           else
           aux(newWidth,newHeight,qn.value._1,qn)
-        }
-        case ql: QLeaf[Coords, Section] => {
+
+        case ql: QLeaf[Coords, Section] =>
           val width = ql.value._1._2._1 - ql.value._1._1._1 + 1
           val height = ql.value._1._2._2 - ql.value._1._1._2 + 1
           val newWidth = (width * scaleCall).toInt
           val newHeight = (height * scaleCall).toInt
           if (newWidth == width || newHeight == height) {
-            println("ERROR. Scale value too small.")
+            IO_Utils.printMessage("ERROR. Scale value too small.")
             return ql
           } else if(newWidth == 0 || newHeight == 0){
-            println("ERROR. Scale reduces too much.")
+            IO_Utils.printMessage("ERROR. Scale reduces too much.")
             return ql
           }
           aux(newWidth,newHeight,ql.value._1._1,ql)
-        }
+
         case _ => qt
       }
     }
@@ -161,7 +155,7 @@ object QuadTree{
   // Realiza o espelhamento vertical da imagem (sob o eixo horizontal)
   def mirrorV (qt:QTree[Coords]):QTree[Coords] = {
     qt match {
-      case (qn: QNode[Coords]) => {
+      case qn: QNode[Coords] =>
         val height = qn.value._2._2 - qn.value._1._2
 
         // Função para atualização das coordenadas
@@ -171,7 +165,7 @@ object QuadTree{
         def switchQTreeOrder(qn: QNode[Coords]): QNode[Coords] = QNode(qn.value, qn.three, qn.four, qn.one, qn.two)
 
         recursiveSwapper(qn, newCoords, switchQTreeOrder)
-      }
+
       case _ => qt
     }
   }
@@ -179,7 +173,7 @@ object QuadTree{
   // Realiza o espelhamento horizontal da imagem (sob o eixo vertical)
   def mirrorH (qt:QTree[Coords]):QTree[Coords] = {
     qt match {
-      case (qn: QNode[Coords]) => {
+      case qn: QNode[Coords] =>
         val width = qn.value._2._1 - qn.value._1._1
 
         def newCoords(coords: Coords): Coords = ( (width-coords._2._1, coords._1._2), (width-coords._1._1, coords._2._2) )
@@ -187,14 +181,14 @@ object QuadTree{
         def switchQTreeOrder(qn: QNode[Coords]): QNode[Coords] = QNode(qn.value, qn.two, qn.one, qn.four, qn.three)
 
         recursiveSwapper(qn, newCoords, switchQTreeOrder)
-      }
+
       case _ => qt
     }
   }
 
   def rotateR (qt:QTree[Coords]):QTree[Coords] = {
     qt match {
-      case (qn: QNode[Coords]) => {
+      case qn: QNode[Coords] =>
         val width = qn.value._2._1 - qn.value._1._1
         val height = qn.value._2._2 - qn.value._1._2
 
@@ -219,14 +213,14 @@ object QuadTree{
         val newQN = QNode((qn.value._1,(qn.value._2._2, qn.value._2._1)), qn.one, qn.two, qn.three, qn.four)
 
         recursiveSwapper(newQN, newCoords, switchQTreeOrder)
-      }
+
       case _ => qt
     }
   }
 
   def rotateL (qt:QTree[Coords]):QTree[Coords] = {
     qt match {
-      case (qn: QNode[Coords]) => {
+      case qn: QNode[Coords] =>
         val width = qn.value._2._1 - qn.value._1._1
         val height = qn.value._2._2 - qn.value._1._2
 
@@ -251,7 +245,7 @@ object QuadTree{
         val newQN = QNode((qn.value._1,(qn.value._2._2, qn.value._2._1)), qn.one, qn.two, qn.three, qn.four)
 
         recursiveSwapper(newQN, newCoords, switchQTreeOrder)
-      }
+
       case _ => qt
     }
   }
@@ -261,20 +255,14 @@ object QuadTree{
     //Função aninhada que transforma as coordenadas de uma QTree de acordo com uma função indicada
     def updateCoords(qt: QTree[Coords], f: Coords => Coords): QTree[Coords] = {
       qt match {
-        case (qn:QNode[Coords]) => {
-          //println(f(qn.value))
-          QNode( f(qn.value) , qn.one, qn.two, qn.three, qn.four)
-        }
-        case (ql:QLeaf[Coords, Section]) => {
-          //println(f(ql.value._1))
-          QLeaf( f(ql.value._1), ql.value._2 )
-        }
+        case qn:QNode[Coords] => QNode( f(qn.value) , qn.one, qn.two, qn.three, qn.four)
+        case ql:QLeaf[Coords, Section] => QLeaf( f(ql.value._1), ql.value._2 )
         case _ => qt
       }
     }
 
     qt match {
-      case (qn: QNode[Coords]) => {
+      case qn: QNode[Coords] =>
         val (m1, m2, m3, m4) = (recursiveSwapper(qn.one, f, switchQTreeOrder), recursiveSwapper(qn.two, f, switchQTreeOrder), recursiveSwapper(qn.three, f, switchQTreeOrder), recursiveSwapper(qn.four, f, switchQTreeOrder))
 
         //Realiza a atualização das coordenadas de todas as QTrees da QNode
@@ -282,7 +270,7 @@ object QuadTree{
 
         //Realiza a troca da ordem das QTrees da QNode de forma a reorganizá-la
         switchQTreeOrder( QNode(qn.value, upd1, upd2, upd3, upd4) )
-      }
+
       case _ => qt
     }
   }
@@ -330,17 +318,17 @@ object QuadTree{
 
     def aux(f:(Color,RandomWithState) => (Color,RandomWithState), qt:QTree[Coords], r: RandomWithState): (QTree[Coords],RandomWithState) = {
       qt match {
-        case ql: QLeaf[Coords,Section] => {
+        case ql: QLeaf[Coords,Section] =>
           val ax = f(ql.value._2,r)
           (QLeaf(ql.value._1,ax._1),ax._2)
-        }
-        case qn: QNode[Coords] => {
+
+        case qn: QNode[Coords] =>
           val t1 = aux(f,qn.one,r)
           val t2 = aux(f,qn.two,t1._2)
           val t3 = aux(f,qn.three,t2._2)
           val t4 = aux(f,qn.four,t3._2)
           (QNode(qn.value,t1._1,t2._1,t3._1,t4._1),t4._2)
-        }
+
         case _ => (qt,r)
       }
     }

@@ -61,14 +61,14 @@ object AMain {
 
 
      */
-    val c = BitMap.makeQTree("src//img//evolution.png")
+    val c = BitMap.makeQTree("img//evolution.png")
 
     println("QTree: " + c)
 
     val quadTree = QuadTree(c)
     val n = QuadTree(quadTree.scale(.25))
     val image = n.makeBitMap()
-    image.toImage("src//img//a.png", "png")
+    image.bitmapWriteImage("img//a.png")
 
 
   }

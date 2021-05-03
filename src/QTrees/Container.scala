@@ -1,8 +1,5 @@
 package QTrees
 
-import scala.annotation.tailrec
-import scala.reflect.io.Path
-
 case class Container(name:String, data : List[(String, String)]){
   def add(path:String, info:String): Container = Container.add(path,info)(this)
   def remove(path:String): Container =  Container.remove(path)(this)
@@ -11,17 +8,15 @@ case class Container(name:String, data : List[(String, String)]){
   def switch(path1: String, path2: String): Container = Container.switch(path1, path2)(this)
   def editInfo(path:String,newInfo:String): Container = Container.editInfo(path, newInfo)(this)
   def getInfo(path: String): String = Container.getInfo(path)(this)
-
-
 }
 
 object Container {
 
   def add(path: String, info: String)(container: Container): Container = {
-    if(path.contains(":") || info.contains(":")) {
-      throw new IllegalArgumentException("Invalid character: ':'")
+    if(path.contains(">") || info.contains(">")) {
+      throw new IllegalArgumentException("Invalid character: '>'")
     }
-    if(info.size > 64)
+    if(info.length > 64)
       throw  new IllegalArgumentException("Character limit exceeded.")
     val index = container.data.indexWhere(x => x._1 == path)
     if(index != -1)
@@ -42,9 +37,9 @@ object Container {
   def next(path: String)(container: Container): (String, String) = {
     if(container.data.isEmpty)
       throw new IllegalArgumentException("Album is empty.")
-    val index = container.data.indexWhere(x => x._1 == path) // problema se houver paths repetidos
+    val index = container.data.indexWhere(x => x._1 == path)
     if(index == container.data.size-1)
-      return container.data(0)
+      return container.data.head
     container.data(index+1)
   }
 
@@ -53,7 +48,7 @@ object Container {
       throw new IllegalArgumentException("Album is empty.")
     val index = container.data.indexWhere(x => x._1 == path)
     if(index == 0)
-      return container.data(container.data.size-1)
+      return container.data.last
     container.data(index-1)
   }
 
@@ -64,8 +59,10 @@ object Container {
   }
 
   def editInfo(path: String, newInfo: String)(container: Container): Container = {
-    if(newInfo.size > 64)
+    if(newInfo.length > 64)
       throw  new IllegalArgumentException("Character limit exceeded.")
+    if(newInfo.contains(">"))
+      throw  new IllegalArgumentException("Invalid character: '>'")
     val index = container.data.indexWhere(x => x._1 == path)
     if(index == -1)
       throw new IllegalArgumentException("There doesn't exist an image with this path associated.")
@@ -78,6 +75,5 @@ object Container {
       throw new IllegalArgumentException("There doesn't exist an image with this path associated.")
     container.data(index)._2
   }
-
 
 }

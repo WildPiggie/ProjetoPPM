@@ -25,7 +25,7 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Button fx:id="buttonAddImage" mnemonicParsing="false" onAction="#onButtonAddImageClicked" text="Add Image" />
+                              <Button fx:id="buttonAddImageGV" mnemonicParsing="false" onAction="#onButtonAddImageClickedGV" text="Add Image" />
                               <Button disable="true" mnemonicParsing="false" text="Remove Image" GridPane.columnIndex="1" />
                               <Button mnemonicParsing="false" text="Switch Order" GridPane.columnIndex="2" />
                            </children>

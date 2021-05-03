@@ -1,14 +1,16 @@
 package QTrees
 
 import QTrees.QuadTree._
-import java.awt.Color
+import java.io.File
 import scala.annotation.tailrec
 import scala.collection.SortedMap
 
 object TextualUserInterface extends App {
 
-  val path = IO_Utils.prompt("Insert image path: ")
-  //verificar se o path existe
+  val path = IO_Utils.prompt("Insert image path")
+  if(! new File(path).isFile)
+    throw new IllegalArgumentException("Invalid file path.")
+
   val qt = BitMap.makeQTree(path)
   val options = SortedMap[Int, CommandLineOption](
     0 -> new CommandLineOption("Exit", _ => sys.exit),
@@ -21,7 +23,7 @@ object TextualUserInterface extends App {
     7 -> new CommandLineOption("Contrast-Effect", QuadTree.mapColourEffect(contrastEffect) ),
     8 -> new CommandLineOption("Impure Noise-Effect", QuadTree.mapColourEffect(noiseEffect) ),
     9 -> new CommandLineOption("Pure Noise-Effect", QuadTree.mapColourEffectWithState(noiseEffectWithState) ),
-    10 -> new CommandLineOption("Save Image", QuadTree.toImage(IO_Utils.prompt("Path"),IO_Utils.prompt("Format")))
+    10 -> new CommandLineOption("Save Image", QuadTree.qTreeToImage(IO_Utils.prompt("Path")))
   )
   mainLoop(qt)
 
