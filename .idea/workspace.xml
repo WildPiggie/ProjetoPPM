@@ -2,25 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8deda37-1e6a-47d0-834a-df247805d7e0" name="Default Changelist" comment="tentativa auxRotate">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/scala_sdk_2_13_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/scala_sdk_2_13_3.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_04_2021_15_25__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_04_2021_15_25__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_04_2021_15_04__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_04_2021_15_04__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_04_2021_01_44__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_04_2021_01_44__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_04_2021_08_46__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_04_2021_08_46__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Album.soa" beforeDir="false" afterPath="$PROJECT_DIR$/Album.soa" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/AMain$.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/AMain$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/Container$.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/Container$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/Container.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/Container.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QTrees/AMain.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/AMain.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QTrees/Container.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/Container.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjetoPPM.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjetoPPM.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/QTrees/Controller.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/Controller.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QTrees/ControllerAddNewImage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/ControllerAddNewImage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/QTrees/ControllerElementImage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/ControllerElementImage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/QTrees/ControllerImageView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/ControllerImageView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/img/a.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/a.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/img/b.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/b.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/img/objc2_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/objc2_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/QTrees/GraphicalUserInterface.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/GraphicalUserInterface.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/img/a.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/a.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/img/b.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/b.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/img/black5x5.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/black5x5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/img/blue3x3.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/blue3x3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/img/evolution.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/evolution.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/img/img7x3.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/img7x3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/img/kobe.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/kobe.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/img/naosei3x3.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/naosei3x3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/img/objc2_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/objc2_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/img/picrew.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/picrew.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/img/pink256x256.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/pink256x256.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/img/portugal.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/portugal.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +79,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/out/production/ProjetoPPM/img" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Documents/ISCTE/4º SEMESTRE/PPM/Lab Tools/javafx-sdk-15.0.1/lib" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -82,6 +90,7 @@
       <recent name="C:\Users\afons\Documents\GitHub\ProjetoPPM\out\production\ProjetoPPM\img" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Pombo\Desktop\ProjetoPPMGit" />
       <recent name="C:\Users\Pombo\Desktop\Trabalho PPM\ProjetoPPM_GITHUB\src\QTrees" />
       <recent name="C:\Users\Samuel\Desktop\PPM\Projeto\src" />
     </key>

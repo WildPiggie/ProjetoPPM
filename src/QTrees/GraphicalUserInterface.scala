@@ -15,15 +15,13 @@ import scala.io.Source
 
 
 class GraphicalUserInterface extends Application {
-  var scene2: Scene =_
-
   override def start(primaryStage: Stage): Unit = {
     primaryStage.setTitle("Album") //meter aqui o nome do album ?
     val fxmlLoader =
       new FXMLLoader(getClass.getResource("ControllerGrid.fxml"))
     val mainViewRoot: Parent = fxmlLoader.load()
-    scene2 = new Scene(mainViewRoot)
-    primaryStage.setScene(scene2)
+    val scene = new Scene(mainViewRoot)
+    primaryStage.setScene(scene)
     primaryStage.show()
 
     val itemController = fxmlLoader.getController[Controller]
@@ -39,6 +37,7 @@ class GraphicalUserInterface extends Application {
 
 
   object FxApp {
+    var currentImagePath:String =_
     val fileName = "Album.soa"
     var container = IO_Utils.readFromFile(fileName)
     def main(args: Array[String]): Unit = {

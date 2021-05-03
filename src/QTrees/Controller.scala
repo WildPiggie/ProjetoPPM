@@ -9,6 +9,7 @@ import javafx.scene.control.{Button, Menu, MenuBar, TextField}
 import javafx.scene.image.{Image, ImageView}
 import javafx.scene.layout.{AnchorPane, GridPane}
 import javafx.stage.{Modality, Stage}
+import jdk.internal.org.jline.reader.Widget
 
 import java.io.{FileInputStream, IOException}
 import scala.reflect.io.Path
@@ -43,6 +44,10 @@ class Controller {
   @FXML
   private var textFieldScaleValue: TextField=_
 
+  @FXML
+  private var anchorPaneImageView: AnchorPane=_
+
+
 
   def onButtonAddImageClicked() = {
     val secondStage: Stage = new Stage()
@@ -61,25 +66,16 @@ class Controller {
   }
 
   def onButtonRemoveClicked() = {
-    if(imageView.getImage != null) {
-      val path = urlToRelativePath(imageView.getImage.getUrl)
-      try{
-        val (nextPath,nextInfo) = FxApp.container.next(path)
-        FxApp.container = FxApp.container.remove(path)
-        imageView.setImage(new Image(urlToRelativePath(nextPath),true))
-        textFieldInfo.setText(nextInfo)
-      }
-      catch {
-        case e: IllegalArgumentException => imageView.setImage(null)
-      }
-    }
+    val path = FxApp.currentImagePath
+    imageTransition(FxApp.container.next)
+    FxApp.container = FxApp.container.remove(path)
   }
 
   def onButtonSwitchClicked() = ???
 
   def onInfoTyped() = {
     if(imageView.getImage != null) {
-      val path = urlToRelativePath(imageView.getImage.getUrl)
+      val path = FxApp.currentImagePath
       val newInfo = textFieldInfo.getText
       FxApp.container = FxApp.container.editInfo(path,newInfo)
     }
@@ -87,26 +83,23 @@ class Controller {
 
   def onButtonScaleClicked() = {
     if(imageView.getImage != null && !textFieldScaleValue.getText.isEmpty) {
-      val path = urlToRelativePath(imageView.getImage.getUrl)
-      val srcPath = srcRelativePath(path)
+      val path = FxApp.currentImagePath
       val scaleValue = textFieldScaleValue.getText.toFloat
       if(scaleValue > 0) {
-        val image = QuadTree(QuadTree(BitMap.makeQTree(srcPath)).scale(scaleValue)).makeBitMap()
-        image.toImage(srcPath,srcPath.split('.')(1))
-        imageView.setImage(new Image(path,true))
-
+        val image = QuadTree(QuadTree(BitMap.makeQTree(path)).scale(scaleValue)).makeBitMap()
+        image.toImage(path,path.split('.')(1))
+        imageView.setImage(new Image(new FileInputStream(path)))
       }
     }
   }
 
   def applyEffects(f:QTree[Coords] => QTree[Coords]) = {
     if(imageView.getImage != null) {
-      val path = urlToRelativePath(imageView.getImage.getUrl)
-      val srcPath = srcRelativePath(path)
-      val image = QuadTree(f(BitMap.makeQTree(srcPath))).makeBitMap()
-      image.toImage(srcPath,srcPath.split('.')(1))
-      imageView.setImage(null)
-      imageView.setImage(new Image(path,true))
+      val path = FxApp.currentImagePath
+      println(path)
+      val image = QuadTree(f(BitMap.makeQTree(path))).makeBitMap()
+      image.toImage(path,path.split('.')(1))
+      imageView.setImage(new Image(new FileInputStream(path)))
     }
   }
 
@@ -124,17 +117,20 @@ class Controller {
 
   def onButtonNoiseClicked() = applyEffects(QuadTree.mapColourEffectWithState(noiseEffectWithState))
 
-  def onButtonImageViewClicked() = {
+  def onButtonImageViewClicked() = showImageView(0, buttonImageView)
+
+  def showImageView(index: Int, widget: Node) ={
     val secondStage: Stage = new Stage()
     secondStage.setTitle("Image View")
-    val fxmlLoader =
-      new FXMLLoader(getClass.getResource("ControllerImageView.fxml"))
-
+    val fxmlLoader = new FXMLLoader(getClass.getResource("ControllerImageView.fxml"))
     val imageViewRoot: Parent = fxmlLoader.load()
-    buttonImageView.getScene.setRoot(imageViewRoot)
+    widget.getScene.setRoot(imageViewRoot)
 
+    val path = FxApp.container.data(index)._1
     val itemController = fxmlLoader.getController[Controller]
-    itemController.insertImageOnImageView(FxApp.container.data(0)._1)
+    itemController.imageView.setImage(new Image(new FileInputStream(path)))
+    itemController.textFieldInfo.setText(FxApp.container.data(index)._2)
+    FxApp.currentImagePath = path
   }
 
   def onButtonGridClicked() = {
@@ -149,27 +145,18 @@ class Controller {
     itemController.updateGrid()
   }
 
-  def onButtonNextClicked() = {
-    if(imageView.getImage != null) {
-      val path = urlToRelativePath(imageView.getImage.getUrl)
-      try{
-        val (nextPath,nextInfo) = FxApp.container.next(path)
-        imageView.setImage(new Image(urlToRelativePath(nextPath),true))
-        textFieldInfo.setText(nextInfo)
-      }
-      catch {
-        case e: IllegalArgumentException => imageView.setImage(null)
-      }
-    }
-  }
+  def onButtonNextClicked() = imageTransition(FxApp.container.next)
 
-  def onButtonPreviousClicked() = {
+  def onButtonPreviousClicked() = imageTransition(FxApp.container.previous)
+
+  def imageTransition(f: String => (String, String)) = {
     if(imageView.getImage != null){
-      val path = urlToRelativePath(imageView.getImage.getUrl)
+      val path = FxApp.currentImagePath
       try{
-        val (nextPath,nextInfo) = FxApp.container.previous(path)
-        imageView.setImage(new Image(urlToRelativePath(nextPath),true))
-        textFieldInfo.setText(nextInfo)
+        val (newPath,newInfo) = f(path)
+        imageView.setImage(new Image(new FileInputStream(newPath)))
+        textFieldInfo.setText(newInfo)
+        FxApp.currentImagePath = newPath
       }
       catch {
         case e: IllegalArgumentException => imageView.setImage(null)
@@ -177,22 +164,8 @@ class Controller {
     }
   }
 
-
-
-  def onImageClicked() = {
-    val secondStage: Stage = new Stage()
-    secondStage.setTitle("Image View")
-    val fxmlLoader =
-      new FXMLLoader(getClass.getResource("ControllerImageView.fxml"))
-
-    val imageViewRoot: Parent = fxmlLoader.load()
-    imageViewGrid.getScene.setRoot(imageViewRoot)
-
-    val itemController = fxmlLoader.getController[Controller]
-    val path = urlToRelativePath(imageViewGrid.getImage.getUrl)
-    itemController.imageView.setImage(new Image(path,true))
-    itemController.textFieldInfo.setText(FxApp.container.getInfo(path))
-  }
+  def onImageClicked() =
+    showImageView(2*GridPane.getRowIndex(anchorPaneImageView) + GridPane.getColumnIndex(anchorPaneImageView), imageViewGrid)// número de colunas hardcoded
 
   def onButtonAddPopUpClicked() = { //falta dar update na grid
     val path = textFieldPathPopUp.getText
@@ -205,15 +178,7 @@ class Controller {
     fxmlLoader.load()
     val itemController = fxmlLoader.getController[Controller]
     itemController.updateGrid()
-
-
   }
-
-
-  def insertImageOnImageView(path: String): Unit = {
-    imageView.setImage(new Image(path, true))
-  }
-
 
   def updateGrid() : Unit = {
     var (column, row) = (0,0)
@@ -221,8 +186,7 @@ class Controller {
       val fxmlLoader = new FXMLLoader(getClass.getResource("ControllerElementImage.fxml"))
       val anchorPane = fxmlLoader.load[AnchorPane]()
       val itemController = fxmlLoader.getController[Controller]
-      //itemController.imageViewGrid.setImage(new Image(new FileInputStream(element._1)))
-      itemController.imageViewGrid.setImage(new Image(element._1, true))
+      itemController.imageViewGrid.setImage(new Image(new FileInputStream(element._1)))
       if(column == 2){
         column = 0
         row += 1
@@ -231,21 +195,6 @@ class Controller {
       column += 1
       GridPane.setMargin(anchorPane, new Insets(10))
     }
-
-  }
-
-  /**
-   * Turns the URL into the relative path used on Container
-   * @param url
-   * @return
-   */
-  def urlToRelativePath(url: String) : String = {
-    val tokens = url.split("img")
-    ("img"+ tokens(1))
-  }
-
-  def srcRelativePath(path: String): String = {
-    ("out//production/ProjetoPPM//" + path)
   }
 
 }
