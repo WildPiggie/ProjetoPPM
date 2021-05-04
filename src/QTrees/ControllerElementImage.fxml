@@ -5,6 +5,6 @@
 
 <AnchorPane fx:id="anchorPaneImageView" prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="QTrees.Controller">
    <children>
-      <ImageView fx:id="imageViewGrid" fitHeight="200.0" fitWidth="200.0" onMouseClicked="#onImageClicked" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <ImageView fx:id="imageViewGrid" fitHeight="200.0" fitWidth="200.0" onDragDetected="#onDragImageViewDetected" onDragDone="#onDragImageViewDone" onMouseClicked="#onImageClicked" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>

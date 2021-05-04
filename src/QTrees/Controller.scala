@@ -4,12 +4,15 @@ import QTrees.QuadTree.{Coords, contrastEffect, noiseEffectWithState, sepiaEffec
 import javafx.fxml.{FXML, FXMLLoader}
 import javafx.geometry.Insets
 import javafx.scene.{Node, Parent}
-import javafx.scene.control.{Button,TextField}
+import javafx.scene.control.{Button, TextField}
 import javafx.scene.image.{Image, ImageView}
 import javafx.scene.layout.{AnchorPane, GridPane}
 import javafx.stage.{Modality, Stage}
+
 import java.io.FileInputStream
 import javafx.stage.FileChooser
+
+import scala.annotation.tailrec
 
 
 class Controller {
@@ -44,6 +47,7 @@ class Controller {
     val stage: Stage = new Stage()
     stage.initModality(Modality.APPLICATION_MODAL) // ver isto
     stage.initOwner(widget.getScene.getWindow)
+
     val fileChooser = new FileChooser
     fileChooser.setTitle("Open Resource File")
     val file = fileChooser.showOpenDialog(stage)
@@ -138,7 +142,7 @@ class Controller {
   def onButtonGridClicked(): Unit = {
     val secondStage: Stage = new Stage()
     secondStage.setTitle("Grid")
-    val fxmlLoader= new FXMLLoader(getClass.getResource("ControllerGrid.fxml"))
+    val fxmlLoader= new FXMLLoader(getClass.getResource("ControllerGridView.fxml"))
 
     val imageViewRoot: Parent = fxmlLoader.load()
     buttonGrid.getScene.setRoot(imageViewRoot)
@@ -168,19 +172,36 @@ class Controller {
 
   def updateGrid() : Unit = {
     var (column, row) = (0,0)
-    for(element <- FxApp.container.data){
-      val fxmlLoader = new FXMLLoader(getClass.getResource("ControllerElementImage.fxml"))
-      val anchorPane = fxmlLoader.load[AnchorPane]()
-      val itemController = fxmlLoader.getController[Controller]
-      itemController.imageViewGrid.setImage(new Image(new FileInputStream(element._1)))
-      if(column == 2){
-        column = 0
-        row += 1
+    auxUpdate(FxApp.container.data)
+
+    @tailrec
+    def auxUpdate(lst: List[(String, String)]): Unit = {
+     lst match {
+      case Nil => ()
+      case element::xs =>
+        val fxmlLoader = new FXMLLoader(getClass.getResource("ControllerElementImage.fxml"))
+        val anchorPane = fxmlLoader.load[AnchorPane]()
+        val itemController = fxmlLoader.getController[Controller]
+        itemController.imageViewGrid.setImage(new Image(new FileInputStream(element._1)))
+        if(column == 2){
+          column = 0
+          row += 1
+        }
+        this.gridPane.add(anchorPane,column, row)
+        column += 1
+        GridPane.setMargin(anchorPane, new Insets(10))
+        auxUpdate(xs)
       }
-      this.gridPane.add(anchorPane,column, row)
-      column += 1
-      GridPane.setMargin(anchorPane, new Insets(10))
     }
+  }
+
+
+  def onDragImageViewDetected(): Unit = {
+
+  }
+
+  def onDragImageViewDone(): Unit = {
+
   }
 
 }

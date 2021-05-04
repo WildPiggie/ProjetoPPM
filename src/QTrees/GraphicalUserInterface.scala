@@ -11,7 +11,7 @@ class GraphicalUserInterface extends Application {
   override def start(primaryStage: Stage): Unit = {
     primaryStage.setTitle("Album")
     val fxmlLoader =
-      new FXMLLoader(getClass.getResource("ControllerGrid.fxml"))
+      new FXMLLoader(getClass.getResource("ControllerGridView.fxml"))
     val mainViewRoot: Parent = fxmlLoader.load()
     val scene = new Scene(mainViewRoot)
     primaryStage.setScene(scene)
