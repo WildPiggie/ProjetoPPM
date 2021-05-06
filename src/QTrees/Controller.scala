@@ -45,12 +45,15 @@ class Controller {
 
   def addImage( widget: Node, f: => Unit): Unit = {
     val stage: Stage = new Stage()
-    stage.initModality(Modality.APPLICATION_MODAL) // ver isto
     stage.initOwner(widget.getScene.getWindow)
+    stage.initModality(Modality.WINDOW_MODAL) // ver isto
 
     val fileChooser = new FileChooser
     fileChooser.setTitle("Open Resource File")
     val file = fileChooser.showOpenDialog(stage)
+
+
+
 
     if(file != null) {
       val path = file.toString

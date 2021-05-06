@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b8deda37-1e6a-47d0-834a-df247805d7e0" name="Default Changelist" comment="GUI com add a partir de um filechooser + limpeza de warnings">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/scala_sdk_2_13_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/scala_sdk_2_13_3.xml" afterDir="false" />
+    <list default="true" id="b8deda37-1e6a-47d0-834a-df247805d7e0" name="Default Changelist" comment="GUI sem fors">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Album.soa" beforeDir="false" afterPath="$PROJECT_DIR$/Album.soa" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/IO_Utils.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/IO_Utils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/QuadTree$.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/QuadTree$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/QuadTree.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/QuadTree.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/QTrees/Controller.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/Controller.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QTrees/ControllerElementImage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/ControllerElementImage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QTrees/ControllerGrid.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/ControllerGridView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QTrees/GraphicalUserInterface.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/GraphicalUserInterface.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +54,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Documents/ISCTE/4º SEMESTRE/PPM/Lab Tools/javafx-sdk-15.0.1/lib" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Documents/ISCTE/4º SEMESTRE/PPM/Praticas/Pratica08/Aula8" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -293,7 +284,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620067068727</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="GUI sem fors">
+      <created>1620121768834</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1620121768834</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -361,6 +359,7 @@
     <MESSAGE value="tentativa auxRotate" />
     <MESSAGE value="GUI melhorada com os paths corretos" />
     <MESSAGE value="GUI com add a partir de um filechooser + limpeza de warnings" />
-    <option name="LAST_COMMIT_MESSAGE" value="GUI com add a partir de um filechooser + limpeza de warnings" />
+    <MESSAGE value="GUI sem fors" />
+    <option name="LAST_COMMIT_MESSAGE" value="GUI sem fors" />
   </component>
 </project>
