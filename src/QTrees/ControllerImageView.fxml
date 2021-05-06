@@ -4,9 +4,9 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane minHeight="400.0" minWidth="400.0" prefHeight="600.0" prefWidth="675.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="QTrees.Controller">
+<AnchorPane minHeight="400.0" minWidth="400.0" prefHeight="600.0" prefWidth="680.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="QTrees.Controller">
     <children>
-        <TabPane prefHeight="92.0" prefWidth="673.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <TabPane id="tabPane" prefHeight="92.0" prefWidth="673.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <tabs>
                 <Tab text="Album">
                     <content>
@@ -20,14 +20,13 @@
                                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                     </columnConstraints>
                                     <rowConstraints>
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     </rowConstraints>
                                     <children>
                                         <Button fx:id="buttonAddImageIV" mnemonicParsing="false" onAction="#onButtonAddImageClickedIV" text="Add Image" />
-                                        <Button mnemonicParsing="false" onAction="#onButtonRemoveClicked" text="Remove Image" GridPane.columnIndex="1" />
+                                        <Button mnemonicParsing="false" onAction="#onButtonRemoveClicked" text="Remove" GridPane.columnIndex="1" />
                                         <Button mnemonicParsing="false" text="Switch Order" GridPane.columnIndex="2" />
                                     </children>
                                 </GridPane>
@@ -43,7 +42,6 @@
                                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="89.0" minWidth="10.0" prefWidth="77.0" />
                                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="159.0" minWidth="10.0" prefWidth="134.0" />
                                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="239.0" minWidth="10.0" prefWidth="101.0" />
-                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="113.0" minWidth="0.0" prefWidth="56.0" />
                                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -56,9 +54,9 @@
                                         <Button mnemonicParsing="false" onAction="#onButtonScaleClicked" text="Scale" />
                                         <Button mnemonicParsing="false" onAction="#onButtonMirrorHClicked" prefHeight="25.0" prefWidth="115.0" text="Mirror Horizontal" GridPane.columnIndex="1" />
                                         <Button mnemonicParsing="false" onAction="#onButtonMirrorVClicked" prefHeight="22.0" prefWidth="92.0" text="Mirror Vertical" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                        <Button mnemonicParsing="false" onAction="#onButtonSepiaClicked" text="Sepia" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                                        <Button mnemonicParsing="false" onAction="#onButtonContrastClicked" text="Contrast" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                                        <Button mnemonicParsing="false" onAction="#onButtonNoiseClicked" text="Noise" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                                        <Button mnemonicParsing="false" onAction="#onButtonSepiaClicked" text="Sepia" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                        <Button mnemonicParsing="false" onAction="#onButtonContrastClicked" text="Contrast" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                        <Button mnemonicParsing="false" onAction="#onButtonNoiseClicked" text="Noise" GridPane.columnIndex="5" GridPane.rowIndex="1" />
                                         <Button mnemonicParsing="false" onAction="#onButtonRotateRClicked" text="Rotate Right" GridPane.columnIndex="2" />
                                         <Button mnemonicParsing="false" onAction="#onButtonRotateLClicked" prefHeight="11.0" prefWidth="74.0" text="Rotate Left" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                               <TextField fx:id="textFieldScaleValue" alignment="CENTER" prefHeight="25.0" prefWidth="34.0" promptText="Value (&gt;0)" GridPane.rowIndex="1" />
@@ -105,11 +103,20 @@
           <RowConstraints maxHeight="155.40000000000003" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" onAction="#onButtonPreviousClicked" text="&lt;" />
-            <Button mnemonicParsing="false" onAction="#onButtonNextClicked" text="&gt;" GridPane.columnIndex="2" />
+            <Button mnemonicParsing="false" onAction="#onButtonPreviousClicked" prefHeight="10.0" prefWidth="10.0" text="&lt;" />
+            <Button mnemonicParsing="false" onAction="#onButtonNextClicked" prefHeight="10.0" prefWidth="10.0" text="&gt;" GridPane.columnIndex="2" />
             <TextField fx:id="textFieldInfo" alignment="CENTER" maxWidth="400.0" onAction="#onInfoTyped" prefHeight="26.0" prefWidth="400.0" promptText="No description" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="Description (Press Enter to Save)" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <ImageView fx:id="imageView" fitHeight="400.0" fitWidth="400.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+            <Button mnemonicParsing="false" prefHeight="10.0" prefWidth="10.0" GridPane.rowIndex="1">
+               <graphic>
+                  <ImageView fitHeight="10.0" fitWidth="10.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../img/objc2_2.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </GridPane>
     </children>

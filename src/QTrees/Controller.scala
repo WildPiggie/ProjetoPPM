@@ -200,11 +200,11 @@ class Controller {
 
 
   def onDragImageViewDetected(): Unit = {
-
+    println("Detected: "+imageViewGrid.getImage)
   }
 
   def onDragImageViewDone(): Unit = {
-
+    println("Done: "+imageViewGrid.getImage)
   }
 
 }
