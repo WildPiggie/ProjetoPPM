@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="592.0" prefWidth="673.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="QTrees.Controller">
+<AnchorPane prefHeight="600.0" prefWidth="680.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="QTrees.Controller">
    <children>
-      <TabPane prefHeight="92.0" prefWidth="673.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TabPane id="tabPane" prefHeight="92.0" prefWidth="673.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
           <Tab text="Album">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <GridPane prefHeight="58.0" prefWidth="673.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <GridPane prefHeight="58.0" prefWidth="673.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columnConstraints>
                             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -26,9 +26,12 @@
                           </rowConstraints>
                            <children>
                               <Button fx:id="buttonAddImageGV" mnemonicParsing="false" onAction="#onButtonAddImageClickedGV" text="Add Image" />
-                              <Button disable="true" mnemonicParsing="false" text="Remove Image" GridPane.columnIndex="1" />
+                              <Button disable="true" mnemonicParsing="false" text="Remove" GridPane.columnIndex="1" />
                               <Button mnemonicParsing="false" text="Switch Order" GridPane.columnIndex="2" />
                            </children>
+                           <padding>
+                              <Insets left="10.0" right="10.0" />
+                           </padding>
                         </GridPane>
                      </children></AnchorPane>
             </content>
@@ -70,7 +73,7 @@
                 <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <GridPane prefHeight="51.0" prefWidth="673.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <GridPane id="tabGridView" prefHeight="51.0" prefWidth="673.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columnConstraints>
                             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -92,9 +95,9 @@
             </Tab>
         </tabs>
       </TabPane>
-      <ScrollPane layoutX="112.0" layoutY="92.0" prefHeight="450.0" prefWidth="450.0">
+      <ScrollPane layoutX="112.0" layoutY="113.0" prefHeight="450.0" prefWidth="450.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="120.0">
          <content>
-            <GridPane fx:id="gridPane" prefHeight="450.0" prefWidth="430.0">
+            <GridPane fx:id="gridPane" alignment="CENTER" prefHeight="448.0" prefWidth="430.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
