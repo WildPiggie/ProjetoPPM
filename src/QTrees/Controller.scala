@@ -4,12 +4,12 @@ import QTrees.QuadTree.{Coords, contrastEffect, noiseEffectWithState, sepiaEffec
 import javafx.fxml.{FXML, FXMLLoader}
 import javafx.geometry.Insets
 import javafx.scene.{Node, Parent}
-import javafx.scene.control.{Button, TextField}
+import javafx.scene.control.{Button, Label, TextField}
 import javafx.scene.image.{Image, ImageView}
 import javafx.scene.layout.{AnchorPane, GridPane}
 import javafx.stage.{Modality, Stage}
 
-import java.io.FileInputStream
+import java.io.{File, FileInputStream}
 import javafx.stage.FileChooser
 
 import scala.annotation.tailrec
@@ -30,9 +30,19 @@ class Controller {
   @FXML
   private var buttonAddImageIV: Button=_
   @FXML
+  private var buttonSwitchOrder: Button=_
+  @FXML
   private var imageView: ImageView=_
   @FXML
+  private var labelImageNameGV: Label=_
+  @FXML
+  private var labelImageNameIV: Label=_
+  @FXML
   private var textFieldInfo: TextField=_
+  @FXML
+  private var textFieldImage1: TextField=_
+  @FXML
+  private var textFieldImage2: TextField=_
   @FXML
   private var textFieldScaleValue: TextField=_
   @FXML
@@ -62,6 +72,7 @@ class Controller {
 
   def updateImageView (): Unit = {
     imageView.setImage(new Image(new FileInputStream(FxApp.currentImagePath)))
+    labelImageNameIV.setText(getImageNameFromPath(FxApp.currentImagePath))
     textFieldInfo.setText(FxApp.container.getInfo(FxApp.currentImagePath))
   }
 
@@ -77,7 +88,28 @@ class Controller {
     FxApp.container = FxApp.container.remove(path)
   }
 
-  def onButtonSwitchClicked(): Unit = ???
+  def onButtonSwitchClicked(): Unit = {
+    if(textFieldImage1.getText.nonEmpty && textFieldImage2.getText.nonEmpty) {
+      try{
+        val path1 = FxApp.container.getAbsolutePath(textFieldImage1.getText)
+        val path2 = FxApp.container.getAbsolutePath(textFieldImage2.getText)
+        FxApp.container = FxApp.container.switch(path1, path2)
+
+        val secondStage: Stage = new Stage()
+        secondStage.setTitle("Grid")
+        val fxmlLoader= new FXMLLoader(getClass.getResource("ControllerGridView.fxml"))
+
+        val imageViewRoot: Parent = fxmlLoader.load()
+        buttonSwitchOrder.getScene.setRoot(imageViewRoot)
+
+        val itemController = fxmlLoader.getController[Controller]
+        itemController.updateGrid()
+
+      } catch {
+        case e: IllegalArgumentException =>
+      }
+    }
+  }
 
   def onInfoTyped(): Unit = {
     if(imageView.getImage != null) {
@@ -135,6 +167,7 @@ class Controller {
     val path = FxApp.container.data(index)._1
     val itemController = fxmlLoader.getController[Controller]
     itemController.imageView.setImage(new Image(new FileInputStream(path)))
+    itemController.labelImageNameIV.setText(getImageNameFromPath(path))
     itemController.textFieldInfo.setText(FxApp.container.data(index)._2)
     FxApp.currentImagePath = path
   }
@@ -183,6 +216,7 @@ class Controller {
         val anchorPane = fxmlLoader.load[AnchorPane]()
         val itemController = fxmlLoader.getController[Controller]
         itemController.imageViewGrid.setImage(new Image(new FileInputStream(element._1)))
+        itemController.labelImageNameGV.setText(getImageNameFromPath(element._1))
         if(column == 2){
           column = 0
           row += 1
@@ -195,13 +229,11 @@ class Controller {
     }
   }
 
-
-  def onDragImageViewDetected(): Unit = {
-    println("Detected: "+imageViewGrid.getImage)
+  def getImageNameFromPath(path: String): String = {
+    val file = new File(path)
+    //necessary due to an error when using the '\' character
+    file.getName
   }
 
-  def onDragImageViewDone(): Unit = {
-    println("Done: "+imageViewGrid.getImage)
-  }
 
 }

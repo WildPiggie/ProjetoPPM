@@ -1,25 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b8deda37-1e6a-47d0-834a-df247805d7e0" name="Default Changelist" comment="Cleanup">
-      <change afterPath="$PROJECT_DIR$/src/QTrees/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/scala_sdk_2_13_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_04_2021_15_25__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_04_2021_15_25__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_04_2021_15_04__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_04_2021_15_04__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_04_2021_01_44__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_04_2021_01_44__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_04_2021_08_46__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_04_2021_08_46__Default_Changelist_.xml" afterDir="false" />
+    <list default="true" id="b8deda37-1e6a-47d0-834a-df247805d7e0" name="Default Changelist" comment="css e trapalhices">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Album.soa" beforeDir="false" afterPath="$PROJECT_DIR$/Album.soa" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjetoPPM.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjetoPPM.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/BitMap$.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/BitMap$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/IO_Utils$.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/IO_Utils$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/QuadTree$.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/QuadTree$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/kobe.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/kobe.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/QTrees/Container.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/Container.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/QTrees/Controller.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/Controller.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/QTrees/ControllerElementImage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/ControllerElementImage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/QTrees/ControllerGridView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/ControllerGridView.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/QTrees/ControllerImageView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/ControllerImageView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/QTrees/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -207,7 +198,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617986970272</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="css e trapalhices">
+      <created>1620295456608</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1620295456608</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -269,6 +267,7 @@
     <MESSAGE value="Alterações pequenas: Falta arranjar o split coords do makeQTree" />
     <MESSAGE value="MakeQTree funcional!" />
     <MESSAGE value="Cleanup" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleanup" />
+    <MESSAGE value="css e trapalhices" />
+    <option name="LAST_COMMIT_MESSAGE" value="css e trapalhices" />
   </component>
 </project>

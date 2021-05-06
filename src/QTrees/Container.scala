@@ -8,6 +8,7 @@ case class Container(name:String, data : List[(String, String)]){
   def switch(path1: String, path2: String): Container = Container.switch(path1, path2)(this)
   def editInfo(path:String,newInfo:String): Container = Container.editInfo(path, newInfo)(this)
   def getInfo(path: String): String = Container.getInfo(path)(this)
+  def getAbsolutePath(name: String): String = Container.getAbsolutePath(name)(this)
 }
 
 object Container {
@@ -76,4 +77,11 @@ object Container {
     container.data(index)._2
   }
 
+  def getAbsolutePath(name: String)(container: Container): String = {
+    val lst = container.data filter (x => x._1.endsWith(name))
+    if(lst.nonEmpty)
+      lst.head._1
+    else
+      throw new IllegalArgumentException("Incorrect image name.")
+  }
 }

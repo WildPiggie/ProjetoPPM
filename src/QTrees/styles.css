@@ -1,11 +1,35 @@
 .root {
     -fx-font-size: 14px;
-    -fx-background-color: #a0a0a0;
+    -fx-background-color: #001540;
     -fx-font-family: "Helvetica";
 }
 
+#images Button {
+    -fx-background-radius: 0,0,0,0;
+}
+
+#images TextField {
+    -fx-background-radius: 0,0,0,0;
+}
+
 #tabPane {
-    -fx-background-color: #dcdcdd;
+    -fx-background-color: #001540;
+    -fx-background: #001540;
+    -fx-color: #4169e1;
+}
+
+.tab{
+    -fx-background-color: -fx-background;
+    -fx-background-color: #ffffff;
+    -fx-text-fill: black;
+}
+
+.tab:hover{
+    -fx-background: #71a9f1;
+}
+
+.tab:selected{
+    -fx-background-color: #e5e5e0;
 }
 
 #tabPane Button {
@@ -14,23 +38,7 @@
     -fx-text-fill: black;
 }
 
-#tabPane Tab {
-
-}
-
-#tabPane GridPane {
-  -fx-padding: 0 10 0 10;
-}
-
-.tab{
-    -fx-background-color: -fx-background;
-    -fx-background: #a0a0a0;
-}
-
-.tab:hover{
-    -fx-background: #a0a0a0;
-}
-
-.tab:selected{
-    -fx-background: #dcdcdd;
+#tabPane TextField {
+    -fx-max-width: 100;
+    -fx-background-radius: 0,0,0,0;
 }

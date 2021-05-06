@@ -6,7 +6,7 @@
 
 <AnchorPane minHeight="400.0" minWidth="400.0" prefHeight="600.0" prefWidth="680.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="QTrees.Controller">
     <children>
-        <TabPane id="tabPane" prefHeight="92.0" prefWidth="673.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <TabPane id="tabPane" prefHeight="100.0" prefWidth="680.0" style="-fx-color: red;" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <tabs>
                 <Tab text="Album">
                     <content>
@@ -27,7 +27,9 @@
                                     <children>
                                         <Button fx:id="buttonAddImageIV" mnemonicParsing="false" onAction="#onButtonAddImageClickedIV" text="Add Image" />
                                         <Button mnemonicParsing="false" onAction="#onButtonRemoveClicked" text="Remove" GridPane.columnIndex="1" />
-                                        <Button mnemonicParsing="false" text="Switch Order" GridPane.columnIndex="2" />
+                                        <Button disable="true" mnemonicParsing="false" text="Switch Order" GridPane.columnIndex="3" />
+                              <TextField alignment="CENTER" disable="true" promptText="img1.format" GridPane.columnIndex="4" />
+                              <TextField alignment="CENTER" disable="true" promptText="img2.format" GridPane.columnIndex="5" />
                                     </children>
                                 </GridPane>
                             </children></AnchorPane>
@@ -91,24 +93,25 @@
                 </Tab>
             </tabs>
         </TabPane>
-      <GridPane layoutX="17.0" layoutY="92.0" prefHeight="481.0" prefWidth="638.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+      <GridPane id="images" layoutX="17.0" layoutY="92.0" prefHeight="481.0" prefWidth="638.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
         <columnConstraints>
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="205.0" minWidth="10.0" prefWidth="65.0" />
+          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="65.0" />
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="548.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="123.0" minWidth="10.0" prefWidth="65.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="65.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="410.3999847412109" minHeight="10.0" prefHeight="387.3999847412109" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="320.80000000000007" minHeight="6.600015258789085" prefHeight="29.600015258789085" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="155.40000000000003" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="410.3999847412109" minHeight="10.0" prefHeight="23.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="449.0" minHeight="10.0" prefHeight="407.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="320.80000000000007" minHeight="6.600015258789085" prefHeight="36.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="155.40000000000003" minHeight="0.0" prefHeight="34.0" valignment="TOP" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" onAction="#onButtonPreviousClicked" prefHeight="10.0" prefWidth="10.0" text="&lt;" />
-            <Button mnemonicParsing="false" onAction="#onButtonNextClicked" prefHeight="10.0" prefWidth="10.0" text="&gt;" GridPane.columnIndex="2" />
-            <TextField fx:id="textFieldInfo" alignment="CENTER" maxWidth="400.0" onAction="#onInfoTyped" prefHeight="26.0" prefWidth="400.0" promptText="No description" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="Description (Press Enter to Save)" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <ImageView fx:id="imageView" fitHeight="400.0" fitWidth="400.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
-            <Button mnemonicParsing="false" prefHeight="10.0" prefWidth="10.0" GridPane.rowIndex="1">
+            <Button mnemonicParsing="false" onAction="#onButtonPreviousClicked" prefHeight="10.0" prefWidth="10.0" text="&lt;" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#onButtonNextClicked" prefHeight="10.0" prefWidth="10.0" text="&gt;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="textFieldInfo" alignment="CENTER" maxWidth="400.0" onAction="#onInfoTyped" prefHeight="26.0" prefWidth="400.0" promptText="No description" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="Description (Press Enter to Save)" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <ImageView fx:id="imageView" fitHeight="400.0" fitWidth="400.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#onButtonGridClicked" prefHeight="10.0" prefWidth="10.0" GridPane.rowIndex="2">
                <graphic>
                   <ImageView fitHeight="10.0" fitWidth="10.0" pickOnBounds="true">
                      <image>
@@ -117,6 +120,7 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Label fx:id="labelImageNameIV" text="Name" GridPane.columnIndex="1" />
          </children>
       </GridPane>
     </children>
