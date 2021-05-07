@@ -1,4 +1,4 @@
-package QTrees
+package GUI
 
 import QTrees.QuadTree.{Coords, contrastEffect, noiseEffectWithState, sepiaEffect}
 import javafx.fxml.{FXML, FXMLLoader}
@@ -13,6 +13,11 @@ import java.io.{File, FileInputStream}
 import javafx.stage.FileChooser
 
 import scala.annotation.tailrec
+import QTrees.{BitMap, QTree, QuadTree}
+import javafx.embed.swing.JFXPanel
+
+import javax.swing.JPanel
+import javax.swing.JOptionPane
 
 
 class Controller {
@@ -20,17 +25,17 @@ class Controller {
   @FXML
   private var gridPane: GridPane =_
   @FXML
-  private var buttonImageView: Button=_
+  private var buttonImageView: ImageView=_
   @FXML
-  private var buttonGrid: Button=_
+  private var buttonGrid: ImageView=_
   @FXML
   private var imageViewGrid: ImageView=_
   @FXML
-  private var buttonAddImageGV: Button=_
+  private var buttonAddImageGV: ImageView=_
   @FXML
-  private var buttonAddImageIV: Button=_
+  private var buttonAddImageIV: ImageView=_
   @FXML
-  private var buttonSwitchOrder: Button=_
+  private var buttonSwitchOrder: ImageView=_
   @FXML
   private var imageView: ImageView=_
   @FXML
@@ -78,14 +83,15 @@ class Controller {
 
   def onButtonRemoveClicked(): Unit = {
     val path = FxApp.currentImagePath
-    if(FxApp.container.data.size > 1)
+    if(FxApp.container.data.size > 1) {
       imageTransition(FxApp.container.next)
+      FxApp.container = FxApp.container.remove(path)
+    }
     else {
       FxApp.currentImagePath = ""
-      imageView.setImage(null)
-      textFieldInfo.setText("")
+      FxApp.container = FxApp.container.remove(path)
+      onButtonGridClicked()
     }
-    FxApp.container = FxApp.container.remove(path)
   }
 
   def onButtonSwitchClicked(): Unit = {
@@ -106,7 +112,7 @@ class Controller {
         itemController.updateGrid()
 
       } catch {
-        case e: IllegalArgumentException =>
+        case e: IllegalArgumentException => popUpErrorMessage(e.getMessage)
       }
     }
   }
@@ -121,12 +127,17 @@ class Controller {
 
   def onButtonScaleClicked(): Unit = {
     if(imageView.getImage != null && textFieldScaleValue.getText.nonEmpty) {
-      val path = FxApp.currentImagePath
-      val scaleValue = textFieldScaleValue.getText.toFloat
-      if(scaleValue > 0) {
-        val bitmap = QuadTree(QuadTree(BitMap.makeQTree(path)).scale(scaleValue)).makeBitMap()
-        bitmap.bitmapWriteImage(path)
-        imageView.setImage(new Image(new FileInputStream(path)))
+      try{
+        val path = FxApp.currentImagePath
+        val scaleValue = textFieldScaleValue.getText.toFloat
+        //if(scaleValue > 0) {
+          val bitmap = QuadTree(QuadTree(BitMap.makeQTree(path)).scale(scaleValue)).makeBitMap()
+          bitmap.bitmapWriteImage(path)
+          imageView.setImage(new Image(new FileInputStream(path)))
+        //}
+      }
+      catch {
+        case e: IllegalArgumentException => popUpErrorMessage(e.getMessage)
       }
     }
   }
@@ -148,14 +159,19 @@ class Controller {
   def applyEffects(f:QTree[Coords] => QTree[Coords]): Unit = {
     if(imageView.getImage != null) {
       val path = FxApp.currentImagePath
-      println(path)
       val bitmap = QuadTree(f(BitMap.makeQTree(path))).makeBitMap()
       bitmap.bitmapWriteImage(path)
       imageView.setImage(new Image(new FileInputStream(path)))
     }
   }
 
-  def onButtonImageViewClicked(): Unit = showImageView(0, buttonImageView)
+  def onButtonImageViewClicked(): Unit = {
+    if(FxApp.container.data.isEmpty)
+      popUpErrorMessage("There are no images available in your album to view.")
+    else
+      showImageView(0, buttonImageView)
+  }
+
 
   def showImageView(index: Int, widget: Node): Unit ={
     val secondStage: Stage = new Stage()
@@ -201,7 +217,7 @@ class Controller {
   }
 
   def onImageClicked(): Unit =
-    showImageView(2*GridPane.getRowIndex(anchorPaneImageView) + GridPane.getColumnIndex(anchorPaneImageView), imageViewGrid)// número de colunas hardcoded
+    showImageView(3*GridPane.getRowIndex(anchorPaneImageView) + GridPane.getColumnIndex(anchorPaneImageView), imageViewGrid)// número de colunas hardcoded
 
   def updateGrid() : Unit = {
     var (column, row) = (0,0)
@@ -217,7 +233,7 @@ class Controller {
         val itemController = fxmlLoader.getController[Controller]
         itemController.imageViewGrid.setImage(new Image(new FileInputStream(element._1)))
         itemController.labelImageNameGV.setText(getImageNameFromPath(element._1))
-        if(column == 2){
+        if(column == 3){
           column = 0
           row += 1
         }
@@ -233,6 +249,10 @@ class Controller {
     val file = new File(path)
     //necessary due to an error when using the '\' character
     file.getName
+  }
+
+  def popUpErrorMessage(msg: String): Unit = {
+    JOptionPane.showMessageDialog(new JFXPanel(), msg, "Error", JOptionPane.ERROR_MESSAGE)
   }
 
 

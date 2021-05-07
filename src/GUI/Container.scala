@@ -1,4 +1,4 @@
-package QTrees
+package GUI
 
 case class Container(name:String, data : List[(String, String)]){
   def add(path:String, info:String): Container = Container.add(path,info)(this)

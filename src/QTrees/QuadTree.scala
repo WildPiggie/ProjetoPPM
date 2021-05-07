@@ -124,11 +124,9 @@ object QuadTree{
           val newWidth = (width * scaleCall).toInt
           val newHeight = (height * scaleCall).toInt
           if (newWidth == width || newHeight == height) {
-            IO_Utils.printMessage("ERROR: Scale value too small.")
-            qn
+            throw new IllegalArgumentException("ERROR: Scale value too small.")
           } else if(newWidth == 0 || newHeight == 0){
-            IO_Utils.printMessage("ERROR. Scale reduces too much.")
-            qn
+            throw new IllegalArgumentException("ERROR. Scale reduces too much.")
           }
           else
           aux(newWidth,newHeight,qn.value._1,qn)
@@ -139,11 +137,9 @@ object QuadTree{
           val newWidth = (width * scaleCall).toInt
           val newHeight = (height * scaleCall).toInt
           if (newWidth == width || newHeight == height) {
-            IO_Utils.printMessage("ERROR. Scale value too small.")
-            return ql
+            throw new IllegalArgumentException("ERROR: Scale value too small.")
           } else if(newWidth == 0 || newHeight == 0){
-            IO_Utils.printMessage("ERROR. Scale reduces too much.")
-            return ql
+            throw new IllegalArgumentException("ERROR. Scale reduces too much.")
           }
           aux(newWidth,newHeight,ql.value._1._1,ql)
 

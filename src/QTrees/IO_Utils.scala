@@ -1,5 +1,8 @@
 package QTrees
 
+import GUI.Container
+import TUI.CommandLineOption
+
 import scala.collection.SortedMap
 import scala.io.Source
 import scala.io.StdIn.readLine

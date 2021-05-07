@@ -1,0 +1,63 @@
+.root {
+    -fx-font-size: 14px;
+    /*-fx-background-color: #fff4de; /* background app */
+
+    -fx-font-family: "Helvetica";
+}
+
+#images {
+    -fx-background-color: #ffffee; /* background app */
+}
+
+#images Button {
+    -fx-background-radius: 0,0,0,0;
+}
+
+#images TextField {
+    -fx-background-radius: 0,0,0,0;
+}
+#images ScrollPane {
+    -fx-background: #eeeeee;
+}
+
+#tabPane {
+    -fx-background-color: #eeeeee; /* background tab dos butoes */
+    -fx-background: #eeeeee; /* background tab dos menus */
+    /*-fx-background: #000000;*/
+    -fx-color: #1d1d1d; /* butoes da tab */
+}
+
+.tab{
+    -fx-background-color: -fx-background;
+    -fx-background-color: #808080; /* butoes do menu (n selecionado) */
+    -fx-background: #1d1d1d;
+
+}
+
+.tab:hover{
+    -fx-background: #71a9f1; /* ??? */
+}
+
+.tab:selected{
+    -fx-background-color: #1d1d1d; /* cor do menu selecionado */
+}
+
+#tabPane Button {
+    -fx-pref-width: 80px;
+    -fx-pref-height: 20px;
+    -fx-background-color: #1d1d1d;
+    -fx-text-fill: white;
+    -fx-background-radius: 0px;
+    -fx-font-weight: bold;
+}
+
+#tabPane TextField {
+    -fx-max-width: 100;
+    -fx-background-radius: 0,0,0,0;
+    -fx-background: #1d1d1d;
+}
+
+#tabPane ImageView {
+    -fx-pref-width: 30px;
+    -fx-pref-height: 30px;
+}
