@@ -13,7 +13,6 @@ object BitMap {
 
   def bitmapWriteImage(img: List[List[Int]], path: String): Unit = {
     val matrix = (img map (x=>x.toArray)).toArray
-    println(path)
     val tokens = path.split('.')
     ImageUtil.writeImage(matrix, path, tokens.last)
   }

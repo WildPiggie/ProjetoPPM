@@ -46,7 +46,6 @@ object IO_Utils {
     val bufferedSource = Source.fromFile(file)
     for (line <- bufferedSource.getLines) {
       val tokens = line.split(">")
-      println(tokens(0))
       if(tokens.size == 1)
         container = Container.add(tokens(0),"")(container)
       else
