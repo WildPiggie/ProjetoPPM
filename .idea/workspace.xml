@@ -1,25 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b8deda37-1e6a-47d0-834a-df247805d7e0" name="Default Changelist" comment="Cleanup">
-      <change afterPath="$PROJECT_DIR$/src/QTrees/styles.css" afterDir="false" />
+    <list default="true" id="b8deda37-1e6a-47d0-834a-df247805d7e0" name="Default Changelist" comment="Commit local">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/scala_sdk_2_13_3.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/lib2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/scala_sdk_2_13_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_04_2021_15_25__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_04_2021_15_25__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_04_2021_15_04__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_04_2021_15_04__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_04_2021_01_44__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_04_2021_01_44__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_04_2021_08_46__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_04_2021_08_46__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Album.soa" beforeDir="false" afterPath="$PROJECT_DIR$/Album.soa" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjetoPPM.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjetoPPM.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/BitMap$.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/BitMap$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/IO_Utils$.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/IO_Utils$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/QuadTree$.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/QuadTree$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QTrees/Controller.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/Controller.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QTrees/ControllerElementImage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/ControllerElementImage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QTrees/ControllerGridView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/ControllerGridView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QTrees/ControllerImageView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/ControllerImageView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,8 +42,8 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/QTrees/BitMap.scala" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/QTrees/QuadTree.scala" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/QTrees/BitMap.scala" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="1" />
@@ -74,7 +61,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Documents/sdks/javafx-sdk-11.0.2/lib" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Documents/ISCTE/4º SEMESTRE/PPM/Lab Tools/javafx-sdk-15.0.1/lib" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
