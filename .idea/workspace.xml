@@ -1,12 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b8deda37-1e6a-47d0-834a-df247805d7e0" name="Default Changelist" comment="Commit local">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/scala_sdk_2_13_3.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib2.xml" afterDir="false" />
+    <list default="true" id="b8deda37-1e6a-47d0-834a-df247805d7e0" name="Default Changelist" comment="GUI TERMINADA! - falta fazer Diagrama de Classes">
+      <change afterPath="$PROJECT_DIR$/img/prideflag.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/scala.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/spongebob.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjetoPPM.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjetoPPM.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Album.soa" beforeDir="false" afterPath="$PROJECT_DIR$/Album.soa" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/a.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/b.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/black5x5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/blue3x3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/evolution.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/evolution.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/img7x3.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/img7x3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/kobe.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/kobe.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/objc2_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/objc2_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/picrew.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/portugal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/BitMap$.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/BitMap$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/IO_Utils$.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/IO_Utils$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/QTrees/AMain.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/QTrees/BitMap.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/BitMap.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/QTrees/IO_Utils.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/IO_Utils.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +36,7 @@
       <list>
         <option value="Class" />
         <option value="Scala Trait" />
+        <option value="Scala Class" />
         <option value="Scala Object" />
       </list>
     </option>
@@ -41,10 +57,6 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/QTrees/QuadTree.scala" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/QTrees/BitMap.scala" root0="FORCE_HIGHLIGHTING" />
-  </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="1" />
   </component>
@@ -61,19 +73,66 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Documents/ISCTE/4º SEMESTRE/PPM/Lab Tools/javafx-sdk-15.0.1/lib" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/img" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
-  <component name="RunManager" selected="Application.FxApp">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\afons\IdeaProjects\ProjePPM\img" />
+      <recent name="C:\Users\afons\IdeaProjects\ProjePPM\src\GUI\Icons" />
+      <recent name="C:\Users\afons\IdeaProjects\ProjePPM\resources" />
+      <recent name="C:\Users\afons\Documents\GitHub\ProjetoPPM\out\production\ProjetoPPM\img" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\afons\IdeaProjects\ProjePPM\img" />
+      <recent name="C:\Users\afons\IdeaProjects\ProjePPM\src\GUI\Icons" />
+      <recent name="C:\Users\afons\IdeaProjects\ProjePPM\src\GUI" />
+      <recent name="C:\Users\afons\IdeaProjects\ProjePPM\resources" />
+      <recent name="C:\Users\Pombo\Desktop\ProjetoPPMGit" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="QTrees" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.FxApp (1)">
+    <configuration name="AMain" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="QTrees.AMain" />
+      <module name="ProjetoPPM" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="GUI.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FxApp (1)" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="GUI.FxApp" />
+      <module name="ProjetoPPM" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="GUI.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="FxApp" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="QTrees.FxApp" />
       <module name="ProjetoPPM" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="QTrees.*" />
+          <option name="PATTERN" value="GUI.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -86,7 +145,7 @@
       <module name="ProjetoPPM" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="QTrees.*" />
+          <option name="PATTERN" value="GUI.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -94,9 +153,36 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TextualUserInterface" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="TUI.TextualUserInterface" />
+      <module name="ProjetoPPM" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="GUI.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.FxApp (1)" />
+        <item itemvalue="Application.TextualUserInterface" />
         <item itemvalue="Application.FxApp" />
+        <item itemvalue="Application.AMain" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -109,6 +195,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1617359641107</updated>
+      <workItem from="1620348452968" duration="1129000" />
+      <workItem from="1620397244294" duration="7312000" />
+      <workItem from="1620404612917" duration="5643000" />
+      <workItem from="1620410744900" duration="2818000" />
+      <workItem from="1620413600555" duration="635000" />
+      <workItem from="1620414273313" duration="1145000" />
+      <workItem from="1620415468296" duration="3683000" />
+      <workItem from="1620424657474" duration="254000" />
+      <workItem from="1620491328787" duration="4007000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1617362089390</created>
@@ -194,8 +289,74 @@
       <option name="project" value="LOCAL" />
       <updated>1617986970272</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Cleanup">
+      <created>1617987395500</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1617987395500</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Cleanup &amp; Comentários para 1ª Entrega">
+      <created>1618258957149</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1618258957149</updated>
+    </task>
+    <task id="LOCAL-00015" summary="MakeBitMap &amp; auxiliares para ler e escrever imagem">
+      <created>1618334416970</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1618334416970</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Continuação dos testes do scale/rotate(R)">
+      <created>1618925431330</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1618925431330</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Continuação dos testes do scale/rotate(R)">
+      <created>1618925454262</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1618925454262</updated>
+    </task>
+    <task id="LOCAL-00018" summary="tentativa auxRotate">
+      <created>1619203093733</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1619203093733</updated>
+    </task>
+    <task id="LOCAL-00019" summary="GUI melhorada com os paths corretos">
+      <created>1620058845526</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1620058845526</updated>
+    </task>
+    <task id="LOCAL-00020" summary="GUI com add a partir de um filechooser + limpeza de warnings">
+      <created>1620067068727</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1620067068727</updated>
+    </task>
+    <task id="LOCAL-00021" summary="GUI TERMINADA! - falta fazer Diagrama de Classes">
+      <created>1620418805612</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1620418805612</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ID_ORDER">
@@ -256,6 +417,13 @@
     <MESSAGE value="Alterações pequenas: Falta arranjar o split coords do makeQTree" />
     <MESSAGE value="MakeQTree funcional!" />
     <MESSAGE value="Cleanup" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleanup" />
+    <MESSAGE value="Cleanup &amp; Comentários para 1ª Entrega" />
+    <MESSAGE value="MakeBitMap &amp; auxiliares para ler e escrever imagem" />
+    <MESSAGE value="Continuação dos testes do scale/rotate(R)" />
+    <MESSAGE value="tentativa auxRotate" />
+    <MESSAGE value="GUI melhorada com os paths corretos" />
+    <MESSAGE value="GUI com add a partir de um filechooser + limpeza de warnings" />
+    <MESSAGE value="GUI TERMINADA! - falta fazer Diagrama de Classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="GUI TERMINADA! - falta fazer Diagrama de Classes" />
   </component>
 </project>

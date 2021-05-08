@@ -1,5 +1,6 @@
-package QTrees
+package GUI
 
+import QTrees.IO_Utils
 import javafx.application.Application
 import javafx.fxml.FXMLLoader
 import javafx.scene.{Parent, Scene}
