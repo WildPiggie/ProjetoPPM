@@ -1,27 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b8deda37-1e6a-47d0-834a-df247805d7e0" name="Default Changelist" comment="GUI TERMINADA! - falta fazer Diagrama de Classes">
-      <change afterPath="$PROJECT_DIR$/img/prideflag.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/scala.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/spongebob.png" afterDir="false" />
+    <list default="true" id="b8deda37-1e6a-47d0-834a-df247805d7e0" name="Default Changelist" comment="Commit local">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/scala_sdk_2_13_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/scala_sdk_2_13_3.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Album.soa" beforeDir="false" afterPath="$PROJECT_DIR$/Album.soa" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/a.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/b.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/black5x5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/blue3x3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/evolution.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/evolution.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/img7x3.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/img7x3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/kobe.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/kobe.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/objc2_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/objc2_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/picrew.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/portugal.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/BitMap$.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/BitMap$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/IO_Utils$.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/IO_Utils$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QTrees/AMain.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjetoPPM.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjetoPPM.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/AMain$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/AMain.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Container.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Container.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/QTrees/BitMap.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/BitMap.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/QTrees/IO_Utils.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/IO_Utils.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/QTrees/QuadTree.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/QuadTree.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +48,10 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/QTrees/QuadTree.scala" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/QTrees/BitMap.scala" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="1" />
   </component>
@@ -75,7 +70,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/img" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Documents/ISCTE/4º SEMESTRE/PPM/Lab Tools/javafx-sdk-15.0.1/lib" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -101,6 +96,17 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.FxApp (1)">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AMain" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="QTrees.AMain" />
       <module name="ProjetoPPM" />
@@ -162,17 +168,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

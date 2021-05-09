@@ -11,42 +11,65 @@ case class BitMap(img: List[List[Int]]) {
 
 object BitMap {
 
+  /**
+   * Writes a given BitMap (List[List[Int]]) into an image in a given path.
+   * @param img the list of lists of int (BitMap)
+   * @param path the image path
+   */
   def bitmapWriteImage(img: List[List[Int]], path: String): Unit = {
     val matrix = (img map (x=>x.toArray)).toArray
     val tokens = path.split('.')
     ImageUtil.writeImage(matrix, path, tokens.last)
   }
 
+  /**
+   * Returns a QTree given a filename // what filename?
+   * @param filename the filename
+   * @return
+   */
   def makeQTree(filename: String): QTree[Coords] = {
     val lst = ImageUtil.readColorImage(filename).toList map (x=>x.toList)
     BitMap(lst).makeQTree()
   }
 
   // Função para a criação de uma QTree a partir de um BitMap
+  /**
+   * Returns a QTree given a BitMap. Uses an auxiliary recursive method.
+   * @param b the BitMap
+   * @return
+   */
   def makeQTree(b:BitMap): QTree[Coords] = auxMQT( ((0,0), (b.img.head.length - 1,b.img.length - 1)), b )
 
   // Calcula a largura e altura de imagem para obter as coordenadas da QTree que servirá como raiz da imagem
+  /**
+   * Recursive method that constructs the QTree by splitting the BitMap until it reaches the pixel level. In the pixel
+   * level it starts turning adjacent pixels of the same color in QLeafs and adjacent pixels of different colors in
+   * QNodes.
+   * @param c the coordinates
+   * @param b the BitMap
+   * @return
+   */
   def auxMQT(c:Coords, b: BitMap): QTree[Coords] = {
 
-    // Verifica se a QTree corresponde apenas a um pixel da imagem original
-    // e caso o seja devolve uma QLeaf com a cor correspondente
+    // Verifies if the coordinates correspond to only one pixel of the given image (BitMap) anf if so
+    // returns a new QLeaf with its color
     if( (c._1._1 == c._2._1) && (c._1._2 == c._2._2) ) {
       val color = new Color(b.img(c._1._2)(c._1._1))
       return QLeaf[Coords, Section]( (c, color):Section )
     }
 
-    // Divisão das coordenadas em 4 quadrantes
+    // Split of coordinates in 4 quadrants
     val sCords = splitCoords(c)
 
-    // Verifica se as coordenadas devolvidas são válidas.
-    // Caso sejam é realizado o mesmo processo para o quadrante devolvido, ou então é indicado como sendo QEmpty
+    // Verifies if the returned coordinates are valid.
+    // If they're valid, recursively applies the same method. If they're not valid then it returns a QEmpty.
     val qtOne   = if(coordsInbounds(c, sCords._1)) auxMQT(sCords._1, b) else QEmpty
     val qtTwo   = if(coordsInbounds(c, sCords._2)) auxMQT(sCords._2, b) else QEmpty
     val qtThree = if(coordsInbounds(c, sCords._3)) auxMQT(sCords._3, b) else QEmpty
     val qtFour  = if(coordsInbounds(c, sCords._4)) auxMQT(sCords._4, b) else QEmpty
 
-    // Verifica se todos os quadrantes correspondem a QLeafs com a mesma cor, se sim é devolvida a QLeaf correspondente ao caso.
-    // Caso contrário é devolvido uma QNode contendo as quatro QTrees
+    // Verifies if all quadrants correspond to QLeafs with the same color and if so it returns the corresponding QLeaf.
+    // Otherwise it returns a QNode containing the 4 QTrees.
     (qtOne, qtTwo, qtThree, qtFour) match {
       case (q1: QLeaf[Coords, Section], q2:QLeaf[Coords, Section], QEmpty, QEmpty) =>
         if(q1.value._2 equals q2.value._2)
@@ -71,6 +94,12 @@ object BitMap {
 
   // Função para repartir as coordenadas dadas em quatro coordenadas
   // correspondendo a quatro quadrantes da imagem
+  /**
+   * Returns new 4 coordinates that are the split of the given coordinates.
+   * In our split we tend to privilege the upper left quadrant.
+   * @param c the coordinates
+   * @return
+   */
   def splitCoords(c:Coords): (Coords, Coords, Coords, Coords) = {
     val width = c._2._1 - c._1._1 + 1
     val height = c._2._2 - c._1._2 + 1
@@ -82,6 +111,14 @@ object BitMap {
     (c1,c2,c3,c4)
   }
 
+  /**
+   * Returns a combined BitMap from 4 given BitMaps.
+   * @param b1 the 1st BitMap
+   * @param b2 the 2nd BitMap
+   * @param b3 the 3rd BitMap
+   * @param b4 the 4th BitMap
+   * @return
+   */
   def combine(b1:BitMap, b2:BitMap, b3:BitMap, b4:BitMap): BitMap = {
     def auxCombine(lst1: List[List[Int]], lst2: List[List[Int]]): List[List[Int]] = {
       (lst1,lst2) match {
@@ -97,6 +134,13 @@ object BitMap {
 
   //Função aninhada para indicar se umas coordenadas estão contidas noutras
   // (útil para descobrir coordenadas inválidas, usado para descobrir que QTrees devem ser QEmptys)
+  /**
+   * Checks if a given coordinates are inside in another given coordinates.
+   * Helpful to discover invalid coordinates in construction of a QTree. Ex: when QTrees should be QEmptys.
+   * @param bound the coordinates bound
+   * @param coords the coordinates
+   * @return
+   */
   def coordsInbounds(bound:Coords, coords:Coords): Boolean = {
     val (boundTopX,boundTopY) = bound._1
     val (boundBotX,boundBotY) = bound._2

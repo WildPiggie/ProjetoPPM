@@ -12,24 +12,44 @@ import scala.annotation.tailrec
 
 object IO_Utils {
 
+  /**
+   * Gets user integer input given a message.
+   * @param msg the message to be printed
+   * @return
+   */
   def getUserInputInt(msg : String): Try[Int] = {
     print(msg + ": ")
     Try(readLine.trim.toUpperCase.toInt)
   }
 
+  /**
+   * Gets user double input given a message.
+   * @param msg the message to be printed
+   * @return
+   */
   def getUserInputDouble(msg : String): Try[Double] = {
     print(msg + ": ")
     Try(readLine.trim.toUpperCase.toDouble)
   }
 
+  /**
+   * Gets user input given a message.
+   * @param msg the message to be printed
+   * @return
+   */
   def prompt(msg : String):String = {
     print(msg + ": ")
     scala.io.StdIn.readLine()
   }
 
-  def printMessage(msg : String): Unit = println(msg)
+  //def printMessage(msg : String): Unit = println(msg)
 
 
+  /**
+   * Shows the option prompt for Textual User Interface.
+   * @param options the sortedmap
+   * @return
+   */
   @tailrec
   def optionPrompt(options : SortedMap[Int, CommandLineOption]): Option[CommandLineOption] = {
     println("-- Options --")
@@ -41,6 +61,11 @@ object IO_Utils {
     }
   }
 
+  /**
+   * Reads the content of a given file and inserts it in a new container.
+   * @param file the file name
+   * @return
+   */
   def readFromFile(file: String): Container = {
     var container: Container = new Container(file, List())
     val bufferedSource = Source.fromFile(file)
@@ -55,6 +80,11 @@ object IO_Utils {
     container
   }
 
+  /**
+   * Writes the content of a given container in a given file.
+   * @param file the filename
+   * @param container the container
+   */
   def writeToFile(file: String, container: Container): Unit = {
     val pw = new PrintWriter(new File(file))
     container.data map (tokens => pw.write(tokens._1 + ">" + tokens._2 + "\n"))
