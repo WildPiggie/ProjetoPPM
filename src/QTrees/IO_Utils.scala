@@ -42,12 +42,9 @@ object IO_Utils {
     scala.io.StdIn.readLine()
   }
 
-  //def printMessage(msg : String): Unit = println(msg)
-
-
   /**
    * Shows the option prompt for Textual User Interface.
-   * @param options the sortedmap
+   * @param options the sortedmap ([Int, CommandLineOption]) containing the options
    * @return
    */
   @tailrec
@@ -64,9 +61,9 @@ object IO_Utils {
   /**
    * Reads the content of a given file and inserts it in a new container.
    * @param file the file name
-   * @return
+   * @return container initialized with the contents of the file
    */
-  def readFromFile(file: String): Container = {
+  def readContainerFromFile(file: String): Container = {
     var container: Container = new Container(file, List())
     val bufferedSource = Source.fromFile(file)
     for (line <- bufferedSource.getLines) {
@@ -81,11 +78,11 @@ object IO_Utils {
   }
 
   /**
-   * Writes the content of a given container in a given file.
+   * Writes the content of a given container into the specified file.
    * @param file the filename
    * @param container the container
    */
-  def writeToFile(file: String, container: Container): Unit = {
+  def writeContainerToFile(file: String, container: Container): Unit = {
     val pw = new PrintWriter(new File(file))
     container.data map (tokens => pw.write(tokens._1 + ">" + tokens._2 + "\n"))
     pw.close()

@@ -1,6 +1,7 @@
 package QTrees
 
 case class MyRandom(seed: Long) extends RandomWithState {
+
   def nextInt: (Int, RandomWithState) = {
     val newSeed = (seed * 0x5DEECE66DL + 0xBL) & 0xFFFFFFFFFFFFL
     val nextRandom = MyRandom(newSeed)

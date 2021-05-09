@@ -1,12 +1,10 @@
 .root {
     -fx-font-size: 14px;
-    /*-fx-background-color: #fff4de; /* background app */
-
     -fx-font-family: "Helvetica";
 }
 
 #images {
-    -fx-background-color: #ffffee; /* background app */
+    -fx-background-color: #ffffee; /* app background */
 }
 
 #images Button {
@@ -21,25 +19,24 @@
 }
 
 #tabPane {
-    -fx-background-color: #eeeeee; /* background tab dos butoes */
-    -fx-background: #eeeeee; /* background tab dos menus */
-    /*-fx-background: #000000;*/
-    -fx-color: #1d1d1d; /* butoes da tab */
+    -fx-background-color: #eeeeee; /* tab background - buttons */
+    -fx-background: #eeeeee; /* tab background - menus */
+    -fx-color: #1d1d1d; /* tab buttons */
 }
 
 .tab{
     -fx-background-color: -fx-background;
-    -fx-background-color: #808080; /* butoes do menu (n selecionado) */
+    -fx-background-color: #808080; /* unselected menu buttons */
     -fx-background: #1d1d1d;
 
 }
 
 .tab:hover{
-    -fx-background: #71a9f1; /* ??? */
+    -fx-background: #71a9f1;
 }
 
 .tab:selected{
-    -fx-background-color: #1d1d1d; /* cor do menu selecionado */
+    -fx-background-color: #1d1d1d; /* selected menu */
 }
 
 #tabPane Button {

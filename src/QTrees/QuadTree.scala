@@ -26,9 +26,9 @@ object QuadTree{
   type Section = (Coords, Color)
 
   /**
-   * Given a QTree it returns the correspondent BitMap
-   * @param qt the quadtree
-   * @return
+   * Given a QTree it returns the corresponding BitMap
+   * @param qt the QTree[Coords]
+   * @return BitMap corresponding to the QTree specified
    */
   def makeBitMap (qt: QTree[Coords]): BitMap = {
     qt match {
@@ -41,13 +41,13 @@ object QuadTree{
     }
   }
 
-  //Guarda a QTree como imagem no endereço indicado e devolve a QTree (apenas usado no menu textual)
   /**
-   * Turns a given QTree into a BitMap and saves it into an image in the given path.
-   * It is only used in Textual User Interface
+   * Turns a given QTree into a BitMap, saves it into an image in the given path
+   * and also returns the same QTree that was specified.
+   * Used in the Textual-Based User Interface
    * @param path the path for saving the image
-   * @param qt the quadtree
-   * @return
+   * @param qt the QTree[Coords]
+   * @return the QTree[Coords] received
    */
   def qTreeToImage(path: => String)(qt: QTree[Coords]): QTree[Coords] = {
     val image = makeBitMap(qt)
@@ -56,11 +56,11 @@ object QuadTree{
   }
 
   /**
-   * Returns the average color of a given QTree. Uses an auxiliary function to recursion.
-   * @param qt the quadtree
-   * @return
+   * Returns the average color of a given QTree. Uses an auxiliary function to recur.
+   * @param qt the QTree[Coords]
+   * @return average color as an Option[Color]
    */
-  def averageColour(qt: QTree[Coords]):Option[Color] = {
+  def averageColour(qt: QTree[Coords]): Option[Color] = {
     def avgRGB(lst: List[Option[Color]]): Color = {
       val definedColours = (lst filter (x => x.isDefined)) map (aux => (aux.get.getRed, aux.get.getGreen, aux.get.getBlue) )
       val size = definedColours.length
@@ -77,10 +77,11 @@ object QuadTree{
   /**
    * Returns the scaled QTree of a given QTree.
    * @param scale the scale value
-   * @param qt thw quadtree
-   * @return
+   * @param qt the QTree[Coords]
+   * @return the scaled QTree[Coords]
    */
-  def scale (scale: => Double)(qt:QTree[Coords]):QTree[Coords] = {
+  def scale (scale: => Double)(qt:QTree[Coords]): QTree[Coords] = {
+
     def aux(width: Int, height: Int, upperLeft: Point, qtAux:QTree[Coords]): QTree[Coords] = {
       qtAux match {
         case qn: QNode[Coords] =>
@@ -127,8 +128,8 @@ object QuadTree{
         case _ => qt
       }
     }
-
-    val scaleCall = scale //Para lidar com a lazy evaluation (para o menu textual)
+    //Necessary to deal with lazy evaluation (Textual-Based User Interface)
+    val scaleCall = scale
     if(scaleCall <= 0)
       throw new IllegalArgumentException("Invalid scale value.")
 
@@ -142,9 +143,9 @@ object QuadTree{
           val newWidth = (width * scaleCall).toInt
           val newHeight = (height * scaleCall).toInt
           if (newWidth == width || newHeight == height) {
-            throw new IllegalArgumentException("ERROR: Scale value too small.")
+            throw new IllegalArgumentException("Scale value too small.")
           } else if(newWidth == 0 || newHeight == 0){
-            throw new IllegalArgumentException("ERROR. Scale reduces too much.")
+            throw new IllegalArgumentException("Scale reduces too much.")
           }
           else
           aux(newWidth,newHeight,qn.value._1,qn)
@@ -155,9 +156,9 @@ object QuadTree{
           val newWidth = (width * scaleCall).toInt
           val newHeight = (height * scaleCall).toInt
           if (newWidth == width || newHeight == height) {
-            throw new IllegalArgumentException("ERROR: Scale value too small.")
+            throw new IllegalArgumentException("Scale value too small.")
           } else if(newWidth == 0 || newHeight == 0){
-            throw new IllegalArgumentException("ERROR. Scale reduces too much.")
+            throw new IllegalArgumentException("Scale reduces too much.")
           }
           aux(newWidth,newHeight,ql.value._1._1,ql)
 
@@ -166,12 +167,10 @@ object QuadTree{
     }
   }
 
-  // Realiza o espelhamento vertical da imagem (sob o eixo horizontal)
-
   /**
    * Returns the vertical mirrored QTree of given a QTree.
-   * @param qt the quadtree
-   * @return
+   * @param qt the QTree[Coords]
+   * @return vertically mirrored QTree[Coords]
    */
   def mirrorV (qt:QTree[Coords]):QTree[Coords] = {
     qt match {
@@ -189,12 +188,10 @@ object QuadTree{
     }
   }
 
-  // Realiza o espelhamento horizontal da imagem (sob o eixo vertical)
-
   /**
    * Returns the horizontal mirrored QTree of given a QTree.
-   * @param qt the quadtree
-   * @return
+   * @param qt the QTree[Coords]
+   * @return horizontally mirrored QTree[Coords]
    */
   def mirrorH (qt:QTree[Coords]):QTree[Coords] = {
     qt match {
@@ -213,8 +210,8 @@ object QuadTree{
 
   /**
    * Returns the clockwise rotated QTree of given a QTree.
-   * @param qt the quadtree
-   * @return
+   * @param qt the QTree[Coords]
+   * @return clockwise rotated QTree[Coords]
    */
   def rotateR (qt:QTree[Coords]):QTree[Coords] = {
     qt match {
@@ -249,8 +246,8 @@ object QuadTree{
 
   /**
    * Returns the counter-clockwise rotated QTree of given a QTree.
-   * @param qt the quadtree
-   * @return
+   * @param qt the QTree[Coords]
+   * @return counter-clockwise rotated QTree[Coords]
    */
   def rotateL (qt:QTree[Coords]):QTree[Coords] = {
     qt match {
@@ -259,13 +256,13 @@ object QuadTree{
         val height = qn.value._2._2 - qn.value._1._2
 
         def newCoords(coords: Coords): Coords = {
-          // centrar nos eixos x e y
+          // center in x and y axis
           val xsupC = coords._1._1 - width/2.0
           val ysupC = coords._1._2 - height/2.0
           val xinfC = coords._2._1 - width/2.0
           val yinfC = coords._2._2 - height/2.0
 
-          // rodar + descentrar dos eixos
+          // rotate + decenter from axis
           val x1 = ( ysupC + width/2.0).toInt
           val y1 = ( (-xsupC) + height/2.0).toInt
           val x2 = ( yinfC + width/2.0).toInt
@@ -285,11 +282,11 @@ object QuadTree{
   }
 
   /**
-   * Recursive method that changes both coordinates and QTrees order inside QNodes.
+   * Recursive method that changes both coordinates and QTrees' order inside QNodes.
    * This method is used in rotates and mirrors.
-   * @param qt the quadtree
-   * @param f the function that changes given coordinates
-   * @param switchQTreeOrder the function that switches quadtree order in a QNode
+   * @param qt the QTree[Coords]
+   * @param f the function that alters given coordinates
+   * @param switchQTreeOrder the function that switches QTree order in a QNode
    * @return
    */
   def recursiveSwapper(qt:QTree[Coords], f: Coords => Coords, switchQTreeOrder:QNode[Coords] => QNode[Coords]): QTree[Coords] = {
@@ -317,13 +314,11 @@ object QuadTree{
     }
   }
 
-
-  // Função recursiva que realiza o efeito da função f sobre todas as cores (em todas as leafs) da QTree
   /**
-   * Recursive method that returns a new QTree with all colors changed by a given function f given a QTree.
+   * Recursive method that returns a new QTree with all colors changed by a given function f.
    * Colors only exist in QLeafs.
    * @param f the function that changes a given color
-   * @param qt the quadtree
+   * @param qt the QTree[Coords]
    * @return
    */
   def mapColourEffect (f:Color => Color)(qt:QTree[Coords]):QTree[Coords] = {
@@ -334,13 +329,11 @@ object QuadTree{
     }
   }
 
-  // Efeito de ruído, devolve com 50% de probabilidade a cor cinzenta,
-  // caso contrário a cor passada como parametro é devolvida
   /**
    * Non-pure noise effect - it returns either gray or the given color according to a random value.
    * 50% chance of the returned color being gray.
    * @param color the color
-   * @return
+   * @return the color provided or dark gray (50% probability)
    */
   def noiseEffect (color: Color): Color ={
     if(Math.random()>=0.5)
@@ -349,11 +342,10 @@ object QuadTree{
       color
   }
 
-  // Dependendo da luminosidade da cor recebida, a função devolve uma cor mais clara ou mais escura
   /**
    * Returns a new color with contrast applied in a given color (depending on the luminance of the given color).
    * @param color the color
-   * @return
+   * @return a brightened or darkened color
    */
   def contrastEffect (color: Color): Color ={
     if(ImageUtil.luminance(color.getRed, color.getGreen, color.getBlue) >= 128)
@@ -362,11 +354,10 @@ object QuadTree{
       color.darker()
   }
 
-  // Aplica o efeito Sepia à cor recebida como argumento
   /**
    * Returns a new color with sepia effect applied in a given color.
    * @param color the color
-   * @return
+   * @return color with the sepia effect applied
    */
   def sepiaEffect (color: Color): Color ={
     val red   = Math.min((.393 * color.getRed) + (.769 * color.getGreen) + (.189 * color.getBlue), 255.0).toInt
@@ -375,9 +366,6 @@ object QuadTree{
     new Color(red, green, blue)
   }
 
-
-  // Função recursiva PURA que realiza o efeito da função f sobre todas as cores
-  // (em todas as leafs) da QTree
   /**
    * Returns a new QTree with all colors changed by a given function f given a QTree.
    * This method is only applied to make a pure noise effect and for that reason the function f
@@ -408,12 +396,11 @@ object QuadTree{
     aux(f,qt,random)._1
   }
 
-  // Efeito ruído PURO
   /**
    * Pure noise effect - it returns either gray or the given color according to a pure random value.
    * @param color the color
    * @param r the random value and its state
-   * @return
+   * @return the color provided or dark gray (50% probability)
    */
   def noiseEffectWithState(color: Color, r:RandomWithState): (Color,RandomWithState) ={
     val i = r.nextInt(2)

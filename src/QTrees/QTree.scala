@@ -1,5 +1,4 @@
 package QTrees
 
-trait QTree[+A] {
-}
+trait QTree[+A]
 

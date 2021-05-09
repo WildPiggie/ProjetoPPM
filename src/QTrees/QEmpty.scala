@@ -1,4 +1,3 @@
 package QTrees
 
-case object QEmpty extends QTree[Nothing]{
-}
+case object QEmpty extends QTree[Nothing]

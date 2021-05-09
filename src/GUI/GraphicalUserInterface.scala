@@ -7,7 +7,6 @@ import javafx.scene.{Parent, Scene}
 import javafx.stage.Stage
 
 
-
 class GraphicalUserInterface extends Application {
   override def start(primaryStage: Stage): Unit = {
     primaryStage.setTitle("Album")
@@ -23,14 +22,14 @@ class GraphicalUserInterface extends Application {
   }
 
   override def stop(): Unit = {
-    IO_Utils.writeToFile(FxApp.fileName, FxApp.container)
+    IO_Utils.writeContainerToFile(FxApp.fileName, FxApp.container)
   }
 }
 
   object FxApp {
     var currentImagePath:String =_
     val fileName = "Album.soa"
-    var container: Container = IO_Utils.readFromFile(fileName)
+    var container: Container = IO_Utils.readContainerFromFile(fileName)
     def main(args: Array[String]): Unit = {
       Application.launch(classOf[GraphicalUserInterface], args: _*)
     }

@@ -4,7 +4,7 @@ import QTrees.QuadTree.{Coords, contrastEffect, noiseEffectWithState, sepiaEffec
 import javafx.fxml.{FXML, FXMLLoader}
 import javafx.geometry.Insets
 import javafx.scene.{Node, Parent}
-import javafx.scene.control.{Button, Label, TextField}
+import javafx.scene.control.{Label, TextField}
 import javafx.scene.image.{Image, ImageView}
 import javafx.scene.layout.{AnchorPane, GridPane}
 import javafx.stage.{Modality, Stage}
@@ -16,7 +16,6 @@ import scala.annotation.tailrec
 import QTrees.{BitMap, QTree, QuadTree}
 import javafx.embed.swing.JFXPanel
 
-import javax.swing.JPanel
 import javax.swing.JOptionPane
 
 
@@ -58,17 +57,19 @@ class Controller {
 
   def onButtonAddImageClickedIV(): Unit = addImage(buttonAddImageIV, updateImageView())
 
+  /**
+   * Adds the Image to the container and sets it to be the current image.
+   * @param widget a widget in the current scene
+   * @param f function to execute after the image has been added to the container
+   */
   def addImage( widget: Node, f: => Unit): Unit = {
     val stage: Stage = new Stage()
     stage.initOwner(widget.getScene.getWindow)
-    stage.initModality(Modality.WINDOW_MODAL) // ver isto
+    stage.initModality(Modality.WINDOW_MODAL)
 
     val fileChooser = new FileChooser
     fileChooser.setTitle("Open Resource File")
     val file = fileChooser.showOpenDialog(stage)
-
-
-
 
     if(file != null) {
       val path = file.toString
@@ -78,12 +79,18 @@ class Controller {
     }
   }
 
+  /**
+   * Refreshes the Image View.
+   */
   def updateImageView (): Unit = {
     imageView.setImage(new Image(new FileInputStream(FxApp.currentImagePath)))
     labelImageNameIV.setText(getImageNameFromPath(FxApp.currentImagePath))
     textFieldInfo.setText(FxApp.container.getInfo(FxApp.currentImagePath))
   }
 
+  /**
+   * Removes the current image from the container and updates the view accordingly.
+   */
   def onButtonRemoveClicked(): Unit = {
     val path = FxApp.currentImagePath
     if(FxApp.container.data.size > 1) {
@@ -97,6 +104,9 @@ class Controller {
     }
   }
 
+  /**
+   * Switches the order of the two images specified in the respective text fields and updates the GridView.
+   */
   def onButtonSwitchClicked(): Unit = {
     if(textFieldImage1.getText.nonEmpty && textFieldImage2.getText.nonEmpty) {
       try{
@@ -120,6 +130,9 @@ class Controller {
     }
   }
 
+  /**
+   * Updates the info of a given image when the user enters new info into the text field and presses enter.
+   */
   def onInfoTyped(): Unit = {
     if(imageView.getImage != null) {
       val path = FxApp.currentImagePath
@@ -128,16 +141,15 @@ class Controller {
     }
   }
 
+  //The next functions apply an effect to an image and display it.
   def onButtonScaleClicked(): Unit = {
     if(imageView.getImage != null && textFieldScaleValue.getText.nonEmpty) {
       try{
         val path = FxApp.currentImagePath
         val scaleValue = textFieldScaleValue.getText.toFloat
-        //if(scaleValue > 0) {
-          val bitmap = QuadTree(QuadTree(BitMap.makeQTree(path)).scale(scaleValue)).makeBitMap()
-          bitmap.bitmapWriteImage(path)
-          imageView.setImage(new Image(new FileInputStream(path)))
-        //}
+        val bitmap = QuadTree(QuadTree(BitMap.makeQTree(path)).scale(scaleValue)).makeBitMap()
+        bitmap.bitmapWriteImage(path)
+        imageView.setImage(new Image(new FileInputStream(path)))
       }
       catch {
         case e: IllegalArgumentException => popUpErrorMessage(e.getMessage)
@@ -159,6 +171,10 @@ class Controller {
 
   def onButtonNoiseClicked(): Unit = applyEffects(QuadTree.mapColourEffectWithState(noiseEffectWithState))
 
+  /**
+   * Funtion responsible for applying a give effect f to an image and displaying it.
+   * @param f function (QTree[Coords] => QTree[Coords]) to be applied to the image
+   */
   def applyEffects(f:QTree[Coords] => QTree[Coords]): Unit = {
     if(imageView.getImage != null) {
       val path = FxApp.currentImagePath
@@ -175,7 +191,11 @@ class Controller {
       showImageView(0, buttonImageView)
   }
 
-
+  /**
+   * Shows the Image View, requires an index of the image to display and a widget from the current scene.
+   * @param index index of the image to be displayed
+   * @param widget widget in the current scene
+   */
   def showImageView(index: Int, widget: Node): Unit ={
     val secondStage: Stage = new Stage()
     secondStage.setTitle("Image View")
@@ -191,6 +211,9 @@ class Controller {
     FxApp.currentImagePath = path
   }
 
+  /**
+   * Shows the Grid View
+   */
   def onButtonGridClicked(): Unit = {
     val secondStage: Stage = new Stage()
     secondStage.setTitle("Grid")
@@ -207,6 +230,10 @@ class Controller {
 
   def onButtonPreviousClicked(): Unit = imageTransition(FxApp.container.previous)
 
+  /**
+   * Displays the next/previous image depending on the f function supplied.
+   * @param f transition function (String=>(String, String))
+   */
   def imageTransition(f: String => (String, String)): Unit = {
     if(imageView.getImage != null){
       try{
@@ -220,8 +247,11 @@ class Controller {
   }
 
   def onImageClicked(): Unit =
-    showImageView(3*GridPane.getRowIndex(anchorPaneImageView) + GridPane.getColumnIndex(anchorPaneImageView), imageViewGrid)// número de colunas hardcoded
+    showImageView(3*GridPane.getRowIndex(anchorPaneImageView) + GridPane.getColumnIndex(anchorPaneImageView), imageViewGrid)
 
+  /**
+   * Refreshes the Grid View.
+   */
   def updateGrid() : Unit = {
     var (column, row) = (0,0)
     auxUpdate(FxApp.container.data)
@@ -257,6 +287,5 @@ class Controller {
   def popUpErrorMessage(msg: String): Unit = {
     JOptionPane.showMessageDialog(new JFXPanel(), msg, "Error", JOptionPane.ERROR_MESSAGE)
   }
-
 
 }
