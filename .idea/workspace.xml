@@ -2,34 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8deda37-1e6a-47d0-834a-df247805d7e0" name="Default Changelist" comment="Commit local">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_04_2021_15_25__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_04_2021_15_25__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_04_2021_15_04__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_04_2021_15_04__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_04_2021_01_44__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_04_2021_01_44__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_04_2021_08_46__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_04_2021_08_46__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Album.soa" beforeDir="false" afterPath="$PROJECT_DIR$/Album.soa" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjetoPPM.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjetoPPM.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/BitMap$.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/BitMap$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/BitMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/BitMap.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/IO_Utils$.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/IO_Utils$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/IO_Utils.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/IO_Utils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/MyRandom.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/MyRandom.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/QuadTree$.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/QuadTree$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/QuadTree.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoPPM/QTrees/QuadTree.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Container.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Container.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Controller.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Controller.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/GraphicalUserInterface.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GraphicalUserInterface.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QTrees/BitMap.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/BitMap.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/QTrees/IO_Utils.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/IO_Utils.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QTrees/MyRandom.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/MyRandom.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QTrees/QEmpty.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/QEmpty.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QTrees/QLeaf.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/QLeaf.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QTrees/QNode.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/QNode.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QTrees/QTree.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/QTree.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QTrees/QuadTree.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/QTrees/QuadTree.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TUI/TextualUserInterface.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/TUI/TextualUserInterface.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,8 +45,8 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/QTrees/BitMap.scala" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/QTrees/QuadTree.scala" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/QTrees/BitMap.scala" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="1" />
@@ -87,7 +66,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Documents/sdks/javafx-sdk-15.0.1/lib" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Documents/ISCTE/4º SEMESTRE/PPM/Lab Tools/javafx-sdk-15.0.1/lib" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -112,7 +91,7 @@
       <recent name="QTrees" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.TextualUserInterface">
+  <component name="RunManager" selected="Application.FxApp (1)">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -191,8 +170,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.TextualUserInterface" />
         <item itemvalue="Application.FxApp (1)" />
+        <item itemvalue="Application.TextualUserInterface" />
         <item itemvalue="Application.FxApp" />
         <item itemvalue="Application.AMain" />
         <item itemvalue="Application.Main" />

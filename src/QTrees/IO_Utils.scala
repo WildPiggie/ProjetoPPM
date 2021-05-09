@@ -77,6 +77,7 @@ object IO_Utils {
     container
   }
 
+
   /**
    * Writes the content of a given container into the specified file.
    * @param file the filename
@@ -84,8 +85,19 @@ object IO_Utils {
    */
   def writeContainerToFile(file: String, container: Container): Unit = {
     val pw = new PrintWriter(new File(file))
-    container.data map (tokens => pw.write(tokens._1 + ">" + tokens._2 + "\n"))
+    val wrapWithGreater = wrapFileLine(_: String)(">")(_: String)
+    container.data map (tokens => pw.write(wrapWithGreater(tokens._1,tokens._2)))
     pw.close()
   }
+
+
+  /**
+   * Wraps a string given 3 strings. Useful to apply PAF.
+   * @param path the path name
+   * @param separator the separator
+   * @param info the information associated to the image
+   * @return
+   */
+  def wrapFileLine(path: String)(separator: String)(info: String): String = {path + separator + info + "\n"}
 
 }
